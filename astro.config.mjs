@@ -5,6 +5,7 @@ import path from 'path';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://metaforge.app',
   server: {
     port: 5173,
     host: true,

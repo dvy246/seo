@@ -2,7 +2,7 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { pageMeta } from '@/data/pages';
-import type { Locale } from '@/lib/i18n';
+import { locales, extractLocale, withLocale, type Locale } from '@/lib/i18n';
 import '@/index.css';
 
 interface Props {
@@ -25,7 +25,30 @@ const title = customTitle || pageInfo.title;
 const description = customDesc || pageInfo.description;
 const keywords = customKeywords || pageInfo.keywords;
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://metaforge.dev').toString();
+const baseUrl = Astro.site ? Astro.site.origin : 'https://metaforge.app';
+const canonicalUrl = new URL(Astro.url.pathname, baseUrl).toString();
+
+const { pathWithoutLocale } = extractLocale(path);
+const hreflangLinks = locales.map((loc) => ({
+  lang: loc.code,
+  href: new URL(withLocale(loc.code, pathWithoutLocale), baseUrl).toString(),
+}));
+const xDefaultHref = new URL(withLocale('en', pathWithoutLocale), baseUrl).toString();
+
+const webAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'MetaForge',
+  url: baseUrl,
+  description: description,
+  applicationCategory: 'SEOApplication',
+  operatingSystem: 'All',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+};
 ---
 
 <!doctype html>
@@ -39,6 +62,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://metaforg
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalUrl} />
 
+    <!-- Hreflang International SEO Tags -->
+    {hreflangLinks.map((link) => (
+      <link rel="alternate" hreflang={link.lang} href={link.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
@@ -50,6 +79,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://metaforg
     <meta property="twitter:url" content={canonicalUrl} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+
+    <!-- WebApplication JSON-LD Schema (AEO / GEO Optimization) -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(webAppSchema)} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

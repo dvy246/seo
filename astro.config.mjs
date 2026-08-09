@@ -5,6 +5,10 @@ import path from 'path';
 
 // https://astro.build/config
 export default defineConfig({
+  server: {
+    port: 5173,
+    host: true,
+  },
   integrations: [
     react(),
     tailwind({

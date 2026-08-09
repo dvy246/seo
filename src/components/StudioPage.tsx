@@ -13,7 +13,7 @@ import { CompanionContent } from '@/components/CompanionContent';
 import { getFaqJsonLd } from '@/components/CompanionContent';
 import { pageMeta, navTools } from '@/data/pages';
 import { navigateTo } from '@/lib/router';
-import { ChevronRight, Sparkles, Eye, Code2 } from 'lucide-react';
+import { ChevronRight, Sparkles, Code2 } from 'lucide-react';
 
 interface StudioPageProps {
   path: string;
@@ -81,15 +81,10 @@ export function StudioPage({ path }: StudioPageProps) {
 
   // Determine which sections to show based on the page
   const isStudioPage = path === '/studio';
-  const isMetaTagPage = path === '/meta-tag-generator';
-  const isOgPage = path === '/open-graph-generator';
-  const isTwitterPage = path === '/twitter-card-generator';
-  const isSocialPreviewPage = path === '/social-preview-tool' || path === '/serp-preview-tool';
   const isJsonLdPage = path === '/json-ld-generator' || path === '/schema-markup-generator';
   const isRobotsPage = path === '/robots-txt-generator';
+  const isSocialPreviewPage = path === '/social-preview-tool' || path === '/serp-preview-tool';
 
-  // For dedicated tool pages, show only the relevant sections
-  const showEditor = !isJsonLdPage && !isRobotsPage;
   const showJsonLdForm = isStudioPage || isJsonLdPage || (!isRobotsPage && !isSocialPreviewPage);
   const showRobotsForm = isStudioPage || isRobotsPage;
 
@@ -97,21 +92,21 @@ export function StudioPage({ path }: StudioPageProps) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Breadcrumb */}
       {path !== '/studio' && (
-        <nav className="flex items-center gap-1.5 text-sm text-ink-muted mb-6">
-          <button onClick={() => navigateTo('/')} className="hover:text-choco-600 transition-colors">Home</button>
+        <nav className="flex items-center gap-1.5 text-sm text-ink-muted dark:text-sand-400 mb-6">
+          <button onClick={() => navigateTo('/')} className="hover:text-choco-600 dark:hover:text-choco-400 transition-colors">Home</button>
           <ChevronRight size={14} />
-          <button onClick={() => navigateTo('/studio')} className="hover:text-choco-600 transition-colors">Studio</button>
+          <button onClick={() => navigateTo('/studio')} className="hover:text-choco-600 dark:hover:text-choco-400 transition-colors">Studio</button>
           <ChevronRight size={14} />
-          <span className="text-ink font-medium">{meta.h1}</span>
+          <span className="text-ink dark:text-sand-50 font-medium">{meta.h1}</span>
         </nav>
       )}
 
       {/* Page heading */}
       <div className="mb-8">
-        <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-ink tracking-tight text-balance">
+        <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-ink dark:text-sand-50 tracking-tight text-balance">
           {meta.h1}
         </h1>
-        <p className="mt-3 text-lg text-ink-soft leading-relaxed max-w-2xl text-balance">
+        <p className="mt-3 text-lg text-ink-soft dark:text-sand-300 leading-relaxed max-w-2xl text-balance">
           {meta.description.split('.')[0]}.
         </p>
       </div>
@@ -126,7 +121,7 @@ export function StudioPage({ path }: StudioPageProps) {
               className={`chip transition-colors ${
                 path === tool.path
                   ? 'bg-choco-500 text-white'
-                  : 'bg-white border border-sand-200 text-ink-soft hover:border-sand-300'
+                  : 'bg-white dark:bg-sand-900 border border-sand-200 dark:border-sand-700 text-ink-soft dark:text-sand-300 hover:border-sand-300 dark:hover:border-sand-600'
               }`}
             >
               {tool.shortLabel}
@@ -137,7 +132,7 @@ export function StudioPage({ path }: StudioPageProps) {
 
       {/* View tabs for tool pages */}
       {!isStudioPage && !isRobotsPage && (
-        <div className="flex gap-1 mb-6 border-b border-sand-200">
+        <div className="flex gap-1 mb-6 border-b border-sand-200 dark:border-sand-800">
           <ViewTab active={activeView === 'studio'} onClick={() => setActiveView('studio')} icon={<Sparkles size={15} />} label="Editor & Preview" />
           {showJsonLdForm && (
             <ViewTab active={activeView === 'jsonld'} onClick={() => setActiveView('jsonld')} icon={<Code2 size={15} />} label="JSON-LD" />
@@ -178,7 +173,7 @@ export function StudioPage({ path }: StudioPageProps) {
           <div className="space-y-5">
             {activeView === 'studio' && (
               <>
-                <StudioEditor setup={setup} brand={brand} onChange={handleSetupChange} />
+                <JsonLdForm schemaType={setup.schemaType} schemaData={setup.schemaData} onChange={handleSchemaChange} />
                 <OutputPanel metaTags={metaTags} jsonLd={jsonLd} robotsTxt={robotsTxt} />
               </>
             )}
@@ -188,17 +183,19 @@ export function StudioPage({ path }: StudioPageProps) {
                 <OutputPanel metaTags={metaTags} jsonLd={jsonLd} robotsTxt={robotsTxt} />
               </>
             )}
-            {activeView === 'robots' && (
-              <RobotsTxtGenerator rules={setup.robotsRules} onChange={handleRobotsChange} />
-            )}
           </div>
-          <div className="space-y-5 lg:sticky lg:top-20 lg:self-start">
+          <div className="space-y-5 lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-auto scrollbar-thin">
             <PreviewPanel setup={setup} activePlatform={activePlatform} onPlatformChange={setActivePlatform} />
+            <SaveLoadPanel
+              currentSetup={setup}
+              onLoadSetup={handleLoadSetup}
+              brand={brand}
+              onSaveBrand={handleSaveBrand}
+            />
           </div>
         </div>
       ) : (
-        /* Other tool pages: meta tags, OG, twitter, social preview, SERP preview */
-        <div className="grid lg:grid-cols-[1fr_400px] gap-6">
+        <div className="grid lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_440px] gap-6">
           <div className="space-y-5">
             {activeView === 'studio' && (
               <>
@@ -213,7 +210,7 @@ export function StudioPage({ path }: StudioPageProps) {
               <RobotsTxtGenerator rules={setup.robotsRules} onChange={handleRobotsChange} />
             )}
           </div>
-          <div className="space-y-5 lg:sticky lg:top-20 lg:self-start">
+          <div className="space-y-5 lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-auto scrollbar-thin">
             <PreviewPanel setup={setup} activePlatform={activePlatform} onPlatformChange={setActivePlatform} />
             <SaveLoadPanel
               currentSetup={setup}
@@ -225,15 +222,15 @@ export function StudioPage({ path }: StudioPageProps) {
         </div>
       )}
 
-      {/* Companion content */}
-      <div className="mt-16 pt-10 border-t border-sand-200">
+      {/* SEO Companion content per tool page */}
+      <div className="mt-16 pt-12 border-t border-sand-200 dark:border-sand-800">
         <CompanionContent path={path} />
       </div>
 
-      {/* Related tools */}
-      <div className="mt-16 pt-10 border-t border-sand-200">
-        <h2 className="font-serif text-2xl font-semibold text-ink mb-6">Related Tools</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      {/* Internal tool cross-linking grid */}
+      <div className="mt-16 pt-12 border-t border-sand-200 dark:border-sand-800">
+        <h2 className="text-xl font-serif font-semibold text-ink dark:text-sand-50 mb-6">More SEO Tools</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {navTools
             .filter((t) => t.path !== path)
             .slice(0, 4)
@@ -241,10 +238,10 @@ export function StudioPage({ path }: StudioPageProps) {
               <button
                 key={tool.path}
                 onClick={() => navigateTo(tool.path)}
-                className="card p-4 text-left hover:shadow-lift transition-all duration-200 hover:border-sand-300"
+                className="card p-4 text-left hover:shadow-lift transition-all duration-200 hover:border-sand-300 dark:hover:border-sand-600"
               >
-                <div className="text-sm font-medium text-ink mb-1">{tool.label}</div>
-                <div className="text-xs text-ink-muted">{tool.description}</div>
+                <div className="text-sm font-medium text-ink dark:text-sand-100 mb-1">{tool.label}</div>
+                <div className="text-xs text-ink-muted dark:text-sand-400">{tool.description}</div>
               </button>
             ))}
         </div>
@@ -259,8 +256,8 @@ function ViewTab({ active, onClick, icon, label }: { active: boolean; onClick: (
       onClick={onClick}
       className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 transition-all ${
         active
-          ? 'border-choco-500 text-choco-600'
-          : 'border-transparent text-ink-muted hover:text-ink'
+          ? 'border-choco-500 text-choco-600 dark:text-choco-400'
+          : 'border-transparent text-ink-muted dark:text-sand-400 hover:text-ink dark:hover:text-sand-100'
       }`}
     >
       {icon}

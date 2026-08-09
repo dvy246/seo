@@ -1,5 +1,5 @@
 import type { PageSetup, BrandProfile } from '@/types';
-import { Link as LinkIcon, FileText, Image as ImageIcon, Twitter, Settings2, Info } from 'lucide-react';
+import { Link as LinkIcon, FileText, Image as ImageIcon, Twitter, Settings2 } from 'lucide-react';
 import { useState, useRef } from 'react';
 import { parseMetaFromHtml } from '@/lib/generators';
 
@@ -71,12 +71,12 @@ export function StudioEditor({ setup, brand, onChange }: StudioEditorProps) {
       <div className="card p-4">
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-choco-50 flex items-center justify-center flex-none">
+            <div className="w-8 h-8 rounded-lg bg-choco-50 dark:bg-choco-900/30 flex items-center justify-center flex-none">
               <FileText size={16} className="text-choco-500" />
             </div>
             <div>
-              <div className="text-sm font-medium text-ink">Import existing tags</div>
-              <div className="text-xs text-ink-muted">Paste HTML or upload an HTML file to pre-fill fields</div>
+              <div className="text-sm font-medium text-ink dark:text-sand-100">Import existing tags</div>
+              <div className="text-xs text-ink-muted dark:text-sand-400">Paste HTML or upload an HTML file to pre-fill fields</div>
             </div>
           </div>
           <div className="flex gap-2">
@@ -161,7 +161,7 @@ export function StudioEditor({ setup, brand, onChange }: StudioEditorProps) {
           <div>
             <label className="field-label">Canonical URL</label>
             <div className="relative">
-              <LinkIcon size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted" />
+              <LinkIcon size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted dark:text-sand-400" />
               <input
                 type="url"
                 className="field-input pl-9"
@@ -186,17 +186,17 @@ export function StudioEditor({ setup, brand, onChange }: StudioEditorProps) {
           <div>
             <label className="field-label">OG Type</label>
             <select
-              className="field-input cursor-pointer"
+              className="field-input cursor-pointer dark:bg-sand-900 dark:text-sand-100"
               value={setup.ogType}
               onChange={(e) => update('ogType', e.target.value)}
             >
-              <option value="website">website</option>
-              <option value="article">article</option>
-              <option value="product">product</option>
-              <option value="profile">profile</option>
-              <option value="book">book</option>
-              <option value="music.song">music.song</option>
-              <option value="video.movie">video.movie</option>
+              <option value="website" className="dark:bg-sand-900 dark:text-sand-100">website</option>
+              <option value="article" className="dark:bg-sand-900 dark:text-sand-100">article</option>
+              <option value="product" className="dark:bg-sand-900 dark:text-sand-100">product</option>
+              <option value="profile" className="dark:bg-sand-900 dark:text-sand-100">profile</option>
+              <option value="book" className="dark:bg-sand-900 dark:text-sand-100">book</option>
+              <option value="music.song" className="dark:bg-sand-900 dark:text-sand-100">music.song</option>
+              <option value="video.movie" className="dark:bg-sand-900 dark:text-sand-100">video.movie</option>
             </select>
             <p className="field-hint">The type of content. Most pages use "website" or "article".</p>
           </div>
@@ -234,7 +234,7 @@ export function StudioEditor({ setup, brand, onChange }: StudioEditorProps) {
             <p className="field-hint">
               Recommended: 1200×630px. Use an absolute URL.
               {brand?.defaultOgImage && !setup.ogImage && (
-                <span className="text-choco-600"> Your brand default image will be used.</span>
+                <span className="text-choco-600 dark:text-choco-400"> Your brand default image will be used.</span>
               )}
             </p>
           </div>
@@ -252,14 +252,14 @@ export function StudioEditor({ setup, brand, onChange }: StudioEditorProps) {
           <div>
             <label className="field-label">Card Type</label>
             <select
-              className="field-input cursor-pointer"
+              className="field-input cursor-pointer dark:bg-sand-900 dark:text-sand-100"
               value={setup.twitterCard}
               onChange={(e) => update('twitterCard', e.target.value as PageSetup['twitterCard'])}
             >
-              <option value="summary">summary — small square image</option>
-              <option value="summary_large_image">summary_large_image — large image</option>
-              <option value="app">app — mobile app</option>
-              <option value="player">player — video/audio</option>
+              <option value="summary" className="dark:bg-sand-900 dark:text-sand-100">summary — small square image</option>
+              <option value="summary_large_image" className="dark:bg-sand-900 dark:text-sand-100">summary_large_image — large image</option>
+              <option value="app" className="dark:bg-sand-900 dark:text-sand-100">app — mobile app</option>
+              <option value="player" className="dark:bg-sand-900 dark:text-sand-100">player — video/audio</option>
             </select>
             <p className="field-hint">"summary_large_image" gives the biggest visual impact.</p>
           </div>
@@ -360,8 +360,8 @@ export function StudioEditor({ setup, brand, onChange }: StudioEditorProps) {
                 onChange={(e) => update('noindex', e.target.checked)}
               />
               <div>
-                <span className="text-sm font-medium text-ink">noindex</span>
-                <span className="text-xs text-ink-muted ml-2">Tell search engines not to index this page</span>
+                <span className="text-sm font-medium text-ink dark:text-sand-100">noindex</span>
+                <span className="text-xs text-ink-muted dark:text-sand-400 ml-2">Tell search engines not to index this page</span>
               </div>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
@@ -372,8 +372,8 @@ export function StudioEditor({ setup, brand, onChange }: StudioEditorProps) {
                 onChange={(e) => update('nofollow', e.target.checked)}
               />
               <div>
-                <span className="text-sm font-medium text-ink">nofollow</span>
-                <span className="text-xs text-ink-muted ml-2">Tell crawlers not to follow links on this page</span>
+                <span className="text-sm font-medium text-ink dark:text-sand-100">nofollow</span>
+                <span className="text-xs text-ink-muted dark:text-sand-400 ml-2">Tell crawlers not to follow links on this page</span>
               </div>
             </label>
           </div>
@@ -400,14 +400,14 @@ function SectionCard({
     <div className="card overflow-hidden">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between px-5 py-4 hover:bg-sand-50 transition-colors"
+        className="w-full flex items-center justify-between px-5 py-4 hover:bg-sand-50 dark:hover:bg-sand-800 transition-colors"
       >
         <div className="flex items-center gap-2.5">
           {icon}
-          <h3 className="text-sm font-semibold text-ink">{title}</h3>
+          <h3 className="text-sm font-semibold text-ink dark:text-sand-100">{title}</h3>
         </div>
         <svg
-          className={`w-4 h-4 text-ink-muted transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 text-ink-muted dark:text-sand-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -423,7 +423,7 @@ function SectionCard({
 function CharCounter({ value, max }: { value: string; max: number }) {
   const len = (value || '').length;
   const ratio = len / max;
-  const color = ratio > 1 ? 'text-error' : ratio > 0.85 ? 'text-warning' : 'text-ink-muted';
+  const color = ratio > 1 ? 'text-error' : ratio > 0.85 ? 'text-warning' : 'text-ink-muted dark:text-sand-400';
   return (
     <span className={`text-xs font-mono ${color}`}>
       {len}/{max}

@@ -8,7 +8,7 @@ export function CompanionContent({ path }: { path: string }) {
 
   return (
     <div className="prose-meta max-w-3xl">
-      <p className="text-base text-ink-soft leading-relaxed">{content.intro}</p>
+      <p className="text-base text-ink-soft dark:text-sand-300 leading-relaxed">{content.intro}</p>
 
       {content.sections.map((section, i) => (
         <div key={i}>
@@ -35,20 +35,20 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-lg border border-sand-200 bg-white overflow-hidden">
+    <div className="rounded-lg border border-sand-200 dark:border-sand-800 bg-white dark:bg-sand-900 overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-3 px-4 py-3.5 text-left hover:bg-sand-50 transition-colors"
+        className="w-full flex items-center justify-between gap-3 px-4 py-3.5 text-left hover:bg-sand-50 dark:hover:bg-sand-800 transition-colors"
       >
         <div className="flex items-center gap-2.5">
           <HelpCircle size={16} className="text-choco-500 flex-none" />
-          <span className="text-sm font-medium text-ink">{question}</span>
+          <span className="text-sm font-medium text-ink dark:text-sand-100">{question}</span>
         </div>
-        <ChevronDown size={16} className={`text-ink-muted flex-none transition-transform ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown size={16} className={`text-ink-muted dark:text-sand-400 flex-none transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
         <div className="px-4 pb-4 pl-11 animate-slide-up">
-          <p className="text-sm text-ink-soft leading-relaxed">{answer}</p>
+          <p className="text-sm text-ink-soft dark:text-sand-300 leading-relaxed">{answer}</p>
         </div>
       )}
     </div>

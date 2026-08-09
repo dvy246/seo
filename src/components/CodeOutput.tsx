@@ -26,19 +26,19 @@ export function CodeBlock({ label, code, language = 'html', filename, maxHeight 
   };
 
   return (
-    <div className="rounded-xl border border-sand-200 bg-sand-50 overflow-hidden">
-      <div className="flex items-center justify-between px-4 py-2.5 bg-sand-100 border-b border-sand-200">
+    <div className="rounded-xl border border-sand-200 dark:border-sand-800 bg-sand-50 dark:bg-sand-950 overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-2.5 bg-sand-100 dark:bg-sand-900 border-b border-sand-200 dark:border-sand-800">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold text-ink-soft uppercase tracking-wide">{label}</span>
+          <span className="text-xs font-semibold text-ink-soft dark:text-sand-300 uppercase tracking-wide">{label}</span>
           {language && (
-            <span className="chip bg-sand-200 text-ink-muted">{language}</span>
+            <span className="chip bg-sand-200 dark:bg-sand-800 text-ink-muted dark:text-sand-400">{language}</span>
           )}
         </div>
         <div className="flex items-center gap-1">
           {filename && (
             <button
               onClick={handleDownload}
-              className="btn-ghost px-2 py-1.5 text-xs"
+              className="btn-ghost px-2 py-1.5 text-xs text-ink-soft dark:text-sand-300 hover:bg-sand-200 dark:hover:bg-sand-800"
               title="Download file"
             >
               <Download size={14} />
@@ -48,8 +48,8 @@ export function CodeBlock({ label, code, language = 'html', filename, maxHeight 
             onClick={() => copy(code)}
             className={`btn px-2.5 py-1.5 text-xs transition-all ${
               copied
-                ? 'bg-sage-500 text-white'
-                : 'text-ink-soft hover:bg-sand-200'
+                ? 'bg-success text-white'
+                : 'text-ink-soft dark:text-sand-300 hover:bg-sand-200 dark:hover:bg-sand-800'
             }`}
           >
             {copied ? <Check size={14} /> : <Copy size={14} />}
@@ -58,8 +58,8 @@ export function CodeBlock({ label, code, language = 'html', filename, maxHeight 
         </div>
       </div>
       <div className="overflow-auto scrollbar-thin" style={{ maxHeight }}>
-        <pre className="p-4 text-[13px] leading-relaxed font-mono text-ink whitespace-pre-wrap break-all">
-          {code || <span className="text-ink-muted">Fill in the fields to generate output...</span>}
+        <pre className="p-4 text-[13px] leading-relaxed font-mono text-ink dark:text-sand-100 whitespace-pre-wrap break-all">
+          {code || <span className="text-ink-muted dark:text-sand-500">Fill in the fields to generate output...</span>}
         </pre>
       </div>
     </div>
@@ -86,24 +86,24 @@ export function OutputPanel({ metaTags, jsonLd, robotsTxt }: OutputTabsProps) {
   return (
     <div className="card p-5">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-semibold text-ink">Generated Output</h3>
-        <span className="text-xs text-ink-muted">Copy &amp; paste into your site</span>
+        <h3 className="text-sm font-semibold text-ink dark:text-sand-100">Generated Output</h3>
+        <span className="text-xs text-ink-muted dark:text-sand-400">Copy &amp; paste into your site</span>
       </div>
 
-      <div className="flex gap-1.5 mb-4 border-b border-sand-200 pb-3">
+      <div className="flex gap-1.5 mb-4 border-b border-sand-200 dark:border-sand-800 pb-3">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 flex items-center gap-2 ${
               activeTab === tab.id
-                ? 'bg-ink text-white shadow-soft'
-                : 'text-ink-soft hover:bg-sand-100'
+                ? 'bg-ink text-white dark:bg-sand-100 dark:text-sand-950 shadow-soft'
+                : 'text-ink-soft dark:text-sand-300 hover:bg-sand-100 dark:hover:bg-sand-800'
             }`}
           >
             {tab.label}
             {tab.hasContent && activeTab !== tab.id && (
-              <span className="w-1.5 h-1.5 rounded-full bg-sage-400" />
+              <span className="w-1.5 h-1.5 rounded-full bg-success" />
             )}
           </button>
         ))}

@@ -1,17 +1,16 @@
 import { navigateTo } from '@/lib/router';
-import { CompanionContent } from '@/components/CompanionContent';
 import { ChevronRight } from 'lucide-react';
 
 export function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <nav className="flex items-center gap-1.5 text-sm text-ink-muted mb-6">
-        <button onClick={() => navigateTo('/')} className="hover:text-choco-600 transition-colors">Home</button>
+      <nav className="flex items-center gap-1.5 text-sm text-ink-muted dark:text-sand-400 mb-6">
+        <button onClick={() => navigateTo('/')} className="hover:text-choco-600 dark:hover:text-choco-400 transition-colors">Home</button>
         <ChevronRight size={14} />
-        <span className="text-ink font-medium">About</span>
+        <span className="text-ink dark:text-sand-50 font-medium">About</span>
       </nav>
 
-      <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-ink tracking-tight mb-6">
+      <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-ink dark:text-sand-50 tracking-tight mb-6">
         About MetaForge
       </h1>
 
@@ -52,13 +51,13 @@ export function AboutPage() {
 export function PrivacyPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <nav className="flex items-center gap-1.5 text-sm text-ink-muted mb-6">
-        <button onClick={() => navigateTo('/')} className="hover:text-choco-600 transition-colors">Home</button>
+      <nav className="flex items-center gap-1.5 text-sm text-ink-muted dark:text-sand-400 mb-6">
+        <button onClick={() => navigateTo('/')} className="hover:text-choco-600 dark:hover:text-choco-400 transition-colors">Home</button>
         <ChevronRight size={14} />
-        <span className="text-ink font-medium">Privacy</span>
+        <span className="text-ink dark:text-sand-50 font-medium">Privacy</span>
       </nav>
 
-      <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-ink tracking-tight mb-6">
+      <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-ink dark:text-sand-50 tracking-tight mb-6">
         Privacy Policy
       </h1>
 
@@ -112,13 +111,13 @@ export function PrivacyPage() {
 export function TermsPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <nav className="flex items-center gap-1.5 text-sm text-ink-muted mb-6">
-        <button onClick={() => navigateTo('/')} className="hover:text-choco-600 transition-colors">Home</button>
+      <nav className="flex items-center gap-1.5 text-sm text-ink-muted dark:text-sand-400 mb-6">
+        <button onClick={() => navigateTo('/')} className="hover:text-choco-600 dark:hover:text-choco-400 transition-colors">Home</button>
         <ChevronRight size={14} />
-        <span className="text-ink font-medium">Terms</span>
+        <span className="text-ink dark:text-sand-50 font-medium">Terms</span>
       </nav>
 
-      <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-ink tracking-tight mb-6">
+      <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-ink dark:text-sand-50 tracking-tight mb-6">
         Terms of Service
       </h1>
 

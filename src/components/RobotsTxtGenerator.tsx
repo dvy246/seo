@@ -19,9 +19,9 @@ export function RobotsTxtGenerator({ rules, onChange }: RobotsTxtGeneratorProps)
     <div className="card p-5">
       <div className="flex items-center gap-2 mb-1">
         <Bot size={18} className="text-choco-500" />
-        <h3 className="text-sm font-semibold text-ink">Robots.txt Generator</h3>
+        <h3 className="text-sm font-semibold text-ink dark:text-sand-100">Robots.txt Generator</h3>
       </div>
-      <p className="text-xs text-ink-muted mb-4">
+      <p className="text-xs text-ink-muted dark:text-sand-400 mb-4">
         Control how search engine crawlers access your site. Place the generated file at the root of your domain.
       </p>
 
@@ -29,17 +29,17 @@ export function RobotsTxtGenerator({ rules, onChange }: RobotsTxtGeneratorProps)
         <div>
           <label className="field-label">User-agent</label>
           <select
-            className="field-input cursor-pointer"
+            className="field-input cursor-pointer dark:bg-sand-900 dark:text-sand-100"
             value={rules.userAgent}
             onChange={(e) => update('userAgent', e.target.value)}
           >
-            <option value="*">All crawlers (*)</option>
-            <option value="Googlebot">Google</option>
-            <option value="Bingbot">Bing</option>
-            <option value="DuckDuckBot">DuckDuckGo</option>
-            <option value="Slurp">Yahoo</option>
-            <option value="Baiduspider">Baidu</option>
-            <option value="YandexBot">Yandex</option>
+            <option value="*" className="dark:bg-sand-900 dark:text-sand-100">All crawlers (*)</option>
+            <option value="Googlebot" className="dark:bg-sand-900 dark:text-sand-100">Google</option>
+            <option value="Bingbot" className="dark:bg-sand-900 dark:text-sand-100">Bing</option>
+            <option value="DuckDuckBot" className="dark:bg-sand-900 dark:text-sand-100">DuckDuckGo</option>
+            <option value="Slurp" className="dark:bg-sand-900 dark:text-sand-100">Yahoo</option>
+            <option value="Baiduspider" className="dark:bg-sand-900 dark:text-sand-100">Baidu</option>
+            <option value="YandexBot" className="dark:bg-sand-900 dark:text-sand-100">Yandex</option>
           </select>
           <p className="field-hint">Which crawler these rules apply to.</p>
         </div>

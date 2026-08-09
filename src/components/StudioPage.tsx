@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { PageSetup, BrandProfile, RobotsRules } from '@/types';
+import type { PageSetup, BrandProfile, RobotsRules } from '@/types';
 import { createBlankPageSetup, applyBrandToSetup } from '@/types';
 import { loadBrandProfile, saveBrandProfile } from '@/lib/storage';
 import { generateMetaTags, generateJsonLd, generateRobotsTxt } from '@/lib/generators';
 import { StudioEditor } from '@/components/StudioEditor';
 import { JsonLdForm } from '@/components/JsonLdForm';
 import { RobotsTxtGenerator } from '@/components/RobotsTxtGenerator';
-import { PreviewPanel, PreviewPlatform } from '@/components/Previews';
+import { PreviewPanel, type PreviewPlatform } from '@/components/Previews';
 import { OutputPanel } from '@/components/CodeOutput';
 import { SaveLoadPanel } from '@/components/SaveLoadPanel';
 import { CompanionContent } from '@/components/CompanionContent';

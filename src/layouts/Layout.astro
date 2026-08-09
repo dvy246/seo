@@ -1,0 +1,82 @@
+---
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { pageMeta } from '@/data/pages';
+import type { Locale } from '@/lib/i18n';
+import '@/index.css';
+
+interface Props {
+  path: string;
+  locale?: Locale;
+  title?: string;
+  description?: string;
+  keywords?: string;
+}
+
+const { path, locale = 'en', title: customTitle, description: customDesc, keywords: customKeywords } = Astro.props;
+
+const pageInfo = pageMeta[path] || pageMeta['/'] || {
+  title: 'MetaForge — SEO Meta Tag & Structured Data Studio',
+  description: 'Set up all your page SEO in one place.',
+  keywords: 'seo, meta tags, json-ld',
+};
+
+const title = customTitle || pageInfo.title;
+const description = customDesc || pageInfo.description;
+const keywords = customKeywords || pageInfo.keywords;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://metaforge.dev').toString();
+---
+
+<!doctype html>
+<html lang={locale} class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Theme script to prevent FOUC (Flash of Unstyled Content) -->
+    <script is:inline>
+      (function() {
+        var theme = localStorage.getItem('mf_theme');
+        var isDark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col bg-sand-50 dark:bg-sand-950 text-ink dark:text-sand-100 transition-colors antialiased">
+    <Header currentPath={path} locale={locale} client:load />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer client:idle />
+  </body>
+</html>

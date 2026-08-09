@@ -1,4 +1,4 @@
-import { PageSetup } from '@/types';
+import type { PageSetup } from '@/types';
 import { truncateTitle, truncateDescription } from '@/lib/pixelWidth';
 
 function getDomain(url: string): string {

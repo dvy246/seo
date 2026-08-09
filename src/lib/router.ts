@@ -39,24 +39,23 @@ export function useRouter() {
 }
 
 export function navigateTo(to: string) {
-  // Preserve current locale on programmatic navigation
+  if (typeof window === 'undefined') return;
   const currentRaw = window.location.pathname || '/';
   const currentLocale = extractLocale(currentRaw).locale;
   const { locale: targetLocale } = extractLocale(to);
   const finalPath = targetLocale === defaultLocale && to.split('/').filter(Boolean)[0] !== defaultLocale
     ? withLocale(currentLocale, to)
     : to;
-  window.history.pushState({}, '', finalPath);
-  window.dispatchEvent(new PopStateEvent('popstate'));
-  window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+  if (finalPath === window.location.pathname) return;
+  window.location.href = finalPath;
 }
 
 export function navigateToLocale(locale: Locale) {
+  if (typeof window === 'undefined') return;
   const currentRaw = window.location.pathname || '/';
   const { pathWithoutLocale } = extractLocale(currentRaw);
   const newPath = withLocale(locale, pathWithoutLocale);
   if (newPath === currentRaw) return;
-  window.history.pushState({}, '', newPath);
-  window.dispatchEvent(new PopStateEvent('popstate'));
-  window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+  window.location.href = newPath;
 }
+

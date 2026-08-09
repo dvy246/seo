@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PageSetup, BrandProfile } from '@/types';
+import type { PageSetup, BrandProfile } from '@/types';
 import { upsertPageSetup, deletePageSetup, loadPageSetups } from '@/lib/storage';
 import { Save, Trash2, Library, Edit3, Building2, X } from 'lucide-react';
 

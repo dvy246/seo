@@ -7,7 +7,7 @@ import {
   Sparkles, Shield, Zap, Globe, Monitor, Smartphone, FileText, Layers,
 } from 'lucide-react';
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const iconMap: Record<string, React.ComponentType<{ size?: number | string; className?: string }>> = {
   Tags, Share2, Twitter, Braces, Eye, Search, Bot,
   Code: Code2,
 };

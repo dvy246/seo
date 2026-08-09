@@ -1,4 +1,4 @@
-import { PageSetup, BrandProfile, SchemaType, RobotsRules } from '@/types';
+import type { PageSetup, BrandProfile, SchemaType, RobotsRules } from '@/types';
 import { schemaDefinitions } from '@/data/schemaDefinitions';
 
 function esc(value: string): string {

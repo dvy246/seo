@@ -1,4 +1,4 @@
-import { SchemaDefinition, SchemaType } from '@/types';
+import type { SchemaDefinition, SchemaType } from '@/types';
 
 export const schemaDefinitions: Record<Exclude<SchemaType, 'none'>, SchemaDefinition> = {
   Article: {

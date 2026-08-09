@@ -1,4 +1,4 @@
-import { RobotsRules } from '@/types';
+import type { RobotsRules } from '@/types';
 import { generateRobotsTxt } from '@/lib/generators';
 import { CodeBlock } from '@/components/CodeOutput';
 import { Bot } from 'lucide-react';

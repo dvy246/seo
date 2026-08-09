@@ -1,4 +1,4 @@
-import { SchemaType, SchemaDefinition } from '@/types';
+import type { SchemaType, SchemaDefinition } from '@/types';
 import { schemaDefinitions } from '@/data/schemaDefinitions';
 import { Braces, ChevronDown, Info } from 'lucide-react';
 import { useState } from 'react';

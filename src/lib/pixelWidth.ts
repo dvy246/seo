@@ -4,7 +4,8 @@
 
 let canvasCtx: CanvasRenderingContext2D | null = null;
 
-function getCtx(fontSize: number, fontFamily = 'Arial, Helvetica, sans-serif'): CanvasRenderingContext2D {
+function getCtx(fontSize: number, fontFamily = 'Arial, Helvetica, sans-serif'): CanvasRenderingContext2D | null {
+  if (typeof document === 'undefined') return null;
   if (!canvasCtx) {
     const canvas = document.createElement('canvas');
     canvasCtx = canvas.getContext('2d');
@@ -12,7 +13,7 @@ function getCtx(fontSize: number, fontFamily = 'Arial, Helvetica, sans-serif'): 
   if (canvasCtx) {
     canvasCtx.font = `${fontSize}px ${fontFamily}`;
   }
-  return canvasCtx!;
+  return canvasCtx;
 }
 
 export function measureTextWidth(text: string, fontSize: number): number {

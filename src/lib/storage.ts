@@ -1,4 +1,4 @@
-import { PageSetup, BrandProfile } from '@/types';
+import type { PageSetup, BrandProfile } from '@/types';
 
 const PAGE_SETUPS_KEY = 'metaforge:pageSetups';
 const BRAND_KEY = 'metaforge:brandProfile';

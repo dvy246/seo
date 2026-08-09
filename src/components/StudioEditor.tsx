@@ -1,4 +1,4 @@
-import { PageSetup, BrandProfile } from '@/types';
+import type { PageSetup, BrandProfile } from '@/types';
 import { Link as LinkIcon, FileText, Image as ImageIcon, Twitter, Settings2, Info } from 'lucide-react';
 import { useState, useRef } from 'react';
 import { parseMetaFromHtml } from '@/lib/generators';

@@ -1,0 +1,33 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { StudioPage } from '@/components/StudioPage';
+import { pageMeta } from '@/data/pages';
+import { locales, type Locale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  const toolPaths = Object.keys(pageMeta).filter(
+    (p) => p !== '/' && p !== '/studio' && p !== '/about' && p !== '/privacy' && p !== '/terms'
+  );
+
+  const nonDefaultLocales = locales.filter((l) => l.code !== 'en');
+
+  const paths: Array<{ params: { locale: string; tool: string }; props: { path: string; locale: Locale } }> = [];
+
+  for (const l of nonDefaultLocales) {
+    for (const p of toolPaths) {
+      paths.push({
+        params: { locale: l.code, tool: p.replace(/^\//, '') },
+        props: { path: p, locale: l.code },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { path, locale } = Astro.props as { path: string; locale: Locale };
+---
+
+<Layout path={path} locale={locale}>
+  <StudioPage path={path} client:load />
+</Layout>

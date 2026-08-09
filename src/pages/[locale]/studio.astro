@@ -1,0 +1,19 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { StudioPage } from '@/components/StudioPage';
+import { locales, type Locale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  const nonDefaultLocales = locales.filter((l) => l.code !== 'en');
+  return nonDefaultLocales.map((l) => ({
+    params: { locale: l.code },
+    props: { locale: l.code },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<Layout path="/studio" locale={locale}>
+  <StudioPage path="/studio" client:load />
+</Layout>

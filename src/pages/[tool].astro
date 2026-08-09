@@ -1,0 +1,22 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { StudioPage } from '@/components/StudioPage';
+import { pageMeta } from '@/data/pages';
+
+export function getStaticPaths() {
+  const toolPaths = Object.keys(pageMeta).filter(
+    (p) => p !== '/' && p !== '/studio' && p !== '/about' && p !== '/privacy' && p !== '/terms'
+  );
+
+  return toolPaths.map((p) => ({
+    params: { tool: p.replace(/^\//, '') },
+    props: { path: p },
+  }));
+}
+
+const { path } = Astro.props;
+---
+
+<Layout path={path}>
+  <StudioPage path={path} client:load />
+</Layout>

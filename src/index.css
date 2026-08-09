@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-sand-50 text-ink antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  .dark body {
+    @apply bg-sand-950 text-sand-100;
+  }
+  ::selection {
+    @apply bg-pastel-200 text-ink;
+  }
+  .dark ::selection {
+    @apply bg-pastel-800 text-sand-50;
+  }
+  *:focus-visible {
+    @apply outline-none ring-2 ring-choco-500/50 ring-offset-2 ring-offset-sand-50 rounded;
+  }
+  .dark *:focus-visible {
+    @apply ring-choco-400/60 ring-offset-sand-950;
+  }
+  input, textarea, select {
+    @apply text-ink;
+  }
+  .dark input, .dark textarea, .dark select {
+    @apply text-sand-100;
+  }
+}
+
+@layer components {
+  .field-label {
+    @apply block text-sm font-medium text-ink-soft mb-1.5;
+  }
+  .dark .field-label {
+    @apply text-sand-300;
+  }
+  .field-hint {
+    @apply mt-1.5 text-xs text-ink-muted leading-relaxed;
+  }
+  .dark .field-hint {
+    @apply text-sand-400;
+  }
+  .field-input {
+    @apply w-full rounded-lg border border-sand-300 bg-white px-3.5 py-2.5 text-sm text-ink shadow-sm transition placeholder:text-ink-muted/60 focus:border-choco-400 focus:ring-2 focus:ring-choco-500/20;
+  }
+  .dark .field-input {
+    @apply border-sand-700 bg-sand-900 text-sand-100 placeholder:text-sand-500/60 focus:border-choco-500 focus:ring-choco-500/25;
+  }
+  .field-input:focus {
+    @apply outline-none;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 ease-smooth disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-choco-600 text-white hover:bg-choco-700 active:bg-choco-800 shadow-soft hover:shadow-lift;
+  }
+  .dark .btn-primary {
+    @apply bg-choco-500 text-sand-50 hover:bg-choco-400;
+  }
+  .btn-pastel {
+    @apply btn bg-pastel-500 text-white hover:bg-pastel-600 active:bg-pastel-700 shadow-soft hover:shadow-lift;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-ink-soft border border-sand-300 hover:border-sand-400 hover:bg-sand-50;
+  }
+  .dark .btn-secondary {
+    @apply bg-sand-900 text-sand-200 border-sand-700 hover:border-sand-600 hover:bg-sand-800;
+  }
+  .btn-ghost {
+    @apply btn text-ink-soft hover:bg-sand-100;
+  }
+  .dark .btn-ghost {
+    @apply text-sand-300 hover:bg-sand-800;
+  }
+  .card {
+    @apply rounded-2xl border border-sand-200 bg-white shadow-soft;
+  }
+  .dark .card {
+    @apply border-sand-800 bg-sand-900 shadow-none;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+  .prose-meta p {
+    @apply mb-4 text-ink-soft leading-relaxed;
+  }
+  .dark .prose-meta p {
+    @apply text-sand-300;
+  }
+  .prose-meta h2 {
+    @apply font-serif text-2xl text-ink mt-10 mb-3 font-semibold;
+  }
+  .dark .prose-meta h2 {
+    @apply text-sand-50;
+  }
+  .prose-meta h3 {
+    @apply font-semibold text-lg text-ink mt-6 mb-2;
+  }
+  .dark .prose-meta h3 {
+    @apply text-sand-100;
+  }
+  .prose-meta ul {
+    @apply mb-4 space-y-2 text-ink-soft;
+  }
+  .dark .prose-meta ul {
+    @apply text-sand-300;
+  }
+  .prose-meta li {
+    @apply flex gap-2.5 leading-relaxed;
+  }
+  .prose-meta code {
+    @apply font-mono text-[0.85em] rounded bg-sand-100 px-1.5 py-0.5 text-choco-700;
+  }
+  .dark .prose-meta code {
+    @apply bg-sand-800 text-choco-300;
+  }
+  .prose-meta strong {
+    @apply text-ink font-semibold;
+  }
+  .dark .prose-meta strong {
+    @apply text-sand-50;
+  }
+  .prose-meta a {
+    @apply text-pastel-600 underline underline-offset-2 hover:text-pastel-700;
+  }
+  .dark .prose-meta a {
+    @apply text-pastel-400 hover:text-pastel-300;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #DCD0BC transparent;
+  }
+  .dark .scrollbar-thin {
+    scrollbar-color: #4D4435 transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-sand-300 rounded-full;
+  }
+  .dark .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-sand-700;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-slide-up {
+    animation: slideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .bg-grid {
+    background-image: radial-gradient(circle, #DCD0BC 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .dark .bg-grid {
+    background-image: radial-gradient(circle, #322B21 1px, transparent 1px);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}

@@ -341,4 +341,224 @@ export const companionContent: Record<string, CompanionContent> = {
       },
     ],
   },
+  '/ai-readiness-checker': {
+    intro:
+      'An AI readiness checker that audits any URL — or raw HTML you paste — and scores it across SEO, social sharing, AI search visibility, and accessibility. It detects llms.txt, JSON-LD structured data, robots directives, and content depth: the signals ChatGPT, Perplexity, Google AI Overviews, and other AI engines use to discover, understand, and cite your content.',
+    sections: [
+      {
+        heading: 'What is AI search readiness?',
+        body: 'AI search engines — ChatGPT, Perplexity, Gemini, Copilot, and Google AI Overviews — do not rank pages the way Google does. They retrieve, summarize, and cite sources. To be citable, your page must be machine-readable: structured data (JSON-LD) so an AI can classify what the page is about, an llms.txt file so AI crawlers know which pages matter, indexable robots directives, and enough content depth to answer a question. AI readiness is the practice of making those signals work.',
+      },
+      {
+        heading: 'Why llms.txt matters',
+        body: 'llms.txt is a markdown file at the root of your domain — like robots.txt, but written for AI crawlers. It lists what your site is about and which pages are most important, giving models like GPTBot, PerplexityBot, and ClaudeBot a reliable map of your content. Very few sites have one, which makes it a cheap, early-mover advantage. The checker verifies whether one exists at the audited URL\'s origin.',
+      },
+      {
+        heading: 'Structured data is the citation hook',
+        body: 'AI engines prefer content that is explicitly typed. A page with Article, Product, FAQPage, or Organization JSON-LD gives a model exact labels — what kind of thing this is, who published it, when it was published. That is what makes a model confident enough to cite you instead of paraphrasing without attribution. The audit detects which schema types are present (if any).',
+      },
+      {
+        heading: 'How the audit differs from a traditional SEO audit',
+        body: 'A traditional SEO audit scores Google ranking factors: keywords, backlinks, crawl budget. An AI readiness audit scores machine-citability: structured data, llms.txt, indexability, content depth, hreflang, and clean metadata. The two overlap — a well-structured page ranks on Google and gets cited by AI — but the AI signals are the ones most tools still ignore.',
+      },
+    ],
+    faq: [
+      {
+        question: 'Is the AI readiness checker free?',
+        answer: 'Yes. Both modes are free: the URL audit (fetched server-side, bypassing browser CORS limits) and the paste-HTML audit (runs entirely in your browser). No signup required.',
+      },
+      {
+        question: 'What does the score mean?',
+        answer: 'The 100-point score is a weighted average of four categories: SEO (30%), AI Readiness (35%), Social (20%), and Accessibility (15%). AI Readiness carries the most weight because that is the gap most sites have. Each check has an impact level (high/medium/low) that drives the scoring.',
+      },
+      {
+        question: 'Does the URL audit store the page content?',
+        answer: 'No. The audit fetches the page, extracts metadata, scores it, and discards the HTML. Aggregated results are cached for 24 hours to keep the tool fast and cheap — the cache stores the score, not your content.',
+      },
+      {
+        question: 'What is a good AI Readiness score?',
+        answer: '80+ means an AI engine can reliably discover, classify, and cite your page. The two most common blockers are missing JSON-LD structured data and a missing llms.txt file — both are quick wins you can fix directly in the MetaForge studio.',
+      },
+      {
+        question: 'What is the 10-audits-per-hour limit?',
+        answer: 'To keep the free service reliable, the URL audit allows 10 checks per hour per IP address. The paste-HTML mode has no limit because it runs entirely in your browser.',
+      },
+    ],
+  },
+  '/llms-txt-generator': {
+    intro:
+      'An llms.txt generator that produces the markdown file AI engines read to understand your site. llms.txt — the file format proposed for AI crawlers at llmstxt.org — lives at the root of your domain (llms.txt) and lists what your site is about and which pages matter most. ChatGPT, Perplexity, Gemini, and Claude already send crawlers to fetch it, and almost no one else has one yet.',
+    sections: [
+      {
+        heading: 'What is llms.txt and why does it matter now',
+        body: 'llms.txt is a markdown file at your domain root that tells AI engines what your site is, in plain text — a title, a one-line description, and a prioritized list of pages with one-line summaries. It exists because AI crawlers need a reliable, unambiguous map of your content, and most sites do not have one. Adding it is a cheap, early-mover advantage in AI search: it is discoverable, human-readable, and costs nothing to host.',
+      },
+      {
+        heading: 'The format an AI engine expects',
+        body: 'The llms.txt spec follows Markdown conventions. The file starts with an H1 title, an optional blockquote description, and an ordered list of pages: each entry is a Markdown link with an optional colon-separated summary. Everything after the H1 is a suggestion, not a requirement — the generator produces this exact format, so the file is valid the moment you copy it.',
+      },
+      {
+        heading: 'Which pages belong in llms.txt',
+        body: 'List your most important pages first: the homepage, key product or service pages, and your best content — the pages you would want an AI to cite when someone asks about your industry. Keep summaries to one line and descriptive, not salesy. AI engines use them to decide whether a page answers a question.',
+      },
+      {
+        heading: 'Pair it with the AI Readiness Checker',
+        body: 'The generator and the AI Readiness Checker are designed to work together: the checker audits a URL and tells you whether an llms.txt file exists at its origin, then the generator creates one in the exact format the checker detects. Deploy the file to your domain root and re-audit to watch your AI Readiness score rise.',
+      },
+    ],
+    faq: [
+      {
+        question: 'Is llms.txt a standard?',
+        answer: 'It is a proposed standard (llmstxt.org) adopted early by major AI players. GPTBot, PerplexityBot, ClaudeBot, and Google\'s AI crawlers are documented to fetch llms.txt — the format itself is Markdown, so even a plain-text parser understands it.',
+      },
+      {
+        question: 'Where do I upload the file?',
+        answer: 'To the root of your domain, alongside robots.txt and sitemap.xml — e.g. https://yourdomain.com/llms.txt. No server configuration is needed on most hosts; it is a static file.',
+      },
+      {
+        question: 'Can llms.txt hurt my SEO?',
+        answer: 'No. It does not control crawling like robots.txt — it only informs AI engines about your content. There is no known penalty for having one, and it does not affect Google ranking directly.',
+      },
+      {
+        question: 'What if I have hundreds of pages?',
+        answer: 'Do not list every page. llms.txt works best as a curated map: 5-50 of your most important URLs with strong summaries. AI engines use it to discover your key content, not to crawl everything.',
+      },
+      {
+        question: 'How is this different from a sitemap?',
+        answer: 'A sitemap lists URLs for crawlers; llms.txt explains them. It carries titles and one-line summaries that let an AI decide relevance before fetching, and it is written in plain Markdown — the same format models are trained on.',
+      },
+    ],
+  },
+  '/hreflang-generator': {
+    intro:
+      'A hreflang generator that builds the alternate-link tags multilingual sites need — with BCP-47 locale validation, x-default support, and duplicate detection that most free generators skip. hreflang tells Google and AI engines which language version of a page to serve to which market, preventing duplicate-content confusion across your locales.',
+    sections: [
+      {
+        heading: 'Why hreflang matters for international SEO',
+        body: 'If you serve the same page in English, Spanish, French, and German, search engines see four URLs with similar content. Without hreflang, Google guesses which one matches a searcher — and guesses wrong often enough to hurt both rankings and UX. hreflang tells every engine which URL is the English version, which is the Spanish version, and which is the catch-all. AI engines also read hreflang to understand your site\'s structure across languages.',
+      },
+      {
+        heading: 'The x-default rule most tools get wrong',
+        body: 'x-default tells search engines which URL to show to visitors whose language you do not explicitly serve — it can point to a specific locale page or to your main URL. Google\'s documentation recommends including it, and its absence is one of the most common hreflang mistakes found in audits. This generator adds it automatically when you enable the option.',
+      },
+      {
+        heading: 'Reciprocity: the rule that makes or breaks hreflang',
+        body: 'Google requires hreflang sets to be mutually reciprocal: if page A declares page B as an alternate, page B must declare page A too. A one-way link is treated as an error and the whole set can be ignored. The generator emits a complete block per URL — copy it onto each page in the set, and reciprocity holds by construction.',
+      },
+      {
+        heading: 'Validating your locales before you publish',
+        body: 'Google rejects malformed language codes. Locales must follow BCP-47 (language plus optional region, like es-ES or pt-BR), and each URL can declare any given locale only once. The generator validates every code as you type, flags duplicates, and warns when the same URL appears in multiple rows — so the tags you copy are deployable on the first try.',
+      },
+    ],
+    faq: [
+      {
+        question: 'What is hreflang?',
+        answer: 'An HTML attribute on link tags — hreflang="es" — that tells search engines which language or regional version of a page to show for a given market. It lives in the head of each page, alongside your other meta tags.',
+      },
+      {
+        question: 'Do I need x-default?',
+        answer: 'Google recommends it. x-default designates the fallback URL for visitors whose language you do not serve. It is optional for single-language sites and near-mandatory for multi-language ones.',
+      },
+      {
+        question: 'Can I put hreflang in an XML sitemap instead?',
+        answer: 'Yes — the sitemap method declares the same alternates with xhtml:link elements, and Google supports both. In-page link tags are the simpler, more common approach and are what this tool generates.',
+      },
+      {
+        question: 'Does hreflang affect AI search visibility?',
+        answer: 'Yes, indirectly. AI engines fetch your pages per locale and use language signals — including hreflang — to map your site\'s structure. Clean international signals are part of what the MetaForge AI Readiness Checker scores.',
+      },
+      {
+        question: 'What happens if hreflang tags are wrong?',
+        answer: 'The most common outcome is Google ignoring the tags entirely and choosing locales by guesswork — no penalty, but your Spanish page might serve German visitors and vice versa. Invalid codes can make the whole set invalid.',
+      },
+    ],
+  },
+  '/og-image-checker': {
+    intro:
+      'An Open Graph image checker that verifies your og:image server-side: whether it loads, its real format, its exact pixel dimensions, its aspect ratio, and its file size. Facebook, X, LinkedIn, and Slack all fetch your image independently — if it fails any of these checks, your link renders as a bare URL. This is the one check browsers cannot do on their own.',
+    sections: [
+      {
+        heading: 'What breaks a social preview (and what does not)',
+        body: 'Social platforms fetch the og:image URL, download the bytes, and validate them: correct format, minimum dimensions, and reasonable file size. Common failure modes are a 404 or redirect loop, a WebP image old scrapers refuse, a 600x300 image that gets upscaled into blur, and a 12 MB image that times out the fetch. The checker tests exactly these conditions, the same way the platforms do.',
+      },
+      {
+        heading: 'Why this cannot be a browser-only tool',
+        body: 'A browser checking an image on another domain hits CORS: it can load the image to display it, but it cannot read its bytes, dimensions, or file size. Every image checker that claims to do this client-side is guessing from the DOM, which fails for most real-world images. MetaForge fetches the image server-side and parses the actual header bytes — the same method Facebook\'s scraper uses.',
+      },
+      {
+        heading: 'The 1200x630 rule, explained',
+        body: 'Facebook and LinkedIn recommend 1200x630 pixels (a 1.91:1 ratio) — large enough to look sharp on retina screens, with a ratio that fits their crop. Twitter prefers 1200x675 for its own card. Any image at least 600x315 will render, but platforms upscale it, and upscaling is where images get blurry. The checker reports your dimensions, your ratio, and the recommended thresholds.',
+      },
+      {
+        heading: 'Formats and sizes that actually work',
+        body: 'JPG, PNG, and WebP are the safe choices for og:image. GIF and BMP render inconsistently across platforms, and SVG is not supported by most scrapers at all. File size matters too: Facebook\'s crawler has historically struggled with very large images, and every platform gives up after a few seconds. Under 2 MB is the safe zone; the checker flags anything above.',
+      },
+    ],
+    faq: [
+      {
+        question: 'What image size should I use for og:image?',
+        answer: '1200x630 pixels is the universal recommendation — it is the exact size Facebook and LinkedIn use, and it satisfies every other platform. The minimum usable size is 600x315, below which platforms refuse or badly upscale.',
+      },
+      {
+        question: 'Does the checker work for any image URL?',
+        answer: 'Yes — any public URL. The server fetches it, follows redirects, and parses PNG, JPEG, WebP, GIF, BMP, and SVG headers. Private or local-network URLs are blocked for security.',
+      },
+      {
+        question: 'Why does my preview work on some platforms but not others?',
+        answer: 'Each platform has its own scraper with its own tolerance. A common case: your image is a GIF or WebP, which newer platforms accept but older scrapers reject. The checker flags exactly those edge cases.',
+      },
+      {
+        question: 'How often should I re-check an image?',
+        answer: 'After any change to the image file or its URL. Results are cached for 24 hours per URL to keep the service fast, so a fresh check after you replace an image is always available.',
+      },
+      {
+        question: 'What is the difference between this and a general audit?',
+        answer: 'The AI Readiness Checker verifies that an og:image URL exists; this tool verifies the image itself — its bytes, dimensions, format, and size. They are complementary: use the audit to find gaps, use this to debug a specific broken preview.',
+      },
+    ],
+  },
+  '/json-ld-validator': {
+    intro:
+      'A JSON-LD validator that checks syntax, required schema.org fields, and rich-result eligibility in real time — using the same validation engine as the MetaForge studio and AI Readiness Checker, so the verdict is always consistent. Paste your structured data and get an instant pass/fail with the exact missing fields.',
+    sections: [
+      {
+        heading: 'Syntax is the easy part — required fields are the hard part',
+        body: 'Most validators stop at JSON.parse: if the JSON parses, they say valid. But Google ignores a FAQPage without mainEntity, a Product without image, an Article without datePublished. The validator enforces the required fields for the ten most common schema types — Article, BlogPosting, Product, FAQPage, Organization, LocalBusiness, WebSite, BreadcrumbList, Person, HowTo, and Event — so a passing result means deployable, not just parseable.',
+      },
+      {
+        heading: 'FAQPage gets special treatment',
+        body: 'FAQ structured data is the most-misimplemented schema on the web. Google requires mainEntity to be an array of Question objects, each with an acceptedAnswer. Half of the FAQ markup on real sites fails this and earns no rich result. The validator checks the shape of your FAQ entity explicitly and tells you exactly what is wrong.',
+      },
+      {
+        heading: 'One engine, consistent verdicts',
+        body: 'The validator runs the same code as the studio\'s live schema feedback and the AI Readiness Checker\'s structured-data scoring. That matters: a schema that passes here will pass the audit, and a schema flagged here will never surprise you in the checker. There is one source of truth, not three tools with three opinions.',
+      },
+      {
+        heading: 'From valid to deployed',
+        body: 'A valid JSON-LD block belongs in a script tag with type="application/ld+json" inside your page head. The validator pretty-prints your markup for embedding, and one click takes you to the JSON-LD Generator when you want to build richer schema visually instead of pasting by hand.',
+      },
+    ],
+    faq: [
+      {
+        question: 'What does "valid" mean in the validator?',
+        answer: 'Three things: the JSON parses, the @context and @type are present, and all required fields for that schema type are filled. It does not guarantee a rich result — Google still applies its own policies — but invalid or incomplete markup never earns one.',
+      },
+      {
+        question: 'Which schema types does it check?',
+        answer: 'Article, BlogPosting, Product, FAQPage, Organization, LocalBusiness, WebSite, BreadcrumbList, Person, HowTo, and Event. Other types are checked for syntax and context but do not have field requirements.',
+      },
+      {
+        question: 'Does it detect a @graph block?',
+        answer: 'Yes. You can paste a @graph array with multiple entities; the validator iterates every node and checks each type. A single pass means every node is valid.',
+      },
+      {
+        question: 'Is this the same as Google\'s Rich Results Test?',
+        answer: 'Similar purpose, different scope. Google\'s test also checks rendering and page-level eligibility. This validator runs instantly in your browser without sending your markup anywhere, and it shares its engine with the MetaForge audit tools.',
+      },
+      {
+        question: 'Does the validator store my JSON-LD?',
+        answer: 'No. Everything runs in your browser. Nothing you paste is sent to any server.',
+      },
+    ],
+  },
 };

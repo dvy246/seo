@@ -1,0 +1,20 @@
+# MetaForge
+
+> Free SEO meta tag studio: generate meta tags, Open Graph, Twitter Cards, JSON-LD structured data, robots.txt, and pixel-accurate SERP previews. Includes an AI search readiness checker that audits any URL for llms.txt, structured data, and the signals ChatGPT, Perplexity, and Google AI Overviews use to cite content.
+
+## Tools
+
+- SEO Studio (all-in-one editor + previews): https://metaforge.app/studio
+- AI Readiness Checker (audit any URL): https://metaforge.app/ai-readiness-checker
+- Meta Tag Generator: https://metaforge.app/meta-tag-generator
+- Open Graph Generator: https://metaforge.app/open-graph-generator
+- Twitter Card Generator: https://metaforge.app/twitter-card-generator
+- JSON-LD Generator: https://metaforge.app/json-ld-generator
+- Schema Markup Generator: https://metaforge.app/schema-markup-generator
+- Social Preview Tool: https://metaforge.app/social-preview-tool
+- SERP Preview Tool: https://metaforge.app/serp-preview-tool
+- Robots.txt Generator: https://metaforge.app/robots-txt-generator
+
+## About
+
+MetaForge is a free, browser-based SEO meta tag studio. All user data stays in the browser via localStorage. No signup required.

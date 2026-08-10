@@ -1,0 +1,10 @@
+name = "seo"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "dist"
+
+# KV namespace for AI-readiness audit rate limiting + caching.
+# Create with: npx wrangler pages kv namespace create AUDIT_KV
+# then paste the namespace id below (or run `wrangler pages project edit`).
+[[kv_namespaces]]
+binding = "AUDIT_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"

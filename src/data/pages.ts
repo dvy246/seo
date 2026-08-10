@@ -101,6 +101,51 @@ export const pageMeta: Record<string, PageMeta> = {
     ogType: 'website',
     keywords: 'robots.txt generator, robots.txt, crawl directives, sitemap, robots file generator',
   },
+  '/ai-readiness-checker': {
+    path: '/ai-readiness-checker',
+    title: 'AI Readiness Checker — Free AI SEO Audit & llms.txt Checker | MetaForge',
+    description:
+      'Audit any URL or HTML for AI search readiness: llms.txt detection, JSON-LD structured data, robots directives, and content depth. Free 100-point AI SEO audit with scores for ChatGPT, Perplexity, and Google AI Overviews.',
+    h1: 'AI Readiness Checker',
+    ogType: 'website',
+    keywords: 'ai readiness checker, ai seo audit, llms.txt checker, generative engine optimization, ai search visibility, chatgpt seo audit',
+  },
+  '/llms-txt-generator': {
+    path: '/llms-txt-generator',
+    title: 'llms.txt Generator — Free AI Crawler File Builder | MetaForge',
+    description:
+      'Generate an llms.txt file for your site so ChatGPT, Perplexity, Gemini, and Claude can discover and understand your content. Free llms.txt generator with page lists and one-click copy.',
+    h1: 'llms.txt Generator',
+    ogType: 'website',
+    keywords: 'llms.txt generator, llms.txt, ai crawler file, ai seo, llms txt, chatgpt discoverability',
+  },
+  '/hreflang-generator': {
+    path: '/hreflang-generator',
+    title: 'Hreflang Generator — Free hreflang Tag Builder with Validation | MetaForge',
+    description:
+      'Generate hreflang alternate link tags for multilingual and multi-regional sites with BCP-47 locale validation, x-default support, and duplicate detection. Free hreflang generator.',
+    h1: 'Hreflang Generator',
+    ogType: 'website',
+    keywords: 'hreflang generator, hreflang tags, hreflang validator, multilingual seo, hreflang x-default, international seo',
+  },
+  '/og-image-checker': {
+    path: '/og-image-checker',
+    title: 'OG Image Checker — Free Open Graph Image Validator | MetaForge',
+    description:
+      'Verify your Open Graph image server-side: format, 1200x630 dimensions, 1.91:1 aspect ratio, and file size. Free OG image checker that reads the actual image bytes like Facebook does.',
+    h1: 'OG Image Checker',
+    ogType: 'website',
+    keywords: 'og image checker, open graph image validator, og image size, og image dimensions, 1200x630, facebook image checker',
+  },
+  '/json-ld-validator': {
+    path: '/json-ld-validator',
+    title: 'JSON-LD Validator — Free Structured Data Checker | MetaForge',
+    description:
+      'Validate your JSON-LD structured data: syntax, required schema.org fields, and rich-result eligibility for Article, Product, FAQ, Organization, and more. Free JSON-LD validator.',
+    h1: 'JSON-LD Validator',
+    ogType: 'website',
+    keywords: 'json-ld validator, structured data validator, schema validator, rich results checker, json-ld checker',
+  },
   '/about': {
     path: '/about',
     title: 'About MetaForge — Free SEO Meta Tag & Structured Data Studio',
@@ -137,6 +182,11 @@ export interface NavTool {
 }
 
 export const navTools: NavTool[] = [
+  { path: '/ai-readiness-checker', label: 'AI Readiness Checker', shortLabel: 'AI Checker', icon: 'Radar', description: 'Audit any URL for AI search visibility' },
+  { path: '/llms-txt-generator', label: 'llms.txt Generator', shortLabel: 'llms.txt', icon: 'FileText', description: 'AI crawler file builder' },
+  { path: '/hreflang-generator', label: 'Hreflang Generator', shortLabel: 'Hreflang', icon: 'Languages', description: 'Multilingual tag builder with validation' },
+  { path: '/og-image-checker', label: 'OG Image Checker', shortLabel: 'OG Image', icon: 'Image', description: 'Server-side OG image validation' },
+  { path: '/json-ld-validator', label: 'JSON-LD Validator', shortLabel: 'JSON-LD Check', icon: 'Braces', description: 'Structured data verification' },
   { path: '/meta-tag-generator', label: 'Meta Tag Generator', shortLabel: 'Meta Tags', icon: 'Tags', description: 'Title, description, canonical, robots' },
   { path: '/open-graph-generator', label: 'Open Graph Generator', shortLabel: 'Open Graph', icon: 'Share2', description: 'OG tags for Facebook, Slack, Discord' },
   { path: '/twitter-card-generator', label: 'Twitter Card Generator', shortLabel: 'Twitter Cards', icon: 'Twitter', description: 'X/Twitter Card tags and preview' },

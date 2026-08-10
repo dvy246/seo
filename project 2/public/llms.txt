@@ -1,0 +1,54 @@
+# MetaForge
+
+> Free SEO audit tool with AI readiness scoring. Audit any URL for ChatGPT, Perplexity, and Google AI Overviews visibility. Checks llms.txt, JSON-LD structured data, meta tags, and social previews. Includes a validated meta tag generator.
+
+## Tool
+
+- AI Readiness Auditor & Meta Tag Generator: https://metaforge.app/
+
+## What It Does
+
+MetaForge fetches any URL server-side and runs a comprehensive audit across four categories:
+
+### SEO Audit
+- Title tag length (30-60 characters optimal)
+- Meta description length (70-160 characters optimal)
+- Canonical URL presence and validity
+- H1 tag count (exactly one required)
+- Image alt text coverage
+- Internal and external link count
+
+### AI Readiness Audit (the moat — no competitor does this)
+- JSON-LD structured data detection and type extraction
+- llms.txt file detection at site root
+- Robots directive check (noindex detection)
+- Content depth analysis (300+ words recommended)
+- AI crawler accessibility (GPTBot, PerplexityBot, ClaudeBot)
+
+### Social Sharing Audit
+- Open Graph tags (og:title, og:description, og:image, og:url, og:type)
+- Twitter Card tags (twitter:card, twitter:title, twitter:description, twitter:image)
+- Social preview rendering
+
+### Accessibility Audit
+- Viewport meta tag presence
+- HTML lang attribute
+- Favicon presence
+- Image alt text coverage
+
+## Meta Tag Generator
+
+- Generates validated HTML meta tags
+- Real-time validation against current specs
+- 8 JSON-LD schema types (WebPage, Article, BlogPosting, Product, Organization, LocalBusiness, FAQPage, HowTo)
+- Google SERP preview
+- Facebook and Twitter social card previews
+- One-click copy to clipboard
+
+## Scoring
+
+Each audit produces a 0-100 score across four categories, weighted into an overall score:
+- SEO: 30%
+- AI Readiness: 35%
+- Social: 20%
+- Accessibility: 15%

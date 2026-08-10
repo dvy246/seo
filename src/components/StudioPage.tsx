@@ -11,6 +11,7 @@ import { OutputPanel } from '@/components/CodeOutput';
 import { SaveLoadPanel } from '@/components/SaveLoadPanel';
 import { CompanionContent } from '@/components/CompanionContent';
 import { getFaqJsonLd } from '@/components/CompanionContent';
+import { AuditTool } from '@/components/AuditTool';
 import { pageMeta, navTools } from '@/data/pages';
 import { navigateTo } from '@/lib/router';
 import { ChevronRight, Sparkles, Code2 } from 'lucide-react';
@@ -81,6 +82,7 @@ export function StudioPage({ path }: StudioPageProps) {
 
   // Determine which sections to show based on the page
   const isStudioPage = path === '/studio';
+  const isAuditPage = path === '/ai-readiness-checker';
   const isJsonLdPage = path === '/json-ld-generator' || path === '/schema-markup-generator';
   const isRobotsPage = path === '/robots-txt-generator';
   const isSocialPreviewPage = path === '/social-preview-tool' || path === '/serp-preview-tool';
@@ -131,7 +133,7 @@ export function StudioPage({ path }: StudioPageProps) {
       )}
 
       {/* View tabs for tool pages */}
-      {!isStudioPage && !isRobotsPage && (
+      {!isStudioPage && !isRobotsPage && !isAuditPage && (
         <div className="flex gap-1 mb-6 border-b border-sand-200 dark:border-sand-800">
           <ViewTab active={activeView === 'studio'} onClick={() => setActiveView('studio')} icon={<Sparkles size={15} />} label="Editor & Preview" />
           {showJsonLdForm && (
@@ -167,6 +169,10 @@ export function StudioPage({ path }: StudioPageProps) {
       ) : isRobotsPage ? (
         <div className="max-w-4xl mx-auto">
           <RobotsTxtGenerator rules={setup.robotsRules} onChange={handleRobotsChange} />
+        </div>
+      ) : isAuditPage ? (
+        <div className="max-w-4xl mx-auto">
+          <AuditTool />
         </div>
       ) : isJsonLdPage ? (
         <div className="grid lg:grid-cols-[1fr_400px] gap-6">

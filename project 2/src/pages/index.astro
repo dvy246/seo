@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MetaTagGenerator from '../components/MetaTagGenerator.tsx';
+---
+
+<Layout
+  title="MetaForge — Free SEO Audit & AI Readiness Checker with Meta Tag Generator"
+  description="Audit any URL for AI search readiness (ChatGPT, Perplexity, Google AI Overviews). Get a 100-point score across SEO, social, structured data, and llms.txt. Then generate validated meta tags to fix what's missing. Free, no signup."
+>
+  <main class="flex-1">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-20 pb-12 sm:pt-28 sm:pb-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto">
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-secondary rounded-full text-xs font-medium text-secondary-foreground mb-6 animate-fade-in">
+            <svg class="w-3.5 h-3.5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            <span>The only free tool that audits for AI search readiness</span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal text-foreground leading-[1.1] tracking-tight text-balance animate-fade-in">
+            Is your site ready for
+            <span class="block mt-1 text-primary italic">
+              AI search engines?
+            </span>
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto text-pretty animate-fade-in">
+            Paste your URL. Get a 100-point audit across SEO, social sharing, structured data, and AI readiness — checking for llms.txt, JSON-LD, and the signals ChatGPT, Perplexity, and Google AI Overviews use to cite your content. Then generate validated meta tags to fix what's missing.
+          </p>
+
+          <!-- CTAs -->
+          <div class="mt-8 flex items-center justify-center gap-3 animate-fade-in">
+            <a
+              href="#tool"
+              class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              Audit your site
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </a>
+            <a
+              href="#faq"
+              class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-foreground hover:text-primary transition-colors"
+            >
+              Read FAQ
+            </a>
+          </div>
+
+          <!-- Trust indicators -->
+          <div class="mt-10 flex items-center justify-center gap-4 sm:gap-6 text-xs text-muted-foreground flex-wrap animate-fade-in">
+            <div class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Checks llms.txt
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              JSON-LD validation
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Server-side fetch
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              No signup
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tool Section -->
+    <section id="tool" class="pb-20 pt-4 scroll-mt-4">
+      <MetaTagGenerator client:load />
+    </section>
+
+    <!-- FAQ anchor -->
+    <div id="faq" class="scroll-mt-20"></div>
+  </main>
+</Layout>

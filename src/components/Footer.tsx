@@ -1,11 +1,13 @@
 import { navTools } from '@/data/pages';
-import { navigateTo, useRouter } from '@/lib/router';
+import { localizeHref, useRouter } from '@/lib/router';
 import { getTranslations } from '@/lib/translations';
 
 export function Footer() {
   const { locale } = useRouter();
   const t = getTranslations(locale);
-  const go = (path: string) => navigateTo(path);
+  const href = (path: string) => localizeHref(path, locale);
+  // Trust pages exist only in English (no /es/about etc.), so never locale-prefix them.
+  const trustHref = (path: string) => path;
 
   return (
     <footer className="border-t border-sand-200 dark:border-sand-800 bg-sand-100/50 dark:bg-sand-900/30 mt-20 transition-colors">
@@ -19,7 +21,7 @@ export function Footer() {
                   <path d="M5 8h14M5 13h10M5 18h7" />
                 </svg>
               </div>
-              <span className="font-serif font-semibold text-ink dark:text-sand-50">MetaForge</span>
+              <span className="font-serif font-semibold text-ink dark:text-sand-50">SerpCraft</span>
             </div>
             <p className="text-sm text-ink-muted dark:text-sand-400 leading-relaxed">
               The all-in-one SEO meta tag, social preview, and structured data studio. Free, no signup.
@@ -32,9 +34,9 @@ export function Footer() {
             <ul className="space-y-2">
               {navTools.slice(0, 4).map((tool) => (
                 <li key={tool.path}>
-                  <button onClick={() => go(tool.path)} className="text-sm text-ink-muted dark:text-sand-400 hover:text-choco-600 dark:hover:text-choco-400 transition-colors">
+                  <a href={href(tool.path)} className="text-sm text-ink-muted dark:text-sand-400 hover:text-choco-600 dark:hover:text-choco-400 transition-colors">
                     {tool.label}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -46,9 +48,9 @@ export function Footer() {
             <ul className="space-y-2">
               {navTools.slice(4).map((tool) => (
                 <li key={tool.path}>
-                  <button onClick={() => go(tool.path)} className="text-sm text-ink-muted dark:text-sand-400 hover:text-choco-600 dark:hover:text-choco-400 transition-colors">
+                  <a href={href(tool.path)} className="text-sm text-ink-muted dark:text-sand-400 hover:text-choco-600 dark:hover:text-choco-400 transition-colors">
                     {tool.label}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -58,16 +60,16 @@ export function Footer() {
           <div>
             <h4 className="text-xs font-semibold text-ink dark:text-sand-200 uppercase tracking-wide mb-3">{t.footerCompany}</h4>
             <ul className="space-y-2">
-              <li><button onClick={() => go('/about')} className="text-sm text-ink-muted dark:text-sand-400 hover:text-choco-600 dark:hover:text-choco-400 transition-colors">{t.footerAbout}</button></li>
-              <li><button onClick={() => go('/privacy')} className="text-sm text-ink-muted dark:text-sand-400 hover:text-choco-600 dark:hover:text-choco-400 transition-colors">{t.footerPrivacy}</button></li>
-              <li><button onClick={() => go('/terms')} className="text-sm text-ink-muted dark:text-sand-400 hover:text-choco-600 dark:hover:text-choco-400 transition-colors">{t.footerTerms}</button></li>
+              <li><a href={trustHref('/about')} className="text-sm text-ink-muted dark:text-sand-400 hover:text-choco-600 dark:hover:text-choco-400 transition-colors">{t.footerAbout}</a></li>
+              <li><a href={trustHref('/privacy')} className="text-sm text-ink-muted dark:text-sand-400 hover:text-choco-600 dark:hover:text-choco-400 transition-colors">{t.footerPrivacy}</a></li>
+              <li><a href={trustHref('/terms')} className="text-sm text-ink-muted dark:text-sand-400 hover:text-choco-600 dark:hover:text-choco-400 transition-colors">{t.footerTerms}</a></li>
             </ul>
           </div>
         </div>
 
         <div className="mt-10 pt-6 border-t border-sand-200 dark:border-sand-800 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-ink-muted dark:text-sand-500">
-            &copy; {new Date().getFullYear()} MetaForge. {t.footerRights}
+            &copy; {new Date().getFullYear()} SerpCraft. {t.footerRights}
           </p>
           <p className="text-xs text-ink-muted dark:text-sand-500">
             All data stays in your browser.

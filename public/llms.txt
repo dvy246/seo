@@ -1,11 +1,16 @@
-# MetaForge
+# SerpCraft
 
-> Free SEO meta tag studio: generate meta tags, Open Graph, Twitter Cards, JSON-LD structured data, robots.txt, and pixel-accurate SERP previews. Includes an AI search readiness checker that audits any URL for llms.txt, structured data, and the signals ChatGPT, Perplexity, and Google AI Overviews use to cite content.
+> Free SEO meta tag studio: generate meta tags, Open Graph, Twitter Cards, JSON-LD structured data, robots.txt, and pixel-accurate SERP previews. Includes a URL debugger that shows exactly what search engines and social platforms read from any page — status, redirects, headers, meta tags, and conflicting signals.
 
 ## Tools
 
+- SEO Check (free 21-point website audit + AI-readiness score): https://metaforge.app/seo-check
 - SEO Studio (all-in-one editor + previews): https://metaforge.app/studio
-- AI Readiness Checker (audit any URL): https://metaforge.app/ai-readiness-checker
+- URL Debugger (see what crawlers actually read): https://metaforge.app/url-debugger
+- llms.txt Generator (AI crawler file builder): https://metaforge.app/llms-txt-generator
+- Hreflang Generator (multilingual tags with validation): https://metaforge.app/hreflang-generator
+- OG Image Checker (server-side image verification): https://metaforge.app/og-image-checker
+- JSON-LD Validator (structured data verification): https://metaforge.app/json-ld-validator
 - Meta Tag Generator: https://metaforge.app/meta-tag-generator
 - Open Graph Generator: https://metaforge.app/open-graph-generator
 - Twitter Card Generator: https://metaforge.app/twitter-card-generator
@@ -17,4 +22,4 @@
 
 ## About
 
-MetaForge is a free, browser-based SEO meta tag studio. All user data stays in the browser via localStorage. No signup required.
+SerpCraft is a free, browser-based SEO meta tag studio. All user data stays in the browser via localStorage. No signup required.

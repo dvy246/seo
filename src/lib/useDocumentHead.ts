@@ -4,7 +4,7 @@ import { pageMeta } from '@/data/pages';
 // Manages document head (title, meta description, canonical, OG tags, JSON-LD)
 // for SEO on each client-side route.
 
-const SITE_NAME = 'MetaForge';
+const SITE_NAME = 'SerpCraft';
 const SITE_URL = typeof window !== 'undefined' ? window.location.origin : 'https://metaforge.app';
 
 function setOrCreateMeta(attr: 'name' | 'property', key: string, content: string) {
@@ -28,11 +28,11 @@ function setOrCreateLink(rel: string, href: string) {
 }
 
 function setOrCreateJsonLd(id: string, json: string) {
-  let el = document.head.querySelector(`script[data-metaforge-jsonld="${id}"]`) as HTMLScriptElement | null;
+  let el = document.head.querySelector(`script[data-serpcraft-jsonld="${id}"]`) as HTMLScriptElement | null;
   if (!el) {
     el = document.createElement('script');
     el.type = 'application/ld+json';
-    el.setAttribute('data-metaforge-jsonld', id);
+    el.setAttribute('data-serpcraft-jsonld', id);
     document.head.appendChild(el);
   }
   el.textContent = json;

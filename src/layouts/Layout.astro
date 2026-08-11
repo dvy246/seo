@@ -2,6 +2,7 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { pageMeta } from '@/data/pages';
+import { pageMetaLocalized } from '@/data/pageMetaLocalized';
 import { locales, extractLocale, withLocale, type Locale } from '@/lib/i18n';
 import '@/index.css';
 
@@ -11,18 +12,22 @@ interface Props {
   title?: string;
   description?: string;
   keywords?: string;
+  noHreflang?: boolean;
+  noindex?: boolean;
 }
 
-const { path, locale = 'en', title: customTitle, description: customDesc, keywords: customKeywords } = Astro.props;
+const { path, locale = 'en', title: customTitle, description: customDesc, keywords: customKeywords, noHreflang = false, noindex = false } = Astro.props;
 
 const pageInfo = pageMeta[path] || pageMeta['/'] || {
-  title: 'MetaForge — SEO Meta Tag & Structured Data Studio',
+  title: 'SerpCraft — SEO Meta Tag & Structured Data Studio',
   description: 'Set up all your page SEO in one place.',
   keywords: 'seo, meta tags, json-ld',
 };
 
-const title = customTitle || pageInfo.title;
-const description = customDesc || pageInfo.description;
+// Localized head metadata: prefer the locale-specific entry, fall back to English.
+const localized = pageMetaLocalized[locale]?.[path];
+const title = customTitle || localized?.title || pageInfo.title;
+const description = customDesc || localized?.description || pageInfo.description;
 const keywords = customKeywords || pageInfo.keywords;
 
 const baseUrl = Astro.site ? Astro.site.origin : 'https://metaforge.app';
@@ -38,7 +43,7 @@ const xDefaultHref = new URL(withLocale('en', pathWithoutLocale), baseUrl).toStr
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: 'MetaForge',
+  name: 'SerpCraft',
   url: baseUrl,
   description: description,
   applicationCategory: 'SEOApplication',
@@ -60,13 +65,18 @@ const webAppSchema = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Hreflang International SEO Tags -->
-    {hreflangLinks.map((link) => (
-      <link rel="alternate" hreflang={link.lang} href={link.href} />
-    ))}
-    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+    {!noHreflang && (
+      <>
+        {hreflangLinks.map((link) => (
+          <link rel="alternate" hreflang={link.lang} href={link.href} />
+        ))}
+        <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+      </>
+    )}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -76,7 +86,7 @@ const webAppSchema = {
     <meta property="og:image" content={`${baseUrl}/og-image.png`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="MetaForge" />
+    <meta property="og:site_name" content="SerpCraft" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -88,11 +98,39 @@ const webAppSchema = {
     <!-- WebApplication JSON-LD Schema (AEO / GEO Optimization) -->
     <script type="application/ld+json" is:inline set:html={JSON.stringify(webAppSchema)} />
 
+    <!-- Organization + WebSite JSON-LD on the homepage for brand entity -->
+    {pathWithoutLocale === '/' && (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Organization',
+            '@id': `${baseUrl}/#organization`,
+            name: 'SerpCraft',
+            url: baseUrl,
+            logo: {
+              '@type': 'ImageObject',
+              url: `${baseUrl}/favicon.svg`,
+            },
+          },
+          {
+            '@type': 'WebSite',
+            '@id': `${baseUrl}/#website`,
+            url: baseUrl,
+            name: 'SerpCraft',
+            description: 'Free SEO meta tag, social preview, and JSON-LD structured data studio.',
+            publisher: { '@id': `${baseUrl}/#organization` },
+            inLanguage: 'en',
+          },
+        ],
+      })} />
+    )}
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 

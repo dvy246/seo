@@ -5,7 +5,7 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { getTranslations } from '@/lib/translations';
 import { locales, type Locale } from '@/lib/i18n';
-import { navigateTo, navigateToLocale } from '@/lib/router';
+import { localizeHref } from '@/lib/router';
 
 interface HeaderProps {
   currentPath: string;
@@ -22,11 +22,9 @@ export function Header({ currentPath, locale }: HeaderProps) {
     setToolsOpen(false);
   }, [currentPath]);
 
-  const go = (path: string) => {
-    navigateTo(path);
-    setMobileOpen(false);
-    setToolsOpen(false);
-  };
+  const href = (path: string) => localizeHref(path, locale);
+  // Trust pages exist only in English (no /es/about etc.), so never locale-prefix them.
+  const trustHref = (path: string) => path;
 
   return (
     <>
@@ -34,25 +32,25 @@ export function Header({ currentPath, locale }: HeaderProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <button onClick={() => go('/')} className="flex items-center gap-2.5 flex-none">
+            <a href={href('/')} aria-label="SerpCraft home" className="flex items-center gap-2.5 flex-none">
               <div className="w-8 h-8 rounded-lg bg-choco-500 flex items-center justify-center">
                 <svg viewBox="0 0 24 24" className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
                   <path d="M5 8h14M5 13h10M5 18h7" />
                 </svg>
               </div>
-              <span className="text-lg font-serif font-semibold text-ink dark:text-sand-50 tracking-tight">MetaForge</span>
-            </button>
+              <span className="text-lg font-serif font-semibold text-ink dark:text-sand-50 tracking-tight">SerpCraft</span>
+            </a>
 
             {/* Desktop nav */}
             <nav className="hidden lg:flex items-center gap-1">
-              <button
-                onClick={() => go('/studio')}
+              <a
+                href={href('/studio')}
                 className={`px-3.5 py-2 text-sm font-medium rounded-md transition-colors ${
                   currentPath === '/studio' ? 'text-choco-600 dark:text-choco-400' : 'text-ink-soft dark:text-sand-300 hover:text-ink dark:hover:text-sand-50 hover:bg-sand-100 dark:hover:bg-sand-800'
                 }`}
               >
                 {t.navStudio}
-              </button>
+              </a>
 
               {/* Tools dropdown */}
               <div
@@ -77,28 +75,28 @@ export function Header({ currentPath, locale }: HeaderProps) {
                   <div className="absolute top-full left-0 pt-1 w-[520px]">
                     <div className="rounded-xl border border-sand-200 dark:border-sand-700 bg-white dark:bg-sand-900 shadow-lift p-2 grid grid-cols-2 gap-1">
                       {navTools.map((tool) => (
-                        <button
+                        <a
                           key={tool.path}
-                          onClick={() => go(tool.path)}
+                          href={href(tool.path)}
                           className="flex flex-col items-start gap-0.5 px-3 py-2.5 rounded-lg text-left hover:bg-sand-50 dark:hover:bg-sand-800 transition-colors"
                         >
                           <span className="text-sm font-medium text-ink dark:text-sand-100">{tool.shortLabel}</span>
                           <span className="text-xs text-ink-muted dark:text-sand-400">{tool.description}</span>
-                        </button>
+                        </a>
                       ))}
                     </div>
                   </div>
                 )}
               </div>
 
-              <button
-                onClick={() => go('/about')}
+              <a
+                href={trustHref('/about')}
                 className={`px-3.5 py-2 text-sm font-medium rounded-md transition-colors ${
                   currentPath === '/about' ? 'text-choco-600 dark:text-choco-400' : 'text-ink-soft dark:text-sand-300 hover:text-ink dark:hover:text-sand-50 hover:bg-sand-100 dark:hover:bg-sand-800'
                 }`}
               >
                 {t.navAbout}
-              </button>
+              </a>
             </nav>
 
             {/* Right: theme + language + mobile menu */}
@@ -132,29 +130,29 @@ export function Header({ currentPath, locale }: HeaderProps) {
             </div>
           </div>
           <div className="p-4 space-y-1">
-            <MobileLink label={t.navStudio} onClick={() => go('/studio')} active={currentPath === '/studio'} />
+            <MobileLink label={t.navStudio} href={href('/studio')} active={currentPath === '/studio'} />
             <div className="py-2 px-3 text-xs font-semibold text-ink-muted dark:text-sand-500 uppercase tracking-wide">{t.navTools}</div>
             {navTools.map((tool) => (
               <MobileLink
                 key={tool.path}
                 label={tool.label}
                 sublabel={tool.description}
-                onClick={() => go(tool.path)}
+                href={href(tool.path)}
                 active={currentPath === tool.path}
               />
             ))}
             <div className="py-2 px-3 text-xs font-semibold text-ink-muted dark:text-sand-500 uppercase tracking-wide mt-4">Info</div>
-            <MobileLink label={t.footerAbout} onClick={() => go('/about')} active={currentPath === '/about'} />
-            <MobileLink label={t.footerPrivacy} onClick={() => go('/privacy')} active={currentPath === '/privacy'} />
-            <MobileLink label={t.footerTerms} onClick={() => go('/terms')} active={currentPath === '/terms'} />
+            <MobileLink label={t.footerAbout} href={trustHref('/about')} active={currentPath === '/about'} />
+            <MobileLink label={t.footerPrivacy} href={href('/privacy')} active={currentPath === '/privacy'} />
+            <MobileLink label={t.footerTerms} href={href('/terms')} active={currentPath === '/terms'} />
 
             {/* Language selector for mobile */}
             <div className="py-2 px-3 text-xs font-semibold text-ink-muted dark:text-sand-500 uppercase tracking-wide mt-4">{t.language}</div>
             <div className="grid grid-cols-3 gap-2 px-1">
               {locales.map((l) => (
-                <button
+                <a
                   key={l.code}
-                  onClick={() => navigateToLocale(l.code)}
+                  href={localizeHref(currentPath, l.code)}
                   className={`px-3 py-2 rounded-lg text-sm transition-colors ${
                     l.code === locale
                       ? 'bg-choco-50 dark:bg-choco-900/30 text-choco-600 dark:text-choco-400 font-medium'
@@ -162,7 +160,7 @@ export function Header({ currentPath, locale }: HeaderProps) {
                   }`}
                 >
                   {l.nativeName}
-                </button>
+                </a>
               ))}
             </div>
           </div>
@@ -175,17 +173,17 @@ export function Header({ currentPath, locale }: HeaderProps) {
 function MobileLink({
   label,
   sublabel,
-  onClick,
+  href,
   active,
 }: {
   label: string;
   sublabel?: string;
-  onClick: () => void;
+  href: string;
   active: boolean;
 }) {
   return (
-    <button
-      onClick={onClick}
+    <a
+      href={href}
       className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-left transition-colors ${
         active ? 'bg-choco-50 dark:bg-choco-900/30 text-choco-700 dark:text-choco-300' : 'text-ink-soft dark:text-sand-300 hover:bg-sand-100 dark:hover:bg-sand-800'
       }`}
@@ -195,6 +193,6 @@ function MobileLink({
         {sublabel && <div className="text-xs text-ink-muted dark:text-sand-500">{sublabel}</div>}
       </div>
       <ChevronRight size={16} className="text-ink-muted dark:text-sand-500" />
-    </button>
+    </a>
   );
 }

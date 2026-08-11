@@ -1,8 +1,8 @@
-# MetaForge — Agent Guide
+# SerpCraft — Agent Guide
 
 ## Project Overview
 
-MetaForge is a free, browser-based SEO meta tag studio. It combines meta tag generation, Open Graph/Twitter Card preview, JSON-LD structured data building, pixel-accurate SERP preview, robots.txt generation, and an AI-search readiness suite (AI Readiness Checker, llms.txt generator, hreflang generator, OG image checker, JSON-LD validator) into a single tool. No signup — user data stays in the browser via `localStorage`; the only server-side code is a small Cloudflare Pages Function layer for server-side URL/image checks.
+SerpCraft is a free, browser-based SEO meta tag studio. It combines meta tag generation, Open Graph/Twitter Card preview, JSON-LD structured data building, pixel-accurate SERP preview, robots.txt generation, and an AI-search readiness suite (AI Readiness Checker, llms.txt generator, hreflang generator, OG image checker, JSON-LD validator) into a single tool. No signup — user data stays in the browser via `localStorage`; the only server-side code is a small Cloudflare Pages Function layer for server-side URL/image checks.
 
 ---
 
@@ -23,32 +23,36 @@ MetaForge is a free, browser-based SEO meta tag studio. It combines meta tag gen
 ```
 src/
 ├── layouts/
-│   └── Layout.astro           # Base Astro layout (injects pre-rendered SEO head, FOUC-free dark mode script, Header & Footer)
+│   └── Layout.astro           # Base Astro layout (SEO head with localized meta + JSON-LD, noindex prop, FOUC-free dark mode script, Header & Footer)
 ├── pages/
 │   ├── index.astro            # Marketing landing page (/)
 │   ├── studio.astro           # Main studio tool page (/studio)
 │   ├── [tool].astro           # Dynamic static route for tools (/meta-tag-generator, /open-graph-generator, etc.)
-│   ├── about.astro            # About page (/about)
-│   ├── privacy.astro          # Privacy Policy (/privacy)
-│   ├── terms.astro            # Terms of Service (/terms)
-│   ├── 404.astro              # 404 Error page
-│   └── [locale]/              # i18n locale-prefixed routes (/es/studio, /fr/meta-tag-generator, etc.)
+│   ├── problems/              # SEO problem guides (/problems/wrong-meta-description, etc.) — crawlable, linked from tool pages
+│   ├── about.astro            # About page (/about) — EN-only (no locale variants)
+│   ├── privacy.astro          # Privacy Policy (/privacy) — EN-only
+│   ├── terms.astro            # Terms of Service (/terms) — EN-only
+│   ├── 404.astro              # 404 Error page (noindex)
+│   └── [locale]/              # i18n locale-prefixed routes (/es/studio, /fr/meta-tag-generator, etc.) — home + 15 tools only
 │       ├── index.astro
 │       ├── studio.astro
 │       └── [tool].astro
 ├── components/
 │   ├── Header.tsx             # Sticky nav with tools dropdown, theme toggle, language switcher
-│   ├── Footer.tsx             # Link footer with tool links and legal pages
+│   ├── Footer.tsx             # Link footer with tool links and legal pages (trust links always EN)
 │   ├── LandingPage.tsx        # Marketing homepage with hero, features, tools, FAQ, CTA
-│   ├── StudioPage.tsx         # Main studio — orchestrates editor, previews, output, companion content
+│   ├── StudioPage.tsx         # Main studio — orchestrates editor, previews, output, companion content, problems chips
+│   ├── SmartLink.tsx          # Real <a href> anchor helper for crawlable internal links (replaces navigateTo)
 │   ├── StudioEditor.tsx       # Form inputs for meta tags (title, description, OG, Twitter, etc.)
 │   ├── JsonLdForm.tsx         # Schema type selector + dynamic fields for JSON-LD
 │   ├── RobotsTxtGenerator.tsx # Robots.txt rule editor
-│   ├── AuditTool.tsx          # AI Readiness Checker UI (URL mode + paste-HTML mode)
-│   ├── LlmsTxtGenerator.tsx   # llms.txt file generator (AI crawler discovery)
-│   ├── HreflangGenerator.tsx  # hreflang alternate-link generator with locale validation
-│   ├── OgImageChecker.tsx     # OG image checker (server-side dimension/format verification)
-│   ├── JsonLdValidator.tsx    # JSON-LD paste-and-validate tool
+│   ├── AuditTool.tsx          # AI Readiness Checker UI (URL mode + paste-HTML mode) — lazy-loaded
+│   ├── SeoCheckPage.tsx       # SEO Check tool page (21-point audit UI) — lazy-loaded
+│   ├── LlmsTxtGenerator.tsx   # llms.txt file generator (AI crawler discovery) — lazy-loaded
+│   ├── HreflangGenerator.tsx  # hreflang alternate-link generator with locale validation — lazy-loaded
+│   ├── OgImageChecker.tsx     # OG image checker (server-side dimension/format verification) — lazy-loaded
+│   ├── JsonLdValidator.tsx    # JSON-LD paste-and-validate tool — lazy-loaded
+│   ├── ProblemGuide.tsx       # Individual problem guide page component
 │   ├── Previews.tsx           # Social + SERP preview panels (Google, Facebook, X, LinkedIn, Slack, Discord)
 │   ├── CodeOutput.tsx         # Generated HTML/JSON output with copy-to-clipboard
 │   ├── SaveLoadPanel.tsx      # Save/load page setups + brand profile (localStorage)
@@ -56,13 +60,15 @@ src/
 │   ├── TrustPages.tsx         # About, Privacy, Terms pages
 │   ├── ErrorPages.tsx         # 404 and 500 error pages
 │   ├── ThemeToggle.tsx        # Dark/light mode toggle button
-│   └── LanguageSwitcher.tsx   # i18n locale dropdown
+│   └── LanguageSwitcher.tsx   # i18n locale dropdown (uses navigateToLocale)
 ├── data/
-│   ├── pages.ts               # Page metadata (title, description, keywords) + nav tool definitions
+│   ├── pages.ts               # EN page metadata (title, description, keywords, h1) + nav tool definitions
+│   ├── pageMetaLocalized.ts   # Localized title/description pairs (16 paths × es/fr/de/pt/ja = 80 pairs; EN falls back to pages.ts)
 │   ├── content.ts             # Companion content (FAQs, guides) per tool page
+│   ├── problems.ts            # Problem guide definitions (slug, path, relatedTools)
 │   └── schemaDefinitions.ts   # JSON-LD schema type field definitions
 ├── lib/
-│   ├── router.ts              # Locale-aware navigation helpers (navigateTo, navigateToLocale)
+│   ├── router.ts              # Locale-aware navigation helpers (navigateToLocale; navigateTo largely removed — use SmartLink/<a href>)
 │   ├── i18n.ts                # Locale types, locale list, path extraction/translation helpers
 │   ├── translations.ts        # UI string translations for 6 locales (en, es, fr, de, pt, ja)
 │   ├── useTheme.ts            # Dark/light theme hook with localStorage persistence
@@ -74,6 +80,8 @@ src/
 │   └── htmlExtract.ts         # Client-side HTML snapshot extraction (paste-HTML mode)
 ├── index.css                  # Tailwind layers + component classes & color tokens (light/dark)
 └── ...
+scripts/
+└── check-meta.mjs             # Validates EN + localized title/desc length limits (node scripts/check-meta.mjs)
 functions/                     # Cloudflare Pages Functions (server-side checks)
 ├── _shared/
 │   └── guard.ts               # CORS, JSON helpers, SSRF guard, KV rate limit + cache helpers
@@ -88,16 +96,16 @@ functions/                     # Cloudflare Pages Functions (server-side checks)
 
 ### Multi-Page Astro Architecture & Routing
 - Astro file-based static site generation (`SSG`).
-- 64 static HTML pages pre-rendered at build time.
-- `navigateTo(path)` and `navigateToLocale(locale)` in `src/lib/router.ts` handle clean multi-page navigation across locale prefixes.
+- 106 static HTML pages pre-rendered at build time.
+- Internal navigation uses real `<a href>` anchors (`SmartLink.tsx` helper) so links are crawlable — do NOT introduce SPA-style `navigateTo` navigation for internal links.
+- `navigateToLocale(locale)` in `src/lib/router.ts` handles locale-switch navigation (used by `LanguageSwitcher.tsx`).
 
 ### Internationalization (i18n)
-- URL path-based: `/en/studio`, `/es/studio`, `/fr/studio`, etc.
-- English (`en`) is the default and has no prefix (backward compatible).
+- URL path-based: `/es/studio`, `/fr/studio`, etc. English (`en`) is the default and has no prefix (backward compatible).
 - Supported locales: English, Spanish, French, German, Portuguese, Japanese.
-- UI strings in `src/lib/translations.ts`.
-- `extractLocale(path)` strips the locale prefix and returns the clean path.
-- `withLocale(locale, path)` prepends a locale prefix (omits it for `en`).
+- **Scope:** only home + 15 tools have locale variants (`[locale]/index.astro`, `[locale]/studio.astro`, `[locale]/[tool].astro`). Trust pages (`/about`, `/privacy`, `/terms`) and `/problems/*` guides are EN-only — do not localize their links (Footer/Header use `trustHref` to keep them EN).
+- UI strings in `src/lib/translations.ts`; localized metadata (title/description) in `src/data/pageMetaLocalized.ts`.
+- `extractLocale(path)` strips the locale prefix and returns the clean path; `withLocale(locale, path)` prepends a locale prefix (omits it for `en`).
 
 ### Dark Mode
 - Tailwind `darkMode: 'class'` strategy. The `dark` class is toggled on `<html>`.
@@ -105,10 +113,15 @@ functions/                     # Cloudflare Pages Functions (server-side checks)
 - `useTheme()` hook manages React component state with `localStorage` persistence.
 
 ### SEO & Pre-rendering
-- Server-rendered HTML `<head>` tags in `Layout.astro` populated per route from `src/data/pages.ts`.
+- Server-rendered HTML `<head>` tags in `Layout.astro` populated per route from `src/data/pages.ts` (EN) with localized title/description overrides from `src/data/pageMetaLocalized.ts` when a locale path exists.
 - Pre-rendered Open Graph meta tags, Twitter Cards, canonical links, and JSON-LD structured data.
-- Companion content (`CompanionContent.tsx`) provides FAQs, guides, and trust signals per tool page.
+- JSON-LD: `WebApplication` schema on all pages; `Organization` + `WebSite` (with `@id` anchors) on the homepage only. FAQPage schema intentionally skipped (Google deprecated FAQ rich results May 2026).
+- Companion content (`CompanionContent.tsx`) provides FAQs, guides, and trust signals per tool page. `/problems/*` guides are cross-linked from tool pages (crawlable inbound links).
 - Google SERP preview utilizes canvas pixel-width truncation with SSR fallback (`src/lib/pixelWidth.ts`).
+- `404.astro` is `noindex`; `public/_headers` noindexes the staging project; `public/llms.txt` lists tools for AI crawler discovery.
+- Sitemap: `@astrojs/sitemap` with `i18n` config (defaultLocale `en` + 5 alternates) emits `sitemap-index.xml` → `sitemap-0.xml` with hreflang alternates for the 16 localized paths. There is intentionally NO `/sitemap.xml` or `/robots.txt` page route — they are static files in `public/` (sitemap only, generated at build).
+- Meta length validation: `node scripts/check-meta.mjs` (EN titles ≤580px, descriptions ≤155ch; localized ≤580px/170ch).
+- **Code splitting:** heavy tool UIs (`AuditTool`, `SeoCheckPage`, `LlmsTxtGenerator`, `HreflangGenerator`, `OgImageChecker`, `JsonLdValidator`) are `React.lazy()`-loaded inside `<Suspense fallback={<ToolFallback />}>` in `StudioPage.tsx` — keep them lazy when editing.
 
 ### Data Persistence
 - Client-side interactive states (page setups, brand profiles) persist in browser `localStorage` via `src/lib/storage.ts`.
@@ -138,6 +151,7 @@ npm run build      # Build static HTML production site to dist/ (astro build)
 npm run preview    # Preview built static production site (astro preview)
 npm run typecheck  # TypeScript type checking (tsc --noEmit)
 npm run lint       # ESLint
+node scripts/check-meta.mjs  # Validate EN + localized title/desc lengths
 ```
 
 ### Deploy

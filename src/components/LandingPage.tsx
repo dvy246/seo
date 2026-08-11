@@ -1,14 +1,14 @@
 import { navTools } from '@/data/pages';
-import { navigateTo, useRouter } from '@/lib/router';
+import { SmartLink } from '@/components/SmartLink';
+import { useRouter } from '@/lib/router';
 import { getTranslations } from '@/lib/translations';
-import { type Locale } from '@/lib/i18n';
 import {
-  ArrowRight, Check, Search, Share2, Code2, Bot, Eye, Braces, Tags, Twitter,
-  Sparkles, Shield, Zap, Globe, Monitor, Smartphone, FileText, Layers,
+  ArrowRight, Check, Search, Share2, Code2, Eye, Braces, Tags, Twitter,
+  Sparkles, Zap, Globe, Monitor, Smartphone, FileText, Radar, Languages, Image,
 } from 'lucide-react';
 
 const iconMap: Record<string, React.ComponentType<{ size?: number | string; className?: string }>> = {
-  Tags, Share2, Twitter, Braces, Eye, Search, Bot,
+  Tags, Share2, Twitter, Braces, Eye, Search, Radar, FileText, Languages, Image,
   Code: Code2,
 };
 
@@ -44,32 +44,32 @@ function Hero({ t }: { t: ReturnType<typeof getTranslations> }) {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: copy */}
           <div className="animate-slide-up">
-            <div className="inline-flex items-center gap-2 chip bg-pastel-100 text-pastel-700 mb-6">
+            <div className="inline-flex items-center gap-2 chip bg-terra-50 text-terra-700 dark:bg-terra-900/30 dark:text-terra-300 mb-6">
               <Sparkles size={14} />
               {t.heroBadge}
             </div>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold text-ink dark:text-sand-50 leading-[1.1] tracking-tight text-balance">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-ink dark:text-sand-50 leading-[1.1] tracking-tight text-balance">
               {t.heroTitlePrefix}{' '}
-              <span className="text-choco-600 dark:text-choco-400">{t.heroTitleHighlight}</span>{t.heroTitleSuffix}
+              <span className="text-terra-600 dark:text-terra-400">{t.heroTitleHighlight}</span>{t.heroTitleSuffix}
             </h1>
             <p className="mt-6 text-lg text-ink-soft dark:text-sand-300 leading-relaxed max-w-xl text-balance">
               {t.heroSubtitle}
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <button
-                onClick={() => navigateTo('/studio')}
+              <SmartLink
+                to="/studio"
                 className="btn-primary text-base px-6 py-3.5 group"
               >
                 {t.openStudio}
                 <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-              </button>
-              <button
-                onClick={() => navigateTo('/meta-tag-generator')}
+              </SmartLink>
+              <SmartLink
+                to="/meta-tag-generator"
                 className="btn-secondary text-base px-6 py-3.5"
               >
                 {t.browseTools}
-              </button>
+              </SmartLink>
             </div>
 
             <div className="mt-8 flex items-center gap-6 text-sm text-ink-muted">
@@ -98,7 +98,7 @@ function HeroMockup() {
           <div className="w-3 h-3 rounded-full bg-error/30" />
           <div className="w-3 h-3 rounded-full bg-warning/30" />
           <div className="w-3 h-3 rounded-full bg-success/30" />
-          <span className="ml-2 text-xs text-ink-muted font-mono">metaforge.app/studio</span>
+          <span className="ml-2 text-xs text-ink-muted font-mono">serpcraft.app/studio</span>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
@@ -179,7 +179,7 @@ function SocialProof() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((s, i) => (
             <div key={i} className="text-center">
-              <div className="font-serif text-3xl font-semibold text-choco-600 dark:text-choco-400">{s.value}</div>
+              <div className="font-display text-3xl font-semibold text-choco-600 dark:text-choco-400">{s.value}</div>
               <div className="text-sm text-ink-muted dark:text-sand-400 mt-1">{s.label}</div>
             </div>
           ))}
@@ -193,9 +193,19 @@ function SocialProof() {
 function FeatureGrid({ t }: { t: ReturnType<typeof getTranslations> }) {
   const features = [
     {
+      icon: Radar,
+      title: 'URL Debugger',
+      desc: 'Paste any URL and see exactly what Google, Facebook, and other crawlers read: status, redirects, headers, conflicting meta and Open Graph tags — with the raw evidence behind every finding.',
+    },
+    {
       icon: Search,
       title: 'Pixel-accurate SERP preview',
       desc: 'Google truncates titles by pixel width, not characters. Our preview measures actual pixel width, so you see exactly where Google will cut your title and description.',
+    },
+    {
+      icon: FileText,
+      title: 'llms.txt generator',
+      desc: 'Generate the optional file some AI crawlers read to map your site — with page lists and one-line summaries. Google states it is not required for Search, so it is presented honestly.',
     },
     {
       icon: Share2,
@@ -204,23 +214,13 @@ function FeatureGrid({ t }: { t: ReturnType<typeof getTranslations> }) {
     },
     {
       icon: Braces,
-      title: 'Built-in JSON-LD generator',
-      desc: 'Generate structured data for Article, Product, FAQ, LocalBusiness, and more — right next to your meta tags. No separate trip to another site.',
+      title: 'Built-in JSON-LD generator & validator',
+      desc: 'Generate and validate structured data for Article, Product, FAQ, LocalBusiness, and more — right next to your meta tags. No separate trip to another site.',
     },
     {
-      icon: Bot,
-      title: 'Robots.txt builder',
-      desc: 'Generate crawl directives with user-agent, allow, disallow, sitemap, and crawl-delay settings. One click to copy.',
-    },
-    {
-      icon: Shield,
-      title: 'Privacy by default',
-      desc: 'Everything runs in your browser. Your page setups, brand profile, and generated tags never leave your device. No account required.',
-    },
-    {
-      icon: Layers,
-      title: 'Saved brand profile',
-      desc: 'Enter your brand name, logo, domain, and Twitter handle once. Every new page inherits your defaults. Save page setups and return to them later.',
+      icon: Image,
+      title: 'Server-side OG image checker',
+      desc: 'Verify your og:image bytes like Facebook does: real format, 1200×630 dimensions, aspect ratio, and size. Browsers can\'t do this — CORS blocks them.',
     },
   ];
 
@@ -229,7 +229,7 @@ function FeatureGrid({ t }: { t: ReturnType<typeof getTranslations> }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="chip bg-choco-50 dark:bg-choco-900/30 text-choco-600 dark:text-choco-400 mb-4 mx-auto">{t.featuresBadge}</div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-ink dark:text-sand-50 tracking-tight text-balance">
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-ink dark:text-sand-50 tracking-tight text-balance">
             {t.featuresTitle}
           </h2>
           <p className="mt-4 text-lg text-ink-soft dark:text-sand-300 leading-relaxed text-balance">
@@ -263,7 +263,7 @@ function ToolShowcase({ t }: { t: ReturnType<typeof getTranslations> }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="chip bg-pastel-100 dark:bg-pastel-900/30 text-pastel-700 dark:text-pastel-300 mb-4 mx-auto">{t.toolsBadge}</div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-ink dark:text-sand-50 tracking-tight text-balance">
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-ink dark:text-sand-50 tracking-tight text-balance">
             {t.toolsTitle}
           </h2>
           <p className="mt-4 text-lg text-ink-soft dark:text-sand-300 leading-relaxed text-balance">
@@ -275,10 +275,10 @@ function ToolShowcase({ t }: { t: ReturnType<typeof getTranslations> }) {
           {navTools.map((tool) => {
             const Icon = iconMap[tool.icon] || FileText;
             return (
-              <button
+              <SmartLink
                 key={tool.path}
-                onClick={() => navigateTo(tool.path)}
-                className="card p-5 text-left hover:shadow-lift transition-all duration-300 hover:border-choco-200 group"
+                to={tool.path}
+                className="card p-5 text-left hover:shadow-lift transition-all duration-300 hover:border-choco-200 group block"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="w-10 h-10 rounded-lg bg-pastel-50 flex items-center justify-center group-hover:bg-pastel-100 transition-colors">
@@ -288,7 +288,7 @@ function ToolShowcase({ t }: { t: ReturnType<typeof getTranslations> }) {
                 </div>
                 <h3 className="text-sm font-semibold text-ink dark:text-sand-100 mb-1">{tool.label}</h3>
                 <p className="text-xs text-ink-muted dark:text-sand-400 leading-relaxed">{tool.description}</p>
-              </button>
+              </SmartLink>
             );
           })}
         </div>
@@ -311,7 +311,7 @@ function HowItWorks({ t }: { t: ReturnType<typeof getTranslations> }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="chip bg-choco-50 dark:bg-choco-900/30 text-choco-600 dark:text-choco-400 mb-4 mx-auto">{t.howBadge}</div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-ink dark:text-sand-50 tracking-tight text-balance">
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-ink dark:text-sand-50 tracking-tight text-balance">
             {t.howTitle}
           </h2>
         </div>
@@ -319,7 +319,7 @@ function HowItWorks({ t }: { t: ReturnType<typeof getTranslations> }) {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {steps.map((s, i) => (
             <div key={i} className="relative">
-              <div className="font-serif text-5xl font-semibold text-choco-200 mb-3">{s.num}</div>
+              <div className="font-display text-5xl font-semibold text-choco-200 mb-3">{s.num}</div>
               <h3 className="font-semibold text-ink dark:text-sand-100 mb-2">{s.title}</h3>
               <p className="text-sm text-ink-soft dark:text-sand-300 leading-relaxed">{s.desc}</p>
               {i < steps.length - 1 && (
@@ -429,14 +429,14 @@ function ComparisonSection({ t }: { t: ReturnType<typeof getTranslations> }) {
     'Saved page library',
     'No signup required',
   ];
-  const tools = ['MetaForge', 'metatags.io', 'opengraph.xyz', 'Merkle'];
+  const tools = ['SerpCraft', 'metatags.io', 'opengraph.xyz', 'Merkle'];
 
   return (
     <section className="py-20 lg:py-28">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="chip bg-choco-50 dark:bg-choco-900/30 text-choco-600 dark:text-choco-400 mb-4 mx-auto">{t.comparisonBadge}</div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-ink dark:text-sand-50 tracking-tight text-balance">
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-ink dark:text-sand-50 tracking-tight text-balance">
             {t.comparisonTitle}
           </h2>
         </div>
@@ -481,7 +481,7 @@ function ComparisonSection({ t }: { t: ReturnType<typeof getTranslations> }) {
 // =================== FAQ TEASER ===================
 function FaqTeaser() {
   const faqs = [
-    { q: 'Is MetaForge really free?', a: 'Yes. The core studio is completely free with no signup required. All data is stored locally in your browser. The site is supported by unobtrusive ads.' },
+    { q: 'Is SerpCraft really free?', a: 'Yes. The core studio is completely free with no signup required. All data is stored locally in your browser. The site is supported by unobtrusive ads.' },
     { q: 'Does my data leave my browser?', a: 'No. Everything runs client-side. Your page setups, brand profile, and generated tags never leave your device.' },
     { q: 'How accurate is the Google SERP preview?', a: 'The preview measures actual pixel width of your text, following Google\'s documented truncation behavior. Titles truncate at ~580px, descriptions at ~920px.' },
   ];
@@ -490,7 +490,7 @@ function FaqTeaser() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <div className="chip bg-pastel-100 dark:bg-pastel-900/30 text-pastel-700 dark:text-pastel-300 mb-4 mx-auto">FAQ</div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-ink dark:text-sand-50 tracking-tight text-balance">
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-ink dark:text-sand-50 tracking-tight text-balance">
             Common questions
           </h2>
         </div>
@@ -503,10 +503,10 @@ function FaqTeaser() {
           ))}
         </div>
         <div className="text-center mt-8">
-          <button onClick={() => navigateTo('/about')} className="btn-ghost text-sm group">
-            More about MetaForge
+          <SmartLink to="/about" className="btn-ghost text-sm group">
+            More about SerpCraft
             <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
-          </button>
+          </SmartLink>
         </div>
       </div>
     </section>
@@ -518,26 +518,26 @@ function FinalCta({ t }: { t: ReturnType<typeof getTranslations> }) {
   return (
     <section className="py-20 lg:py-28">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl bg-gradient-to-br from-choco-600 via-choco-700 to-choco-800 p-12 lg:p-16 text-center overflow-hidden">
-          {/* Decorative circles */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-pastel-400/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-pastel-300/15 rounded-full blur-2xl" />
+        <div className="relative rounded-3xl border border-choco-200/70 dark:border-choco-800/60 bg-gradient-to-br from-sand-100 via-sand-50 to-sand-200/60 dark:from-sand-900 dark:via-sand-950 dark:to-sand-900 p-12 lg:p-16 text-center overflow-hidden">
+          {/* Warm terracotta + cocoa glows */}
+          <div className="absolute top-0 right-0 w-72 h-72 bg-terra-200/40 dark:bg-terra-900/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-56 h-56 bg-choco-200/40 dark:bg-choco-800/20 rounded-full blur-2xl pointer-events-none" />
 
           <div className="relative">
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-sand-50 tracking-tight text-balance">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-ink dark:text-sand-50 tracking-tight text-balance">
               {t.ctaTitle}
             </h2>
-            <p className="mt-4 text-lg text-sand-200 leading-relaxed max-w-xl mx-auto text-balance">
+            <p className="mt-4 text-lg text-ink-soft dark:text-sand-300 leading-relaxed max-w-xl mx-auto text-balance">
               {t.ctaSubtitle}
             </p>
-            <button
-              onClick={() => navigateTo('/studio')}
-              className="mt-8 inline-flex items-center gap-2 rounded-lg bg-sand-50 px-6 py-3.5 text-base font-semibold text-choco-700 hover:bg-white transition-all duration-200 shadow-lift group"
+            <SmartLink
+              to="/studio"
+              className="btn-primary mt-8 px-7 py-3.5 text-base group"
             >
               {t.openStudio}
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-            </button>
-            <div className="mt-6 flex items-center justify-center gap-6 text-sm text-sand-300">
+            </SmartLink>
+            <div className="mt-6 flex items-center justify-center gap-6 text-sm text-ink-muted dark:text-sand-400">
               <span className="flex items-center gap-1.5"><Monitor size={15} /> Desktop</span>
               <span className="flex items-center gap-1.5"><Smartphone size={15} /> Mobile</span>
               <span className="flex items-center gap-1.5"><Globe size={15} /> All browsers</span>

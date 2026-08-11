@@ -73,7 +73,7 @@ export function OgImageChecker() {
         <h3 className="text-sm font-semibold text-ink dark:text-sand-100">OG Image Checker</h3>
       </div>
       <p className="text-xs text-ink-muted dark:text-sand-400 mb-5">
-        Paste the URL of your Open Graph image and MetaForge verifies it server-side: correct format, 1200×630
+        Paste the URL of your Open Graph image and SerpCraft verifies it server-side: correct format, 1200×630
         dimensions, 1.91:1 aspect ratio, and file size — exactly how Facebook, X, and LinkedIn will fetch it.
         Browsers can't do this reliably on their own (CORS), so this check actually reads the image bytes.
       </p>

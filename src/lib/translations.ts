@@ -79,7 +79,7 @@ const en: UITranslations = {
   noSignup: 'No signup',
   freeForever: 'Free forever',
   runsInBrowser: 'Runs in browser',
-  featuresBadge: 'Why MetaForge',
+  featuresBadge: 'Why SerpCraft',
   featuresTitle: 'Everything a page needs for SEO, in one studio',
   featuresSubtitle:
     'Replaces the five-tool shuffle of meta tag generators, social preview checkers, JSON-LD builders, SERP preview tools, and robots.txt generators.',
@@ -133,7 +133,7 @@ const es: UITranslations = {
   noSignup: 'Sin registro',
   freeForever: 'Gratis para siempre',
   runsInBrowser: 'Funciona en el navegador',
-  featuresBadge: 'Por qué MetaForge',
+  featuresBadge: 'Por qué SerpCraft',
   featuresTitle: 'Todo lo que una página necesita para SEO, en un estudio',
   featuresSubtitle:
     'Reemplaza el baile de cinco herramientas: generadores de meta tags, comprobadores de vistas previas sociales, constructores de JSON-LD, herramientas de vista previa SERP y generadores de robots.txt.',
@@ -187,7 +187,7 @@ const fr: UITranslations = {
   noSignup: 'Sans inscription',
   freeForever: 'Gratuit pour toujours',
   runsInBrowser: 'Fonctionne dans le navigateur',
-  featuresBadge: 'Pourquoi MetaForge',
+  featuresBadge: 'Pourquoi SerpCraft',
   featuresTitle: "Tout ce dont une page a besoin pour le SEO, dans un studio",
   featuresSubtitle:
     "Remplace la danse des cinq outils : générateurs de balises méta, vérificateurs d'aperçus sociaux, constructeurs JSON-LD, outils d'aperçu SERP et générateurs de robots.txt.",
@@ -241,7 +241,7 @@ const de: UITranslations = {
   noSignup: 'Keine Anmeldung',
   freeForever: 'Für immer kostenlos',
   runsInBrowser: 'Läuft im Browser',
-  featuresBadge: 'Warum MetaForge',
+  featuresBadge: 'Warum SerpCraft',
   featuresTitle: 'Alles, was eine Seite für SEO braucht, in einem Studio',
   featuresSubtitle:
     'Ersetzt den Fünf-Tool-Tanz aus Meta-Tag-Generatoren, Social-Preview-Prüfern, JSON-LD-Buildern, SERP-Preview-Tools und robots.txt-Generatoren.',
@@ -295,7 +295,7 @@ const pt: UITranslations = {
   noSignup: 'Sem cadastro',
   freeForever: 'Grátis para sempre',
   runsInBrowser: 'Roda no navegador',
-  featuresBadge: 'Por que MetaForge',
+  featuresBadge: 'Por que SerpCraft',
   featuresTitle: 'Tudo que uma página precisa para SEO, em um estúdio',
   featuresSubtitle:
     'Substitui a dança de cinco ferramentas: geradores de meta tags, verificadores de prévias sociais, construtores de JSON-LD, ferramentas de prévia SERP e geradores de robots.txt.',
@@ -349,7 +349,7 @@ const ja: UITranslations = {
   noSignup: '登録不要',
   freeForever: '永久無料',
   runsInBrowser: 'ブラウザで動作',
-  featuresBadge: 'MetaForgeの理由',
+  featuresBadge: 'SerpCraftの理由',
   featuresTitle: 'ページのSEOに必要なすべて、1つのスタジオで',
   featuresSubtitle:
     'メタタグジェネレーター、ソーシャルプレビューチェッカー、JSON-LDビルダー、SERPプレビューツール、robots.txtジェネレーターの5ツール間の往復を置き換えます。',

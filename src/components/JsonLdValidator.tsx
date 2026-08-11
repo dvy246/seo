@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Braces, CheckCircle2, XCircle, AlertTriangle, ArrowRight, Sparkles, Trash2 } from 'lucide-react';
 import { validateJsonLd } from '@/lib/validator';
 import { useCopyToClipboard } from '@/lib/useCopyToClipboard';
-import { navigateTo } from '@/lib/router';
+import { SmartLink } from '@/components/SmartLink';
 
 const EXAMPLE = [
   '{',
@@ -10,8 +10,8 @@ const EXAMPLE = [
   '  "@type": "Article",',
   '  "headline": "How to write meta tags in 2026",',
   '  "datePublished": "2026-01-15",',
-  '  "author": { "@type": "Organization", "name": "MetaForge" },',
-  '  "url": "https://metaforge.app/blog/meta-tags"',
+  '  "author": { "@type": "Organization", "name": "SerpCraft" },',
+  '  "url": "https://serpcraft.app/blog/meta-tags"',
   '}',
 ].join('\n');
 
@@ -43,7 +43,7 @@ export function JsonLdValidator() {
       </div>
       <p className="text-xs text-ink-muted dark:text-sand-400 mb-5">
         Paste JSON-LD structured data and get instant feedback on syntax, required fields, and rich-result
-        eligibility — the same engine that powers the studio and the AI Readiness Checker, so the verdict is
+        eligibility — the same engine that powers the studio and the URL Debugger, so the verdict is
         always consistent.
       </p>
 
@@ -145,12 +145,12 @@ export function JsonLdValidator() {
               Add this as a <code className="font-mono text-xs">&lt;script type="application/ld+json"&gt;</code> block in
               your page&apos;s <code className="font-mono text-xs">&lt;head&gt;</code> — or build richer schema visually in the studio.
             </p>
-            <button
-              onClick={() => navigateTo('/json-ld-generator')}
+            <SmartLink
+              to="/json-ld-generator"
               className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-choco-600 dark:text-choco-400 hover:underline"
             >
               Open the JSON-LD Generator <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </SmartLink>
           </div>
         </div>
       )}

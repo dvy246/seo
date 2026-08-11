@@ -176,7 +176,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
   try {
     const res = await fetch(normalizedUrl, {
-      headers: { 'User-Agent': 'MetaForge-Auditor/1.0 (+https://metaforge.app)', Accept: 'image/*,image/svg+xml' },
+      headers: { 'User-Agent': 'SerpCraft-Auditor/1.0 (+https://metaforge.app)', Accept: 'image/*,image/svg+xml' },
       redirect: 'follow',
       signal: controller.signal,
     });

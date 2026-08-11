@@ -1,0 +1,18 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { ProblemGuide } from '@/components/ProblemGuide';
+import { problemGuides } from '@/data/problems';
+
+export function getStaticPaths() {
+  return problemGuides.map((guide) => ({
+    params: { slug: guide.slug },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props;
+---
+
+<Layout path={guide.path} title={guide.title} description={guide.description} keywords={guide.keywords} noHreflang>
+  <ProblemGuide guide={guide} client:load />
+</Layout>

@@ -1,4 +1,4 @@
-// Client-side HTML extraction for the AI Readiness Checker (paste-HTML mode).
+// Client-side HTML extraction for the URL Debugger (paste-HTML mode).
 // Regex-based, DOM-free, mirrors the server-side extractor in functions/api/audit.ts.
 
 import type { AuditSnapshot } from '@/lib/validator';
@@ -12,11 +12,14 @@ export function extractSnapshotFromHtml(html: string, sourceUrl = 'https://examp
   const result: Partial<AuditSnapshot> = { url: sourceUrl };
 
   // Title
+  const titleMatches = html.match(/<title[^>]*>[\s\S]*?<\/title>/gi) || [];
   const titleMatch = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
   result.title = titleMatch ? titleMatch[1].trim() : null;
+  result.titleTagCount = titleMatches.length;
 
   // Meta tags
   const metas: Record<string, string> = {};
+  let descriptionCount = 0;
   const metaRegex = /<meta\s[^>]*>/gi;
   let match: RegExpExecArray | null;
   while ((match = metaRegex.exec(html)) !== null) {
@@ -24,10 +27,12 @@ export function extractSnapshotFromHtml(html: string, sourceUrl = 'https://examp
     const name = getAttr(tag, 'name')?.toLowerCase();
     const property = getAttr(tag, 'property')?.toLowerCase();
     const content = getAttr(tag, 'content');
+    if (name === 'description') descriptionCount++;
     if (!content) continue;
     if (name) metas[name] = content;
     if (property) metas[property] = content;
   }
+  result.descriptionTagCount = descriptionCount;
   result.description = metas['description'] || null;
   result.robots = metas['robots'] || null;
   result.ogTitle = metas['og:title'] || null;
@@ -125,6 +130,10 @@ export function extractSnapshotFromHtml(html: string, sourceUrl = 'https://examp
   result.loadTimeMs = 0;
   result.httpStatus = 0;
   result.hasLlmsTxt = null;
+  result.finalUrl = sourceUrl;
+  result.contentType = 'text/html';
+  result.headers = {};
+  result.redirectChain = [];
 
   return result as AuditSnapshot;
 }

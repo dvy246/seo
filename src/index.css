@@ -9,7 +9,7 @@
   }
   body {
     @apply bg-sand-50 text-ink antialiased;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-feature-settings: 'ss01' 1;
   }
   .dark body {
     @apply bg-sand-950 text-sand-100;
@@ -35,6 +35,12 @@
 }
 
 @layer components {
+  .font-display {
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
+    font-variation-settings: 'SOFT' 70, 'WONK' 0;
+    font-weight: 600;
+  }
   .field-label {
     @apply block text-sm font-medium text-ink-soft mb-1.5;
   }
@@ -60,10 +66,10 @@
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 ease-smooth disabled:opacity-50 disabled:cursor-not-allowed;
   }
   .btn-primary {
-    @apply btn bg-choco-600 text-white hover:bg-choco-700 active:bg-choco-800 shadow-soft hover:shadow-lift;
+    @apply btn bg-gradient-to-b from-choco-500 via-choco-600 to-choco-700 text-white hover:from-choco-400 hover:via-choco-500 hover:to-choco-600 active:from-choco-700 active:via-choco-800 active:to-choco-800 shadow-soft hover:shadow-lift;
   }
   .dark .btn-primary {
-    @apply bg-choco-500 text-sand-50 hover:bg-choco-400;
+    @apply bg-gradient-to-b from-choco-500 via-choco-600 to-choco-700 text-sand-50 hover:from-choco-400 hover:via-choco-500 hover:to-choco-600;
   }
   .btn-pastel {
     @apply btn bg-pastel-500 text-white hover:bg-pastel-600 active:bg-pastel-700 shadow-soft hover:shadow-lift;
@@ -87,7 +93,7 @@
     @apply border-sand-800 bg-sand-900 shadow-none;
   }
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium tracking-wide;
   }
   .prose-meta p {
     @apply mb-4 text-ink-soft leading-relaxed;

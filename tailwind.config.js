@@ -5,32 +5,45 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Warm beige / neutral base
+        // Warm beige / neutral base — dominant ivory ground
         sand: {
-          50: '#FBF8F3',
-          100: '#F5EFE6',
-          200: '#EBE2D3',
-          300: '#DCD0BC',
-          400: '#C4B69E',
-          500: '#A89878',
-          600: '#8A7B5E',
-          700: '#6B5E47',
-          800: '#4D4435',
-          900: '#322B21',
-          950: '#1F1A14',
+          50: '#FBF7F1',
+          100: '#F4EDE0',
+          200: '#E8DECB',
+          300: '#D8CBB2',
+          400: '#C0B093',
+          500: '#A59574',
+          600: '#867758',
+          700: '#675A43',
+          800: '#4A4030',
+          900: '#302920',
+          950: '#1E1912',
         },
-        // Chocolate brown — primary accent
+        // Chocolate brown — premium cocoa accent
         choco: {
-          50: '#F8F4F1',
-          100: '#EDE0D8',
-          200: '#D9C2B3',
-          300: '#BF9A82',
-          400: '#A47657',
-          500: '#8B5E3C',
-          600: '#6F4A2E',
-          700: '#553824',
-          800: '#3D281A',
-          900: '#271A11',
+          50: '#FAF6F1',
+          100: '#F1E4D8',
+          200: '#E1C7B0',
+          300: '#C9A17C',
+          400: '#AC7148',
+          500: '#945531',
+          600: '#7A4526',
+          700: '#5E341D',
+          800: '#452513',
+          900: '#2C1709',
+        },
+        // Terracotta — warm clay accent
+        terra: {
+          50: '#FBF4EF',
+          100: '#F6E3D8',
+          200: '#EBC7B0',
+          300: '#DCA384',
+          400: '#CF7F5C',
+          500: '#C2643F',
+          600: '#A8502E',
+          700: '#8A4024',
+          800: '#6E321C',
+          900: '#542512',
         },
         // Blue pastel — secondary accent
         pastel: {
@@ -56,14 +69,14 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        serif: ['"Source Serif 4"', 'Georgia', 'serif'],
+        sans: ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['"Fraunces"', 'Georgia', 'serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       boxShadow: {
-        soft: '0 1px 2px rgba(50,43,33,0.04), 0 4px 16px rgba(50,43,33,0.06)',
-        lift: '0 2px 6px rgba(50,43,33,0.06), 0 12px 32px rgba(50,43,33,0.08)',
-        ring: '0 0 0 3px rgba(139,94,60,0.18)',
+        soft: '0 1px 2px rgba(72,56,38,0.05), 0 8px 24px -10px rgba(72,56,38,0.10)',
+        lift: '0 2px 4px rgba(72,56,38,0.06), 0 12px 32px -12px rgba(72,56,38,0.16)',
+        ring: '0 0 0 3px rgba(148,85,49,0.18)',
       },
       borderRadius: {
         xl: '0.875rem',

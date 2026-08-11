@@ -1,7 +1,52 @@
 import type { PageSetup, BrandProfile } from '@/types';
 
-const PAGE_SETUPS_KEY = 'metaforge:pageSetups';
-const BRAND_KEY = 'metaforge:brandProfile';
+const PAGE_SETUPS_KEY = 'serpcraft:pageSetups';
+const BRAND_KEY = 'serpcraft:brandProfile';
+const AUDIT_HISTORY_KEY = 'serpcraft:auditHistory';
+
+export interface AuditHistoryEntry {
+  url: string;
+  date: number;
+  overall: number;
+  httpStatus: number | null;
+}
+
+const AUDIT_HISTORY_MAX = 10;
+
+export function loadAuditHistory(): AuditHistoryEntry[] {
+  try {
+    const raw = localStorage.getItem(AUDIT_HISTORY_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw) as AuditHistoryEntry[];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+export function saveAuditHistory(entries: AuditHistoryEntry[]): void {
+  try {
+    localStorage.setItem(AUDIT_HISTORY_KEY, JSON.stringify(entries));
+  } catch {
+    // storage full or unavailable
+  }
+}
+
+export function upsertAuditHistory(entry: AuditHistoryEntry): AuditHistoryEntry[] {
+  const entries = loadAuditHistory().filter((e) => e.url !== entry.url);
+  entries.unshift(entry);
+  const trimmed = entries.slice(0, AUDIT_HISTORY_MAX);
+  saveAuditHistory(trimmed);
+  return trimmed;
+}
+
+export function clearAuditHistory(): void {
+  try {
+    localStorage.removeItem(AUDIT_HISTORY_KEY);
+  } catch {
+    // noop
+  }
+}
 
 export function loadPageSetups(): PageSetup[] {
   try {

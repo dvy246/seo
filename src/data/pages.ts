@@ -13,70 +13,70 @@ export interface PageMeta {
 export const pageMeta: Record<string, PageMeta> = {
   '/studio': {
     path: '/studio',
-    title: 'SEO Studio — Meta Tag, Social Preview & JSON-LD Editor | MetaForge',
+    title: 'SEO Studio: Meta Tags, JSON-LD & SERP Preview | SerpCraft',
     description:
-      'The MetaForge SEO studio: generate meta tags, Open Graph, Twitter Cards, JSON-LD structured data, and robots.txt with live multi-platform previews and pixel-accurate SERP. Free, no signup.',
+      'Build every SEO element in one editor: meta tags, Open Graph, Twitter Cards, JSON-LD, robots.txt, with live previews. Free, no signup.',
     h1: 'The all-in-one SEO meta tag studio',
     ogType: 'website',
     keywords: 'meta tag generator, SEO tags, open graph, twitter cards, json-ld, structured data, serp preview',
   },
   '/': {
     path: '/',
-    title: 'MetaForge — Free Meta Tag Generator, Social Preview & JSON-LD Studio',
+    title: 'SerpCraft: Free SEO Tools for Meta Tags & Previews',
     description:
-      'Set up all your page SEO in one place: meta tags, Open Graph, Twitter Cards, JSON-LD structured data, robots.txt, and pixel-accurate Google SERP previews. Free, no signup.',
-    h1: 'The all-in-one SEO meta tag studio',
+      'Free SEO toolkit in your browser: meta tags, Open Graph, Twitter Cards, JSON-LD, robots.txt, and pixel-accurate Google SERP previews. No signup.',
+    h1: 'Free SEO tools in one place',
     ogType: 'website',
     keywords: 'meta tag generator, SEO tags, open graph, twitter cards, json-ld, structured data, serp preview',
   },
   '/meta-tag-generator': {
     path: '/meta-tag-generator',
-    title: 'Meta Tag Generator — Free Title, Description & SEO Meta Tags | MetaForge',
+    title: 'Free Meta Tag Generator: Title & Description Tags | SerpCraft',
     description:
-      'Generate SEO meta tags, title tags, meta descriptions, canonical URLs, and robots directives. Live preview, pixel-accurate limits, one-click copy. Free online meta tag generator.',
+      'Generate SEO meta tags, title tags, meta descriptions, canonical URLs, and robots directives. Live preview, one-click copy. Free meta tag generator.',
     h1: 'Meta Tag Generator',
     ogType: 'website',
     keywords: 'meta tag generator, title tag generator, meta description generator, SEO meta tags, html meta tags',
   },
   '/open-graph-generator': {
     path: '/open-graph-generator',
-    title: 'Open Graph Generator — Free OG Tag Builder & Preview | MetaForge',
+    title: 'Open Graph Generator: Free OG Tags & Preview | SerpCraft',
     description:
-      'Generate Open Graph tags (og:title, og:description, og:image, og:url) and preview how your link looks on Facebook, LinkedIn, Slack, and Discord. Free OG tag generator.',
+      'Generate Open Graph tags (og:title, og:description, og:image, og:url) and preview your link on Facebook, LinkedIn, Slack, and Discord. Free.',
     h1: 'Open Graph Generator',
     ogType: 'website',
     keywords: 'open graph generator, og tags, og:title, og:image, facebook preview, open graph preview',
   },
   '/twitter-card-generator': {
     path: '/twitter-card-generator',
-    title: 'Twitter Card Generator — Free X/Twitter Card Tag Builder | MetaForge',
+    title: 'Twitter Card Generator: Free X Card Tags | SerpCraft',
     description:
-      'Generate Twitter Card tags (twitter:card, twitter:title, twitter:image) and preview how your link appears on X. Free Twitter Card generator with live preview.',
+      'Generate Twitter Card tags (twitter:card, twitter:title, twitter:image) and preview how your link appears on X. Free, with live preview.',
     h1: 'Twitter Card Generator',
     ogType: 'website',
     keywords: 'twitter card generator, twitter card tags, x card, twitter:image, twitter:card, summary large image',
   },
   '/json-ld-generator': {
     path: '/json-ld-generator',
-    title: 'JSON-LD Generator — Free Structured Data Schema Builder | MetaForge',
+    title: 'JSON-LD Generator: Free Visual Schema Builder | SerpCraft',
     description:
-      'Generate JSON-LD structured data for Article, BlogPosting, Product, FAQ, Organization, LocalBusiness, and more. Free JSON-LD schema generator with one-click copy.',
+      'Build JSON-LD structured data with a visual editor for Article, BlogPosting, Product, Organization, LocalBusiness, and more. Free JSON-LD schema generator.',
     h1: 'JSON-LD Generator',
     ogType: 'website',
     keywords: 'json-ld generator, structured data, schema markup, schema.org, rich results, json-ld schema generator',
   },
   '/schema-markup-generator': {
     path: '/schema-markup-generator',
-    title: 'Schema Markup Generator — Free Schema.org Structured Data | MetaForge',
+    title: 'Schema Markup Generator: Free Schema.org Snippets | SerpCraft',
     description:
-      'Build schema.org structured data markup for your pages. Generate JSON-LD for products, articles, FAQs, local businesses, and more. Free schema markup generator.',
+      'Generate schema.org JSON-LD markup for products, articles, local businesses, and more with a type selector and guided fields. Free schema markup generator.',
     h1: 'Schema Markup Generator',
     ogType: 'website',
     keywords: 'schema markup generator, schema.org, structured data markup, json-ld, rich snippets, schema generator',
   },
   '/social-preview-tool': {
     path: '/social-preview-tool',
-    title: 'Social Preview Tool — Facebook, X, LinkedIn, Slack & Discord | MetaForge',
+    title: 'Social Preview Tool: Facebook, X & LinkedIn | SerpCraft',
     description:
       'Preview how your link looks on Facebook, X/Twitter, LinkedIn, Slack, and Discord before you publish. Free social media preview tool with live editing.',
     h1: 'Social Preview Tool',
@@ -85,7 +85,7 @@ export const pageMeta: Record<string, PageMeta> = {
   },
   '/serp-preview-tool': {
     path: '/serp-preview-tool',
-    title: 'SERP Preview Tool — Pixel-Accurate Google Search Preview | MetaForge',
+    title: 'SERP Preview Tool: Pixel-Accurate Google Test | SerpCraft',
     description:
       'Preview how your page title and meta description appear in Google search results with pixel-accurate truncation. Free Google SERP snippet preview tool.',
     h1: 'SERP Preview Tool',
@@ -94,82 +94,91 @@ export const pageMeta: Record<string, PageMeta> = {
   },
   '/robots-txt-generator': {
     path: '/robots-txt-generator',
-    title: 'Robots.txt Generator — Free Crawl Directive Builder | MetaForge',
+    title: 'Robots.txt Generator: Free Crawl Rules & Sitemap | SerpCraft',
     description:
       'Generate a robots.txt file with allow, disallow, sitemap, and crawl-delay directives. Free robots.txt generator with one-click copy.',
     h1: 'Robots.txt Generator',
     ogType: 'website',
     keywords: 'robots.txt generator, robots.txt, crawl directives, sitemap, robots file generator',
   },
-  '/ai-readiness-checker': {
-    path: '/ai-readiness-checker',
-    title: 'AI Readiness Checker — Free AI SEO Audit & llms.txt Checker | MetaForge',
+  '/url-debugger': {
+    path: '/url-debugger',
+    title: 'URL Debugger: See What Google & Bots Read | SerpCraft',
     description:
-      'Audit any URL or HTML for AI search readiness: llms.txt detection, JSON-LD structured data, robots directives, and content depth. Free 100-point AI SEO audit with scores for ChatGPT, Perplexity, and Google AI Overviews.',
-    h1: 'AI Readiness Checker',
+      'Paste any URL and see what Google, Facebook, and other crawlers read: status, redirects, headers, meta tags, and conflicts. Free report.',
+    h1: 'URL Debugger',
     ogType: 'website',
-    keywords: 'ai readiness checker, ai seo audit, llms.txt checker, generative engine optimization, ai search visibility, chatgpt seo audit',
+    keywords: 'url debugger, meta tag checker, open graph checker, why is google showing wrong description, page interpretation report, seo debugger, og image not showing',
+  },
+  '/seo-check': {
+    path: '/seo-check',
+    title: 'Free SEO Check: Instant Website Audit & Score | SerpCraft',
+    description:
+      'Free SEO check on any website: instant score plus a prioritized list of on-page, technical, social, and AI-readiness issues across 21 checks. No signup.',
+    h1: 'Free SEO Check',
+    ogType: 'website',
+    keywords: 'seo check, seo check tool, free seo check, seo check online, website seo check, seo check website, on page seo check, seo audit, seo checker',
   },
   '/llms-txt-generator': {
     path: '/llms-txt-generator',
-    title: 'llms.txt Generator — Free AI Crawler File Builder | MetaForge',
+    title: 'llms.txt Generator: Free AI Crawler File Builder | SerpCraft',
     description:
-      'Generate an llms.txt file for your site so ChatGPT, Perplexity, Gemini, and Claude can discover and understand your content. Free llms.txt generator with page lists and one-click copy.',
+      'Generate an llms.txt file so ChatGPT, Perplexity, Gemini, and Claude can discover and understand your content. Free llms.txt generator with one-click copy.',
     h1: 'llms.txt Generator',
     ogType: 'website',
     keywords: 'llms.txt generator, llms.txt, ai crawler file, ai seo, llms txt, chatgpt discoverability',
   },
   '/hreflang-generator': {
     path: '/hreflang-generator',
-    title: 'Hreflang Generator — Free hreflang Tag Builder with Validation | MetaForge',
+    title: 'Hreflang Generator: Free Tags with Validation | SerpCraft',
     description:
-      'Generate hreflang alternate link tags for multilingual and multi-regional sites with BCP-47 locale validation, x-default support, and duplicate detection. Free hreflang generator.',
+      'Generate hreflang alternate tags for multilingual sites with BCP-47 validation, x-default support, and duplicate detection. Free generator.',
     h1: 'Hreflang Generator',
     ogType: 'website',
     keywords: 'hreflang generator, hreflang tags, hreflang validator, multilingual seo, hreflang x-default, international seo',
   },
   '/og-image-checker': {
     path: '/og-image-checker',
-    title: 'OG Image Checker — Free Open Graph Image Validator | MetaForge',
+    title: 'OG Image Checker: 1200x630 Open Graph Validator | SerpCraft',
     description:
-      'Verify your Open Graph image server-side: format, 1200x630 dimensions, 1.91:1 aspect ratio, and file size. Free OG image checker that reads the actual image bytes like Facebook does.',
+      'Verify your Open Graph image server-side: format, 1200x630 dimensions, 1.91:1 aspect ratio, and file size. Free OG image checker.',
     h1: 'OG Image Checker',
     ogType: 'website',
     keywords: 'og image checker, open graph image validator, og image size, og image dimensions, 1200x630, facebook image checker',
   },
   '/json-ld-validator': {
     path: '/json-ld-validator',
-    title: 'JSON-LD Validator — Free Structured Data Checker | MetaForge',
+    title: 'JSON-LD Validator: Free Structured Data Check | SerpCraft',
     description:
-      'Validate your JSON-LD structured data: syntax, required schema.org fields, and rich-result eligibility for Article, Product, FAQ, Organization, and more. Free JSON-LD validator.',
+      'Validate your JSON-LD structured data: syntax, required schema.org fields, and rich-result eligibility. Free JSON-LD validator, no signup.',
     h1: 'JSON-LD Validator',
     ogType: 'website',
     keywords: 'json-ld validator, structured data validator, schema validator, rich results checker, json-ld checker',
   },
   '/about': {
     path: '/about',
-    title: 'About MetaForge — Free SEO Meta Tag & Structured Data Studio',
+    title: 'About SerpCraft: Free SEO Tools, Built for Marketers',
     description:
-      'MetaForge is a free, all-in-one SEO studio for generating meta tags, social previews, JSON-LD structured data, and robots.txt — built by marketers who got tired of bouncing between five tools.',
-    h1: 'About MetaForge',
+      'SerpCraft is a free, all-in-one SEO studio for meta tags, social previews, JSON-LD, and robots.txt, built by marketers tired of bouncing between tools.',
+    h1: 'About SerpCraft',
     ogType: 'website',
-    keywords: 'about metaforge, seo tools, meta tag tools',
+    keywords: 'about serpcraft, seo tools, meta tag tools',
   },
   '/privacy': {
     path: '/privacy',
-    title: 'Privacy Policy — MetaForge',
-    description: 'MetaForge privacy policy. We do not collect personal data. All tool data is stored locally in your browser.',
+    title: 'Privacy Policy | SerpCraft: Free SEO Tools',
+    description: 'SerpCraft privacy policy: no personal data collection, no accounts, and all tool data stays in your browser via localStorage.',
     h1: 'Privacy Policy',
     ogType: 'website',
-    keywords: 'privacy policy, metaforge privacy',
+    keywords: 'privacy policy, serpcraft privacy',
   },
   '/terms': {
     path: '/terms',
-    title: 'Terms of Service — MetaForge',
-    description: 'MetaForge terms of service. Free SEO meta tag generator and structured data tools.',
+    title: 'Terms of Service | SerpCraft: Free SEO Tools',
+    description: 'SerpCraft terms of service for the free SEO meta tag generator, structured data tools, and server-side page checks.',
     h1: 'Terms of Service',
     ogType: 'website',
-    keywords: 'terms of service, metaforge terms',
+    keywords: 'terms of service, serpcraft terms',
   },
 };
 
@@ -182,8 +191,9 @@ export interface NavTool {
 }
 
 export const navTools: NavTool[] = [
-  { path: '/ai-readiness-checker', label: 'AI Readiness Checker', shortLabel: 'AI Checker', icon: 'Radar', description: 'Audit any URL for AI search visibility' },
-  { path: '/llms-txt-generator', label: 'llms.txt Generator', shortLabel: 'llms.txt', icon: 'FileText', description: 'AI crawler file builder' },
+  { path: '/seo-check', label: 'SEO Check', shortLabel: 'SEO Check', icon: 'Gauge', description: 'Free instant website SEO audit' },
+  { path: '/url-debugger', label: 'URL Debugger', shortLabel: 'URL Debugger', icon: 'Radar', description: 'See what crawlers actually read' },
+  { path: '/llms-txt-generator', label: 'llms.txt Generator', shortLabel: 'llms.txt', icon: 'FileText', description: 'Optional AI crawler file builder' },
   { path: '/hreflang-generator', label: 'Hreflang Generator', shortLabel: 'Hreflang', icon: 'Languages', description: 'Multilingual tag builder with validation' },
   { path: '/og-image-checker', label: 'OG Image Checker', shortLabel: 'OG Image', icon: 'Image', description: 'Server-side OG image validation' },
   { path: '/json-ld-validator', label: 'JSON-LD Validator', shortLabel: 'JSON-LD Check', icon: 'Braces', description: 'Structured data verification' },

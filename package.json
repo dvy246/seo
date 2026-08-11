@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "dev:full": "astro dev & npx wrangler pages dev dist --proxy 5173",
     "build": "astro build",
     "lint": "eslint .",
     "preview": "astro preview",
+    "preview:functions": "npm run build && npx wrangler pages dev dist --port 8789",
     "typecheck": "tsc --noEmit",
     "deploy": "npm run build && npx wrangler pages deploy dist --project-name=seo"
   },

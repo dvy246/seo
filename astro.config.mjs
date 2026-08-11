@@ -20,6 +20,17 @@ export default defineConfig({
       filter: (page) => !page.includes('404'),
       changefreq: 'weekly',
       priority: 0.7,
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en',
+          es: 'es',
+          fr: 'fr',
+          de: 'de',
+          pt: 'pt',
+          ja: 'ja',
+        },
+      },
     }),
   ],
   vite: {

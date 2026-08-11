@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 
 type Theme = 'light' | 'dark';
 
-const STORAGE_KEY = 'metaforge-theme';
+const STORAGE_KEY = 'mf_theme';
 
 function getInitialTheme(): Theme {
   if (typeof window === 'undefined') return 'light';

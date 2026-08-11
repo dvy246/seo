@@ -1,0 +1,37 @@
+{
+  "routes": [
+    {
+      "routePath": "/api/audit",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/audit.ts:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/og-image",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/og-image.ts:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/audit",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/audit.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/og-image",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/og-image.ts:onRequest"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}

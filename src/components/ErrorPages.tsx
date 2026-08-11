@@ -1,4 +1,4 @@
-import { navigateTo } from '@/lib/router';
+import { SmartLink } from '@/components/SmartLink';
 import { Home, ArrowLeft, AlertTriangle, ServerOff, Search } from 'lucide-react';
 
 export function NotFoundPage() {
@@ -17,12 +17,12 @@ export function NotFoundPage() {
           The page you're looking for doesn't exist or may have been moved. Try heading back to the homepage or opening the SEO studio.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <button onClick={() => navigateTo('/')} className="btn-primary">
+          <SmartLink to="/" className="btn-primary">
             <Home size={16} /> Back to home
-          </button>
-          <button onClick={() => navigateTo('/studio')} className="btn-secondary">
+          </SmartLink>
+          <SmartLink to="/studio" className="btn-secondary">
             <Search size={16} /> Open the Studio
-          </button>
+          </SmartLink>
         </div>
         <div className="mt-10 pt-8 border-t border-sand-200">
           <p className="text-sm text-ink-muted mb-3">Or try one of these tools:</p>
@@ -33,13 +33,13 @@ export function NotFoundPage() {
               { label: 'SERP Preview', path: '/serp-preview-tool' },
               { label: 'Robots.txt', path: '/robots-txt-generator' },
             ].map((t) => (
-              <button
+              <SmartLink
                 key={t.path}
-                onClick={() => navigateTo(t.path)}
+                to={t.path}
                 className="chip bg-sand-100 text-ink-soft hover:bg-sand-200 transition-colors"
               >
                 {t.label}
-              </button>
+              </SmartLink>
             ))}
           </div>
         </div>
@@ -67,9 +67,9 @@ export function ServerErrorPage() {
           <button onClick={() => window.location.reload()} className="btn-primary">
             <ArrowLeft size={16} /> Refresh page
           </button>
-          <button onClick={() => navigateTo('/')} className="btn-secondary">
+          <SmartLink to="/" className="btn-secondary">
             <Home size={16} /> Back to home
-          </button>
+          </SmartLink>
         </div>
       </div>
     </div>

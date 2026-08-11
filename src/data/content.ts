@@ -15,28 +15,28 @@ export interface CompanionContent {
 export const companionContent: Record<string, CompanionContent> = {
   '/': {
     intro:
-      'MetaForge is a free, all-in-one SEO studio. Instead of bouncing between a meta tag generator, a social preview checker, a JSON-LD builder, a SERP preview tool, and a robots.txt generator — you set up everything a page needs for SEO in one place. Every field updates the Google, Facebook, X, LinkedIn, Slack, and Discord previews in real time. No signup required. Everything runs in your browser.',
+      'SerpCraft is a free, all-in-one SEO studio. Instead of bouncing between a meta tag generator, a social preview checker, a JSON-LD builder, a SERP preview tool, and a robots.txt generator — you set up everything a page needs for SEO in one place. Every field updates the Google, Facebook, X, LinkedIn, Slack, and Discord previews in real time. No signup required. Everything runs in your browser.',
     sections: [
       {
         heading: 'Why a unified SEO studio matters',
-        body: 'To properly SEO a single page, you typically need five tools: one to generate meta tags, one to preview social cards, one to build structured data, one to check the Google snippet, and one for robots.txt. Each is a separate site, a separate tab, and a separate copy-paste round. MetaForge replaces all of them with a single studio where every change updates every preview instantly. You enter your title once and see it in Google, Facebook, X, LinkedIn, Slack, and Discord at the same time.',
+        body: 'To properly SEO a single page, you typically need five tools: one to generate meta tags, one to preview social cards, one to build structured data, one to check the Google snippet, and one for robots.txt. Each is a separate site, a separate tab, and a separate copy-paste round. SerpCraft replaces all of them with a single studio where every change updates every preview instantly. You enter your title once and see it in Google, Facebook, X, LinkedIn, Slack, and Discord at the same time.',
       },
       {
         heading: 'Pixel-accurate Google SERP preview',
-        body: 'Google truncates page titles by pixel width — not character count. A title with wide letters (W, M) gets cut sooner than one with narrow letters (i, l). Most meta tag generators show a character counter, which is wrong. MetaForge measures the actual pixel width of your title and description using the same approach Google\'s rendering pipeline uses, so the preview shows exactly where Google will cut your text. No more guessing whether your title will be truncated.',
+        body: 'Google truncates page titles by pixel width — not character count. A title with wide letters (W, M) gets cut sooner than one with narrow letters (i, l). Most meta tag generators show a character counter, which is wrong. SerpCraft measures the actual pixel width of your title and description using the same approach Google\'s rendering pipeline uses, so the preview shows exactly where Google will cut your text. No more guessing whether your title will be truncated.',
       },
       {
         heading: 'Structured data without a separate site',
-        body: 'JSON-LD structured data helps Google understand what your page is about — an article, a product, a FAQ, a local business — and can earn rich results in search. Normally you generate this on a completely separate site from your meta tags. MetaForge includes a built-in JSON-LD generator for the most common schema types (Article, BlogPosting, Product, FAQPage, Organization, BreadcrumbList, WebSite, LocalBusiness) right next to your meta tags and social previews.',
+        body: 'JSON-LD structured data helps Google understand what your page is about — an article, a product, a FAQ, a local business — and can earn rich results in search. Normally you generate this on a completely separate site from your meta tags. SerpCraft includes a built-in JSON-LD generator for the most common schema types (Article, BlogPosting, Product, FAQPage, Organization, BreadcrumbList, WebSite, LocalBusiness) right next to your meta tags and social previews.',
       },
       {
         heading: 'Save your brand profile and page library',
-        body: 'Every other tool treats each visit as a blank slate. A founder with 30 blog posts re-enters their brand name, logo, domain, and Twitter handle 30 times. MetaForge lets you save a brand profile once — every new page setup inherits it automatically. You can also save individual page setups and return to them later. Everything is stored locally in your browser by default, so the tool works fully with no account.',
+        body: 'Every other tool treats each visit as a blank slate. A founder with 30 blog posts re-enters their brand name, logo, domain, and Twitter handle 30 times. SerpCraft lets you save a brand profile once — every new page setup inherits it automatically. You can also save individual page setups and return to them later. Everything is stored locally in your browser by default, so the tool works fully with no account.',
       },
     ],
     faq: [
       {
-        question: 'Is MetaForge really free?',
+        question: 'Is SerpCraft really free?',
         answer: 'Yes. The core studio — meta tags, social previews, JSON-LD, robots.txt, SERP preview — is completely free with no signup required. All data is stored locally in your browser. The site is supported by unobtrusive ads.',
       },
       {
@@ -53,9 +53,45 @@ export const companionContent: Record<string, CompanionContent> = {
       },
     ],
   },
+  '/seo-check': {
+    intro:
+      'A free SEO check that runs 21 on-page, technical, social, and AI-readiness checks against any URL or pasted HTML, then gives you an instant score and a prioritized fix list. No signup, no install — paste a URL and get an actionable audit in seconds.',
+    sections: [
+      {
+        heading: 'What the SEO check tests',
+        body: 'The check covers the signals that matter most to Google and AI answer engines: title tag length and pixel width, meta description length, single H1, heading hierarchy, meta viewport, indexability (robots meta and canonical), favicon, Open Graph and Twitter Card completeness, missing or malformed JSON-LD structured data, duplicate titles and descriptions, image alt text, link crawlability, and AI-readiness signals such as machine-readable content and presence of an llms.txt file. Each failed check comes with a concrete fix, not just a warning.',
+      },
+      {
+        heading: 'How the SEO score is calculated',
+        body: 'Each check is weighted by its impact on crawling, indexing, and click-through. Failing a critical check like a missing title tag or an indexability conflict drags the score down far more than a missing Open Graph image. Checks are grouped into scores for content, machine readability, social sharing, and AI readiness, so you can see which area is hurting you most — then fix those first.',
+      },
+      {
+        heading: 'Paste HTML vs URL mode',
+        body: 'URL mode fetches the page server-side and also checks for the presence and validity of an llms.txt file on the domain. Paste-HTML mode runs entirely in your browser against the exact snapshot you provide — useful when a page is behind a login, staging, or a paywall. Both modes return the same checks and score.',
+      },
+      {
+        heading: 'How to fix the issues you find',
+        body: 'Open the studio to regenerate the meta tags, JSON-LD, and robots directives that failed, then use the URL Debugger to confirm what Googlebot actually receives. For persistent problems such as a rewritten meta description or an OG image that does not render, the SEO problem guides walk through root causes and step-by-step fixes.',
+      },
+    ],
+    faq: [
+      {
+        question: 'Is a free online SEO check accurate?',
+        answer: 'For the checks it runs, yes. The tool reads the actual HTML the URL returns and measures title and description pixel width the same way Google truncates. It cannot see inside Google\'s index or measure rankings — no tool can. It tells you whether your page sends the right signals; Search Console and the Rich Results Test cover the rest.',
+      },
+      {
+        question: 'Why is my SEO score lower than expected?',
+        answer: 'The most common culprits are an over-long title or description (measured by pixel width, not characters), a missing canonical or meta viewport, duplicate titles across pages, and missing Open Graph or structured data. Open the full check list to see every failed check and its impact, then fix the high-impact items first.',
+      },
+      {
+        question: 'Can I check a page that requires a login?',
+        answer: 'Yes — use paste-HTML mode. Copy the page source and paste it into the tool. Everything runs locally in your browser, so the check works for staging, logged-in, and paywalled pages that the server-side URL fetch cannot reach.',
+      },
+    ],
+  },
   '/meta-tag-generator': {
     intro:
-      'A meta tag generator that creates your title tag, meta description, canonical URL, robots directives, and keywords — with a live Google SERP preview that shows exactly how your snippet will appear. Unlike character-count-based tools, MetaForge measures pixel width, so you see where Google will actually truncate your title and description.',
+      'A meta tag generator that creates your title tag, meta description, canonical URL, robots directives, and keywords — with a live Google SERP preview that shows exactly how your snippet will appear. Unlike character-count-based tools, SerpCraft measures pixel width, so you see where Google will actually truncate your title and description.',
     sections: [
       {
         heading: 'What are meta tags?',
@@ -103,7 +139,7 @@ export const companionContent: Record<string, CompanionContent> = {
       },
       {
         heading: 'og:title vs twitter:title',
-        body: 'og:title is read by Facebook, LinkedIn, Slack, and Discord. twitter:title is read by X/Twitter. You can set them separately if you want different titles on different platforms, but most sites use the same title and let Twitter fall back to og:title. MetaForge lets you set both independently or leave the Twitter fields empty to fall back automatically.',
+        body: 'og:title is read by Facebook, LinkedIn, Slack, and Discord. twitter:title is read by X/Twitter. You can set them separately if you want different titles on different platforms, but most sites use the same title and let Twitter fall back to og:title. SerpCraft lets you set both independently or leave the Twitter fields empty to fall back automatically.',
       },
       {
         heading: 'How to fix a broken social preview',
@@ -243,7 +279,7 @@ export const companionContent: Record<string, CompanionContent> = {
       },
       {
         heading: 'Each platform is slightly different',
-        body: 'Facebook uses og:title, og:description, and og:image. X/Twitter uses twitter:card, twitter:title, twitter:description, and twitter:image (falling back to OG tags). LinkedIn uses OG tags but renders the card slightly differently. Slack uses OG tags and shows a colored left border. Discord uses OG tags and renders in dark mode. MetaForge shows all of these side by side so you can verify each one looks right.',
+        body: 'Facebook uses og:title, og:description, and og:image. X/Twitter uses twitter:card, twitter:title, twitter:description, and twitter:image (falling back to OG tags). LinkedIn uses OG tags but renders the card slightly differently. Slack uses OG tags and shows a colored left border. Discord uses OG tags and renders in dark mode. SerpCraft shows all of these side by side so you can verify each one looks right.',
       },
       {
         heading: 'How to force a re-scrape',
@@ -257,11 +293,11 @@ export const companionContent: Record<string, CompanionContent> = {
     faq: [
       {
         question: 'Does this tool fetch my live page?',
-        answer: 'No. MetaForge simulates the preview from the values you enter in the editor. It does not crawl your URL. This lets you iterate before publishing. For a live URL check, use the platform-specific debuggers after your page is live.',
+        answer: 'No. SerpCraft simulates the preview from the values you enter in the editor. It does not crawl your URL. This lets you iterate before publishing. For a live URL check, use the platform-specific debuggers after your page is live.',
       },
       {
         question: 'Why does my card look different on mobile vs desktop?',
-        answer: 'Each platform renders cards slightly differently on mobile and desktop — image aspect ratios, text truncation, and layout vary. MetaForge shows the desktop rendering, which is the most common case. The tags are the same regardless of device; only the rendering differs.',
+        answer: 'Each platform renders cards slightly differently on mobile and desktop — image aspect ratios, text truncation, and layout vary. SerpCraft shows the desktop rendering, which is the most common case. The tags are the same regardless of device; only the rendering differs.',
       },
       {
         question: 'How long do social platforms cache OG tags?',
@@ -275,7 +311,7 @@ export const companionContent: Record<string, CompanionContent> = {
     sections: [
       {
         heading: 'Google truncates by pixel width, not characters',
-        body: 'Most SERP preview tools count characters. This is wrong. Google truncates titles at approximately 580px and descriptions at approximately 920px on desktop. A title with wide letters (W, M, O) gets cut sooner than one with narrow letters (i, l, t). Two titles with the same character count can have very different pixel widths. MetaForge measures the actual pixel width, so the preview matches what Google will actually show.',
+        body: 'Most SERP preview tools count characters. This is wrong. Google truncates titles at approximately 580px and descriptions at approximately 920px on desktop. A title with wide letters (W, M, O) gets cut sooner than one with narrow letters (i, l, t). Two titles with the same character count can have very different pixel widths. SerpCraft measures the actual pixel width, so the preview matches what Google will actually show.',
       },
       {
         heading: 'Title tag length: the pixel-width rule',
@@ -301,7 +337,7 @@ export const companionContent: Record<string, CompanionContent> = {
       },
       {
         question: 'Are mobile snippets different from desktop?',
-        answer: 'Yes. Mobile snippets have slightly different pixel-width limits and font sizes. MetaForge simulates the desktop SERP, which is the most common case. The difference is small — if your title fits on desktop, it will almost certainly fit on mobile.',
+        answer: 'Yes. Mobile snippets have slightly different pixel-width limits and font sizes. SerpCraft simulates the desktop SERP, which is the most common case. The difference is small — if your title fits on desktop, it will almost certainly fit on mobile.',
       },
     ],
   },
@@ -341,43 +377,43 @@ export const companionContent: Record<string, CompanionContent> = {
       },
     ],
   },
-  '/ai-readiness-checker': {
+  '/url-debugger': {
     intro:
-      'An AI readiness checker that audits any URL — or raw HTML you paste — and scores it across SEO, social sharing, AI search visibility, and accessibility. It detects llms.txt, JSON-LD structured data, robots directives, and content depth: the signals ChatGPT, Perplexity, Google AI Overviews, and other AI engines use to discover, understand, and cite your content.',
+      'A page interpretation debugger: paste any URL — or raw HTML — and see exactly what search engines and social platforms can read. The report shows the response (status, redirects, headers), what the page declares (title, meta, Open Graph, structured data, hreflang), where those signals conflict, and the exact fix — with the raw evidence behind every finding.',
     sections: [
       {
-        heading: 'What is AI search readiness?',
-        body: 'AI search engines — ChatGPT, Perplexity, Gemini, Copilot, and Google AI Overviews — do not rank pages the way Google does. They retrieve, summarize, and cite sources. To be citable, your page must be machine-readable: structured data (JSON-LD) so an AI can classify what the page is about, an llms.txt file so AI crawlers know which pages matter, indexable robots directives, and enough content depth to answer a question. AI readiness is the practice of making those signals work.',
+        heading: 'What the URL actually returns',
+        body: 'Before any tag matters, the transport must be healthy. The report shows the HTTP status, every redirect hop (a 301 is fine; five hops are not), the final URL, content type, and response headers such as X-Robots-Tag and Cache-Control. A 404 page or a slow redirect chain explains a lot of "why does Google show the wrong thing" problems before you ever look at a meta tag.',
       },
       {
-        heading: 'Why llms.txt matters',
-        body: 'llms.txt is a markdown file at the root of your domain — like robots.txt, but written for AI crawlers. It lists what your site is about and which pages are most important, giving models like GPTBot, PerplexityBot, and ClaudeBot a reliable map of your content. Very few sites have one, which makes it a cheap, early-mover advantage. The checker verifies whether one exists at the audited URL\'s origin.',
+        heading: 'What the page declares',
+        body: 'The debugger extracts everything a crawler would read: title, meta description, canonical, robots directives, Open Graph and Twitter tags, JSON-LD structured data types, hreflang, images, and headings. Each value is shown as raw evidence — the exact tag and content that was found, so you can compare it against what you think you published.',
       },
       {
-        heading: 'Structured data is the citation hook',
-        body: 'AI engines prefer content that is explicitly typed. A page with Article, Product, FAQPage, or Organization JSON-LD gives a model exact labels — what kind of thing this is, who published it, when it was published. That is what makes a model confident enough to cite you instead of paraphrasing without attribution. The audit detects which schema types are present (if any).',
+        heading: 'Where the signals disagree',
+        body: 'Most ranking and preview problems are conflicts, not missing tags: a canonical pointing at a different page than the one served, a canonical paired with noindex, an og:title that contradicts the <title>, a relative og:image URL (Facebook rejects them), or duplicate title and description tags where crawlers silently use the first. The report surfaces these conflicts explicitly instead of scoring them away.',
       },
       {
-        heading: 'How the audit differs from a traditional SEO audit',
-        body: 'A traditional SEO audit scores Google ranking factors: keywords, backlinks, crawl budget. An AI readiness audit scores machine-citability: structured data, llms.txt, indexability, content depth, hreflang, and clean metadata. The two overlap — a well-structured page ranks on Google and gets cited by AI — but the AI signals are the ones most tools still ignore.',
+        heading: 'The fix, in plain language',
+        body: 'Every finding includes a plain-English explanation and the copy-ready repair: generate the corrected tags in the studio, verify an Open Graph image with the OG image checker, or validate a JSON-LD block before redeploying. Then re-run the debugger after deployment — that is the workflow it is built for.',
       },
     ],
     faq: [
       {
-        question: 'Is the AI readiness checker free?',
+        question: 'Is the URL debugger free?',
         answer: 'Yes. Both modes are free: the URL audit (fetched server-side, bypassing browser CORS limits) and the paste-HTML audit (runs entirely in your browser). No signup required.',
       },
       {
         question: 'What does the score mean?',
-        answer: 'The 100-point score is a weighted average of four categories: SEO (30%), AI Readiness (35%), Social (20%), and Accessibility (15%). AI Readiness carries the most weight because that is the gap most sites have. Each check has an impact level (high/medium/low) that drives the scoring.',
+        answer: 'The 100-point score is a weighted average of four categories: SEO (35%), Machine Readability (30%), Social (20%), and Accessibility (15%). It is a summary, not a promise: the evidence behind every check is what matters — read the findings, not just the number.',
       },
       {
         question: 'Does the URL audit store the page content?',
-        answer: 'No. The audit fetches the page, extracts metadata, scores it, and discards the HTML. Aggregated results are cached for 24 hours to keep the tool fast and cheap — the cache stores the score, not your content.',
+        answer: 'No. The audit fetches the page, extracts metadata, and discards the HTML. Results are cached for 24 hours to keep the tool fast and cheap — the cache stores the report, not your content.',
       },
       {
-        question: 'What is a good AI Readiness score?',
-        answer: '80+ means an AI engine can reliably discover, classify, and cite your page. The two most common blockers are missing JSON-LD structured data and a missing llms.txt file — both are quick wins you can fix directly in the MetaForge studio.',
+        question: 'What is a good score?',
+        answer: '80+ means the page is clean on the fundamentals: indexable, with a title, description, canonical, and structured data that agree. The most common blockers are missing or conflicting Open Graph tags, duplicate titles, canonical/noindex conflicts, and no structured data — all fixable directly in the SerpCraft studio.',
       },
       {
         question: 'What is the 10-audits-per-hour limit?',
@@ -387,11 +423,11 @@ export const companionContent: Record<string, CompanionContent> = {
   },
   '/llms-txt-generator': {
     intro:
-      'An llms.txt generator that produces the markdown file AI engines read to understand your site. llms.txt — the file format proposed for AI crawlers at llmstxt.org — lives at the root of your domain (llms.txt) and lists what your site is about and which pages matter most. ChatGPT, Perplexity, Gemini, and Claude already send crawlers to fetch it, and almost no one else has one yet.',
+      'An llms.txt generator that produces the markdown file some AI engines read to understand your site. llms.txt — the file format proposed for AI crawlers at llmstxt.org — lives at the root of your domain (llms.txt) and lists what your site is about and which pages matter most. It is optional: Google states it is not required for Search or AI Overviews, but crawlers from OpenAI, Anthropic, Perplexity, and Google are documented to fetch it.',
     sections: [
       {
-        heading: 'What is llms.txt and why does it matter now',
-        body: 'llms.txt is a markdown file at your domain root that tells AI engines what your site is, in plain text — a title, a one-line description, and a prioritized list of pages with one-line summaries. It exists because AI crawlers need a reliable, unambiguous map of your content, and most sites do not have one. Adding it is a cheap, early-mover advantage in AI search: it is discoverable, human-readable, and costs nothing to host.',
+        heading: 'What is llms.txt and when does it help',
+        body: 'llms.txt is a markdown file at your domain root that tells AI engines what your site is, in plain text — a title, a one-line description, and a prioritized list of pages with one-line summaries. It exists because AI crawlers need a reliable, unambiguous map of your content, and most sites do not have one. Treat it as optional polish: Google explicitly says websites do not need it to appear in Search, AI Overviews, or AI Mode. Its value is improving how AI crawlers discover and understand your content — not ranking.',
       },
       {
         heading: 'The format an AI engine expects',
@@ -402,8 +438,8 @@ export const companionContent: Record<string, CompanionContent> = {
         body: 'List your most important pages first: the homepage, key product or service pages, and your best content — the pages you would want an AI to cite when someone asks about your industry. Keep summaries to one line and descriptive, not salesy. AI engines use them to decide whether a page answers a question.',
       },
       {
-        heading: 'Pair it with the AI Readiness Checker',
-        body: 'The generator and the AI Readiness Checker are designed to work together: the checker audits a URL and tells you whether an llms.txt file exists at its origin, then the generator creates one in the exact format the checker detects. Deploy the file to your domain root and re-audit to watch your AI Readiness score rise.',
+        heading: 'Pair it with the URL Debugger',
+        body: 'The generator and the URL Debugger are designed to work together: the debugger audits a URL and tells you whether an llms.txt file exists at its origin, then the generator creates one in the exact format the debugger detects. Deploy the file to your domain root and re-run the debugger to confirm.',
       },
     ],
     faq: [
@@ -417,7 +453,7 @@ export const companionContent: Record<string, CompanionContent> = {
       },
       {
         question: 'Can llms.txt hurt my SEO?',
-        answer: 'No. It does not control crawling like robots.txt — it only informs AI engines about your content. There is no known penalty for having one, and it does not affect Google ranking directly.',
+        answer: 'No. It does not control crawling like robots.txt — it only informs AI engines about your content. There is no known penalty for having one, and Google has stated it does not affect ranking or AI Overviews. It is an optional courtesy for AI crawlers, not a requirement.',
       },
       {
         question: 'What if I have hundreds of pages?',
@@ -465,7 +501,7 @@ export const companionContent: Record<string, CompanionContent> = {
       },
       {
         question: 'Does hreflang affect AI search visibility?',
-        answer: 'Yes, indirectly. AI engines fetch your pages per locale and use language signals — including hreflang — to map your site\'s structure. Clean international signals are part of what the MetaForge AI Readiness Checker scores.',
+        answer: 'Yes, indirectly. AI engines fetch your pages per locale and use language signals — including hreflang — to map your site\'s structure. Clean international signals are part of what the SerpCraft URL Debugger checks.',
       },
       {
         question: 'What happens if hreflang tags are wrong?',
@@ -483,7 +519,7 @@ export const companionContent: Record<string, CompanionContent> = {
       },
       {
         heading: 'Why this cannot be a browser-only tool',
-        body: 'A browser checking an image on another domain hits CORS: it can load the image to display it, but it cannot read its bytes, dimensions, or file size. Every image checker that claims to do this client-side is guessing from the DOM, which fails for most real-world images. MetaForge fetches the image server-side and parses the actual header bytes — the same method Facebook\'s scraper uses.',
+        body: 'A browser checking an image on another domain hits CORS: it can load the image to display it, but it cannot read its bytes, dimensions, or file size. Every image checker that claims to do this client-side is guessing from the DOM, which fails for most real-world images. SerpCraft fetches the image server-side and parses the actual header bytes — the same method Facebook\'s scraper uses.',
       },
       {
         heading: 'The 1200x630 rule, explained',
@@ -513,13 +549,13 @@ export const companionContent: Record<string, CompanionContent> = {
       },
       {
         question: 'What is the difference between this and a general audit?',
-        answer: 'The AI Readiness Checker verifies that an og:image URL exists; this tool verifies the image itself — its bytes, dimensions, format, and size. They are complementary: use the audit to find gaps, use this to debug a specific broken preview.',
+        answer: 'The URL Debugger verifies that an og:image URL exists; this tool verifies the image itself — its bytes, dimensions, format, and size. They are complementary: use the debugger to find gaps, use this to debug a specific broken preview.',
       },
     ],
   },
   '/json-ld-validator': {
     intro:
-      'A JSON-LD validator that checks syntax, required schema.org fields, and rich-result eligibility in real time — using the same validation engine as the MetaForge studio and AI Readiness Checker, so the verdict is always consistent. Paste your structured data and get an instant pass/fail with the exact missing fields.',
+      'A JSON-LD validator that checks syntax, required schema.org fields, and rich-result eligibility in real time — using the same validation engine as the SerpCraft studio and URL Debugger, so the verdict is always consistent. Paste your structured data and get an instant pass/fail with the exact missing fields.',
     sections: [
       {
         heading: 'Syntax is the easy part — required fields are the hard part',
@@ -531,7 +567,7 @@ export const companionContent: Record<string, CompanionContent> = {
       },
       {
         heading: 'One engine, consistent verdicts',
-        body: 'The validator runs the same code as the studio\'s live schema feedback and the AI Readiness Checker\'s structured-data scoring. That matters: a schema that passes here will pass the audit, and a schema flagged here will never surprise you in the checker. There is one source of truth, not three tools with three opinions.',
+        body: 'The validator runs the same code as the studio\'s live schema feedback and the URL Debugger\'s structured-data checks. That matters: a schema that passes here will pass the audit, and a schema flagged here will never surprise you in the debugger. There is one source of truth, not three tools with three opinions.',
       },
       {
         heading: 'From valid to deployed',
@@ -553,7 +589,7 @@ export const companionContent: Record<string, CompanionContent> = {
       },
       {
         question: 'Is this the same as Google\'s Rich Results Test?',
-        answer: 'Similar purpose, different scope. Google\'s test also checks rendering and page-level eligibility. This validator runs instantly in your browser without sending your markup anywhere, and it shares its engine with the MetaForge audit tools.',
+        answer: 'Similar purpose, different scope. Google\'s test also checks rendering and page-level eligibility. This validator runs instantly in your browser without sending your markup anywhere, and it shares its engine with the SerpCraft audit tools.',
       },
       {
         question: 'Does the validator store my JSON-LD?',

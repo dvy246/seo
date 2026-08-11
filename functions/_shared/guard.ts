@@ -1,4 +1,4 @@
-// Shared security helpers for MetaForge Pages Functions (functions/api/*).
+// Shared security helpers for SerpCraft Pages Functions (functions/api/*).
 // Imported via relative paths (Pages Functions bundle with esbuild).
 
 export interface RateLimitOptions {

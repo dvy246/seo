@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import type { PageSetup, BrandProfile, RobotsRules } from '@/types';
 import { createBlankPageSetup, applyBrandToSetup } from '@/types';
 import { loadBrandProfile, saveBrandProfile } from '@/lib/storage';
@@ -11,10 +11,28 @@ import { OutputPanel } from '@/components/CodeOutput';
 import { SaveLoadPanel } from '@/components/SaveLoadPanel';
 import { CompanionContent } from '@/components/CompanionContent';
 import { getFaqJsonLd } from '@/components/CompanionContent';
-import { AuditTool } from '@/components/AuditTool';
 import { pageMeta, navTools } from '@/data/pages';
+import { problemGuides } from '@/data/problems';
+import { SmartLink } from '@/components/SmartLink';
 import { navigateTo } from '@/lib/router';
 import { ChevronRight, Sparkles, Code2 } from 'lucide-react';
+
+// Standalone tools are code-split so each tool page only downloads its own chunk.
+const AuditTool = lazy(() => import('@/components/AuditTool').then((m) => ({ default: m.AuditTool })));
+const SeoCheckPage = lazy(() => import('@/components/SeoCheckPage').then((m) => ({ default: m.SeoCheckPage })));
+const LlmsTxtGenerator = lazy(() => import('@/components/LlmsTxtGenerator').then((m) => ({ default: m.LlmsTxtGenerator })));
+const HreflangGenerator = lazy(() => import('@/components/HreflangGenerator').then((m) => ({ default: m.HreflangGenerator })));
+const OgImageChecker = lazy(() => import('@/components/OgImageChecker').then((m) => ({ default: m.OgImageChecker })));
+const JsonLdValidator = lazy(() => import('@/components/JsonLdValidator').then((m) => ({ default: m.JsonLdValidator })));
+
+// Minimal loading placeholder for the code-split tool chunks.
+function ToolFallback() {
+  return (
+    <div className="flex items-center justify-center py-24">
+      <div className="h-8 w-8 rounded-full border-2 border-choco-500/30 border-t-choco-500 animate-spin" />
+    </div>
+  );
+}
 
 interface StudioPageProps {
   path: string;
@@ -34,12 +52,12 @@ export function StudioPage({ path }: StudioPageProps) {
   // Inject FAQ schema when companion content has FAQs
   useEffect(() => {
     const faqJsonLd = getFaqJsonLd(path);
-    let el = document.head.querySelector('script[data-metaforge-faq]') as HTMLScriptElement | null;
+    let el = document.head.querySelector('script[data-serpcraft-faq]') as HTMLScriptElement | null;
     if (faqJsonLd) {
       if (!el) {
         el = document.createElement('script');
         el.type = 'application/ld+json';
-        el.setAttribute('data-metaforge-faq', 'true');
+        el.setAttribute('data-serpcraft-faq', 'true');
         document.head.appendChild(el);
       }
       el.textContent = faqJsonLd;
@@ -47,7 +65,7 @@ export function StudioPage({ path }: StudioPageProps) {
       el.remove();
     }
     return () => {
-      const existing = document.head.querySelector('script[data-metaforge-faq]');
+      const existing = document.head.querySelector('script[data-serpcraft-faq]');
       if (existing) existing.remove();
     };
   }, [path]);
@@ -82,12 +100,18 @@ export function StudioPage({ path }: StudioPageProps) {
 
   // Determine which sections to show based on the page
   const isStudioPage = path === '/studio';
-  const isAuditPage = path === '/ai-readiness-checker';
+  const isAuditPage = path === '/url-debugger';
+  const isSeoCheckPage = path === '/seo-check';
+  const isLlmsPage = path === '/llms-txt-generator';
+  const isHreflangPage = path === '/hreflang-generator';
+  const isOgImagePage = path === '/og-image-checker';
+  const isJsonLdValidatorPage = path === '/json-ld-validator';
   const isJsonLdPage = path === '/json-ld-generator' || path === '/schema-markup-generator';
   const isRobotsPage = path === '/robots-txt-generator';
   const isSocialPreviewPage = path === '/social-preview-tool' || path === '/serp-preview-tool';
+  const isStandaloneTool = isAuditPage || isSeoCheckPage || isLlmsPage || isHreflangPage || isOgImagePage || isJsonLdValidatorPage;
 
-  const showJsonLdForm = isStudioPage || isJsonLdPage || (!isRobotsPage && !isSocialPreviewPage);
+  const showJsonLdForm = isStudioPage || isJsonLdPage || (!isRobotsPage && !isSocialPreviewPage && !isStandaloneTool);
   const showRobotsForm = isStudioPage || isRobotsPage;
 
   return (
@@ -95,9 +119,9 @@ export function StudioPage({ path }: StudioPageProps) {
       {/* Breadcrumb */}
       {path !== '/studio' && (
         <nav className="flex items-center gap-1.5 text-sm text-ink-muted dark:text-sand-400 mb-6">
-          <button onClick={() => navigateTo('/')} className="hover:text-choco-600 dark:hover:text-choco-400 transition-colors">Home</button>
+          <SmartLink to="/" className="hover:text-choco-600 dark:hover:text-choco-400 transition-colors">Home</SmartLink>
           <ChevronRight size={14} />
-          <button onClick={() => navigateTo('/studio')} className="hover:text-choco-600 dark:hover:text-choco-400 transition-colors">Studio</button>
+          <SmartLink to="/studio" className="hover:text-choco-600 dark:hover:text-choco-400 transition-colors">Studio</SmartLink>
           <ChevronRight size={14} />
           <span className="text-ink dark:text-sand-50 font-medium">{meta.h1}</span>
         </nav>
@@ -117,9 +141,10 @@ export function StudioPage({ path }: StudioPageProps) {
       {!isStudioPage && (
         <div className="flex flex-wrap gap-2 mb-8">
           {navTools.map((tool) => (
-            <button
+            <SmartLink
               key={tool.path}
-              onClick={() => navigateTo(tool.path)}
+              to={tool.path}
+              aria-current={path === tool.path ? 'page' : undefined}
               className={`chip transition-colors ${
                 path === tool.path
                   ? 'bg-choco-500 text-white'
@@ -127,13 +152,13 @@ export function StudioPage({ path }: StudioPageProps) {
               }`}
             >
               {tool.shortLabel}
-            </button>
+            </SmartLink>
           ))}
         </div>
       )}
 
       {/* View tabs for tool pages */}
-      {!isStudioPage && !isRobotsPage && !isAuditPage && (
+      {!isStudioPage && !isRobotsPage && !isStandaloneTool && (
         <div className="flex gap-1 mb-6 border-b border-sand-200 dark:border-sand-800">
           <ViewTab active={activeView === 'studio'} onClick={() => setActiveView('studio')} icon={<Sparkles size={15} />} label="Editor & Preview" />
           {showJsonLdForm && (
@@ -172,7 +197,39 @@ export function StudioPage({ path }: StudioPageProps) {
         </div>
       ) : isAuditPage ? (
         <div className="max-w-4xl mx-auto">
-          <AuditTool />
+          <Suspense fallback={<ToolFallback />}>
+            <AuditTool />
+          </Suspense>
+        </div>
+      ) : isSeoCheckPage ? (
+        <div className="max-w-4xl mx-auto">
+          <Suspense fallback={<ToolFallback />}>
+            <SeoCheckPage />
+          </Suspense>
+        </div>
+      ) : isLlmsPage ? (
+        <div className="max-w-4xl mx-auto">
+          <Suspense fallback={<ToolFallback />}>
+            <LlmsTxtGenerator onOpenAudit={() => navigateTo('/url-debugger')} />
+          </Suspense>
+        </div>
+      ) : isHreflangPage ? (
+        <div className="max-w-4xl mx-auto">
+          <Suspense fallback={<ToolFallback />}>
+            <HreflangGenerator />
+          </Suspense>
+        </div>
+      ) : isOgImagePage ? (
+        <div className="max-w-4xl mx-auto">
+          <Suspense fallback={<ToolFallback />}>
+            <OgImageChecker />
+          </Suspense>
+        </div>
+      ) : isJsonLdValidatorPage ? (
+        <div className="max-w-4xl mx-auto">
+          <Suspense fallback={<ToolFallback />}>
+            <JsonLdValidator />
+          </Suspense>
         </div>
       ) : isJsonLdPage ? (
         <div className="grid lg:grid-cols-[1fr_400px] gap-6">
@@ -241,15 +298,31 @@ export function StudioPage({ path }: StudioPageProps) {
             .filter((t) => t.path !== path)
             .slice(0, 4)
             .map((tool) => (
-              <button
+              <SmartLink
                 key={tool.path}
-                onClick={() => navigateTo(tool.path)}
-                className="card p-4 text-left hover:shadow-lift transition-all duration-200 hover:border-sand-300 dark:hover:border-sand-600"
+                to={tool.path}
+                className="card p-4 block hover:shadow-lift transition-all duration-200 hover:border-sand-300 dark:hover:border-sand-600"
               >
                 <div className="text-sm font-medium text-ink dark:text-sand-100 mb-1">{tool.label}</div>
                 <div className="text-xs text-ink-muted dark:text-sand-400">{tool.description}</div>
-              </button>
+              </SmartLink>
             ))}
+        </div>
+
+        {/* Problem guides: permanent, crawlable inbound links */}
+        <div className="mt-8 pt-6 border-t border-sand-200 dark:border-sand-800">
+          <h2 className="text-lg font-serif font-semibold text-ink dark:text-sand-50 mb-4">Fixing a known problem?</h2>
+          <div className="flex flex-wrap gap-2">
+            {problemGuides.map((g) => (
+              <SmartLink
+                key={g.slug}
+                to={g.path}
+                className="chip bg-sand-100 dark:bg-sand-800 text-ink-soft dark:text-sand-300 hover:bg-sand-200 dark:hover:bg-sand-700 transition-colors"
+              >
+                {g.h1}
+              </SmartLink>
+            ))}
+          </div>
         </div>
       </div>
     </div>

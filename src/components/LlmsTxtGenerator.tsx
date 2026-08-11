@@ -28,7 +28,6 @@ export function LlmsTxtGenerator({ onOpenAudit }: LlmsTxtGeneratorProps) {
     setRows((r) => r.map((row, idx) => (idx === i ? { ...row, [field]: value } : row)));
 
   const urlCheck = validateCanonical(baseUrl);
-  const baseUrlOk = baseUrl && !urlCheck.error && urlCheck.status === 'pass';
 
   const duplicates = rows
     .map((r) => r.path.trim())
@@ -56,8 +55,9 @@ export function LlmsTxtGenerator({ onOpenAudit }: LlmsTxtGeneratorProps) {
         <h3 className="text-sm font-semibold text-ink dark:text-sand-100">llms.txt Generator</h3>
       </div>
       <p className="text-xs text-ink-muted dark:text-sand-400 mb-4">
-        Generate the llms.txt file that AI engines (ChatGPT, Perplexity, Gemini, Claude) read to understand
-        your site. Place it at the root of your domain — the AI Readiness Checker verifies it automatically.
+        Generate the llms.txt file that some AI engines (ChatGPT, Perplexity, Gemini, Claude) read to understand
+        your site. Optional — Google states llms.txt is not required for Search or AI Overviews. Place it at the root
+        of your domain; the URL Debugger verifies it automatically.
       </p>
 
       <div className="grid md:grid-cols-3 gap-4 mb-5">
@@ -156,7 +156,7 @@ export function LlmsTxtGenerator({ onOpenAudit }: LlmsTxtGeneratorProps) {
           onClick={onOpenAudit}
           className="btn-primary w-full justify-center mt-4 text-sm"
         >
-          <FileText size={16} /> Verify this URL in the AI Readiness Checker
+          <FileText size={16} /> Verify this URL in the URL Debugger
         </button>
       )}
     </div>

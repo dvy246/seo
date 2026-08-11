@@ -18,7 +18,7 @@ export function CodeBlock({ label, code, language = 'html', filename, maxHeight 
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = filename || 'metaforge-output.txt';
+    a.download = filename || 'serpcraft-output.txt';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

@@ -1,4 +1,4 @@
-// Core type definitions for MetaForge SEO Studio
+// Core type definitions for SerpCraft SEO Studio
 
 export interface BrandProfile {
   brandName: string;

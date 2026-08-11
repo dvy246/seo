@@ -1,4 +1,4 @@
-// Internationalization system for MetaForge.
+// Internationalization system for SerpCraft.
 // Uses URL path prefixes: /en/, /es/, /fr/, /de/, etc.
 // Falls back to no-prefix (English) for backward compatibility.
 

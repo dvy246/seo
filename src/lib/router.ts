@@ -59,3 +59,11 @@ export function navigateToLocale(locale: Locale) {
   window.location.href = newPath;
 }
 
+// Pure (SSR-safe) helper: returns the locale-prefixed href for an internal path.
+// Paths that already carry a locale are kept as-is; others get `locale` applied.
+// Used to render real <a href> links so crawlers can follow navigation.
+export function localizeHref(to: string, locale: Locale): string {
+  const { pathWithoutLocale } = extractLocale(to);
+  return withLocale(locale, pathWithoutLocale);
+}
+

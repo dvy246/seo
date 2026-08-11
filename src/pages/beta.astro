@@ -1,0 +1,8 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { BetaPage } from '@/components/BetaPage';
+---
+
+<Layout path="/beta" title="SerpCraft Release Guard — Beta Access" description="Get early access to SerpCraft Release Guard. Compare staging vs production URLs and catch SEO regressions before you ship.">
+  <BetaPage client:load />
+</Layout>

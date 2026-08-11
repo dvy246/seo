@@ -1,0 +1,8 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { ReleaseDiffPage } from '@/components/ReleaseDiffPage';
+---
+
+<Layout path="/release-diff" title="SEO Release Diff — Compare URLs & Catch Regressions" description="Compare staging vs production, old vs new, or baseline vs current. 12 critical SEO checks. Evidence-first reports. No scores — just what changed, why it matters, and how to fix it.">
+  <ReleaseDiffPage client:load />
+</Layout>

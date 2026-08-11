@@ -193,7 +193,27 @@ Validate willingness to pay
 - Built `/beta` recruitment page (`src/pages/beta.astro`)
 - Created `BetaPage.tsx` component with 3-step form (profile → URLs → submit)
 - Created `functions/api/beta-signup.ts` Cloudflare Pages Function with KV deduplication and rate limiting
+- **Build passes (107 pages), meta validation passes (ALL PASS)**
+- **Pushed to GitHub (fc5308d)**
 - Next: User needs to recruit 5 testers via outreach
+
+### Iteration 2 (2025-08-11) - Pre-building Phase 1 Components
+- Created `src/lib/releaseDiff.ts` — shared diff engine comparing two AuditSnapshots
+- Implements 12+ critical checks: HTTP status, redirect chain, indexability, canonical, URL parity, metadata, Open Graph, Twitter Cards, OG image, JSON-LD, hreflang, content signals
+- Evidence-first findings with severity (blocker/warning/info), consequence, fix, and before/after evidence
+- Markdown export function for shareable reports
+- **Build passes, TypeScript passes, meta validation passes**
+- Still blocked on 5 testers for Phase 0 validation gate
+
+### Iteration 3-4 (2025-08-11) - Phase 1 Complete (Function + UI)
+- Created `functions/api/release-diff.ts` — Cloudflare Pages Function with parallel fetch, SSRF guard, KV rate limiting (10/hr/IP), 24h caching
+- Created `src/pages/release-diff.astro` + `src/components/ReleaseDiffPage.tsx` — two URL inputs, 3-section report UI (Blockers/Warnings/Info), expandable evidence tables, Markdown download
+- **Build: 108 pages (new /release-diff route), TypeScript passes, meta validation ALL PASS**
+- **Pushed to GitHub**
+
+---
+
+## Phase 1: Core Diff Engine (Release Guard MVP) - COMPLETE
 
 ---
 

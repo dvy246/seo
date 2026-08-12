@@ -24,6 +24,7 @@ const LlmsTxtGenerator = lazy(() => import('@/components/LlmsTxtGenerator').then
 const HreflangGenerator = lazy(() => import('@/components/HreflangGenerator').then((m) => ({ default: m.HreflangGenerator })));
 const OgImageChecker = lazy(() => import('@/components/OgImageChecker').then((m) => ({ default: m.OgImageChecker })));
 const JsonLdValidator = lazy(() => import('@/components/JsonLdValidator').then((m) => ({ default: m.JsonLdValidator })));
+const VisualSeoStudio = lazy(() => import('@/components/VisualSeoStudio').then((m) => ({ default: m.VisualSeoStudio })));
 
 // Minimal loading placeholder for the code-split tool chunks.
 function ToolFallback() {
@@ -105,11 +106,12 @@ export function StudioPage({ path }: StudioPageProps) {
   const isLlmsPage = path === '/llms-txt-generator';
   const isHreflangPage = path === '/hreflang-generator';
   const isOgImagePage = path === '/og-image-checker';
-  const isJsonLdValidatorPage = path === '/json-ld-validator';
-  const isJsonLdPage = path === '/json-ld-generator' || path === '/schema-markup-generator';
+  const isJsonLdValidatorPage = path === '/json-ld';
+  const isJsonLdPage = path === '/schema-markup-generator';
   const isRobotsPage = path === '/robots-txt-generator';
   const isSocialPreviewPage = path === '/social-preview-tool' || path === '/serp-preview-tool';
-  const isStandaloneTool = isAuditPage || isSeoCheckPage || isLlmsPage || isHreflangPage || isOgImagePage || isJsonLdValidatorPage;
+  const isVisualSeoStudioPage = path === '/visual-seo-studio';
+  const isStandaloneTool = isAuditPage || isSeoCheckPage || isLlmsPage || isHreflangPage || isOgImagePage || isJsonLdValidatorPage || isVisualSeoStudioPage;
 
   const showJsonLdForm = isStudioPage || isJsonLdPage || (!isRobotsPage && !isSocialPreviewPage && !isStandaloneTool);
   const showRobotsForm = isStudioPage || isRobotsPage;
@@ -229,6 +231,12 @@ export function StudioPage({ path }: StudioPageProps) {
         <div className="max-w-4xl mx-auto">
           <Suspense fallback={<ToolFallback />}>
             <JsonLdValidator />
+          </Suspense>
+        </div>
+      ) : isVisualSeoStudioPage ? (
+        <div className="max-w-7xl mx-auto">
+          <Suspense fallback={<ToolFallback />}>
+            <VisualSeoStudio />
           </Suspense>
         </div>
       ) : isJsonLdPage ? (

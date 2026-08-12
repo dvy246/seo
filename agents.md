@@ -60,7 +60,8 @@ src/
 │   ├── TrustPages.tsx         # About, Privacy, Terms pages
 │   ├── ErrorPages.tsx         # 404 and 500 error pages
 │   ├── ThemeToggle.tsx        # Dark/light mode toggle button
-│   └── LanguageSwitcher.tsx   # i18n locale dropdown (uses navigateToLocale)
+│   ├── LanguageSwitcher.tsx   # i18n locale dropdown (uses navigateToLocale)
+│   └── NavigationBot.tsx      # Global deterministic chatbot guide (AEO/GEO/SEO)
 ├── data/
 │   ├── pages.ts               # EN page metadata (title, description, keywords, h1) + nav tool definitions
 │   ├── pageMetaLocalized.ts   # Localized title/description pairs (16 paths × es/fr/de/pt/ja = 80 pairs; EN falls back to pages.ts)
@@ -87,6 +88,7 @@ functions/                     # Cloudflare Pages Functions (server-side checks)
 │   └── guard.ts               # CORS, JSON helpers, SSRF guard, KV rate limit + cache helpers
 └── api/
     ├── audit.ts               # POST /api/audit — URL AI-readiness audit (fetch + extract + score)
+    ├── ai-consultant.ts       # POST /api/ai-consultant — Semantic SEO advice via Nvidia NIM
     └── og-image.ts            # POST /api/og-image — OG image header parsing (dims, format, size)
 ```
 
@@ -128,12 +130,14 @@ functions/                     # Cloudflare Pages Functions (server-side checks)
 - No server-side storage required.
 
 ### Cloudflare Pages Functions (server-side checks)
-- Only two endpoints, both `POST`, both CORS-enabled with JSON responses:
-  - `POST /api/audit` — AI Readiness Checker URL mode: fetches the page + `/llms.txt`, extracts a normalized snapshot, runs `buildChecks`/`calculateScores` (from `src/lib/validator.ts`).
+- Endpoints, all `POST`, all CORS-enabled with JSON responses:
+  - `POST /api/audit` — Live SEO Evidence Report: fetches the page, extracts a normalized snapshot, runs `buildChecks`/`calculateScores` (from `src/lib/validator.ts`).
+  - `POST /api/release-diff` — SEO Release Diff Checker: compares two URLs and returns a semantic difference report.
+  - `POST /api/ai-consultant` — AI Semantic SEO Consultant via Nvidia NIM.
   - `POST /api/og-image` — OG Image Checker: fetches an image and parses its header bytes (PNG/JPEG/WebP/GIF/BMP/SVG) for dimensions/format/size.
 - All shared security/helpers live in `functions/_shared/guard.ts` (CORS, `json`, `isPrivateHost` SSRF guard, `looksSuspiciousUrl` scheme guard, `checkRateLimit`, KV cache helpers, `sha1`). Do not duplicate these in a new function — import from `../_shared/guard`.
 - SSRF guard blocks private/link-local/CGNAT/metadata hostnames and non-http(s) schemes. Never remove it from a function that fetches URLs.
-- Rate limits via KV (`audit`: 10/hr/IP, `og-image`: 30/hr/IP); both cache results 24h in KV (`AUDIT_KV` binding, placeholder id in `wrangler.toml`).
+- Rate limits via KV; cache results 24h in KV (`AUDIT_KV` binding, placeholder id in `wrangler.toml`).
 - Pages Functions bundle relative imports with esbuild; importing `src/lib/validator.ts` from `functions/` works and is intentional (single source of truth for scoring).
 
 ### Deploy (Cloudflare Pages)

@@ -89,9 +89,9 @@ export const companionContent: Record<string, CompanionContent> = {
       },
     ],
   },
-  '/meta-tag-generator': {
+  '/social-meta': {
     intro:
-      'A meta tag generator that creates your title tag, meta description, canonical URL, robots directives, and keywords — with a live Google SERP preview that shows exactly how your snippet will appear. Unlike character-count-based tools, SerpCraft measures pixel width, so you see where Google will actually truncate your title and description.',
+      'A social meta generator that builds your SEO meta tags (title tag, meta description, canonical, robots) plus Open Graph tags (og:title, og:description, og:image, og:url) and Twitter/X Cards (twitter:card, twitter:title, twitter:image) — with a live Google SERP preview and social card previews that show exactly how your snippet and cards will appear. Unlike character-count tools, SerpCraft measures pixel width, so you see where Google will actually truncate your title and description.',
     sections: [
       {
         heading: 'What are meta tags?',
@@ -106,35 +106,7 @@ export const companionContent: Record<string, CompanionContent> = {
         body: 'Your meta description should be 150-160 characters (Google truncates at approximately 920px). Write it as ad copy — it does not directly affect rankings, but it affects whether people click. Include your keyword, a benefit, and a call to action. If you skip it, Google will generate one from your page content, which is usually worse.',
       },
       {
-        heading: 'Canonical URLs explained',
-        body: 'A canonical URL tells Google "this is the master version of this page." Use it when the same content is accessible from multiple URLs (e.g. with and without trailing slashes, with query parameters, or syndicated content). Without a canonical tag, Google may pick one for you — and it might not be the one you want.',
-      },
-    ],
-    faq: [
-      {
-        question: 'Does Google use the keywords meta tag?',
-        answer: 'No. Google has officially stated they do not use the keywords meta tag for ranking. Bing and some other tools may still read it. It is optional and low-priority.',
-      },
-      {
-        question: 'What is the difference between noindex and nofollow?',
-        answer: 'noindex tells search engines not to show this page in search results. nofollow tells crawlers not to follow links on this page. You can use them independently — for example, a thank-you page might be index,follow (people can find it but links pass value) or noindex,follow (not in search but links still pass value).',
-      },
-      {
-        question: 'Should my title tag and H1 be the same?',
-        answer: 'They can be similar but do not need to be identical. Your title tag is optimized for search results and click-through; your H1 is what visitors see on the page. Many sites use a slightly shorter, punchier title tag and a more descriptive H1.',
-      },
-    ],
-  },
-  '/open-graph-generator': {
-    intro:
-      'An Open Graph tag generator that builds your og:title, og:description, og:image, og:url, and og:type tags — with live previews of how your link will appear on Facebook, LinkedIn, Slack, and Discord. See exactly how your social card looks before you publish.',
-    sections: [
-      {
-        heading: 'What are Open Graph tags?',
-        body: 'Open Graph (OG) tags are meta tags that control how your page appears when shared on social media. They were originally created by Facebook but are now used by LinkedIn, Slack, Discord, iMessage, and many other platforms. Without OG tags, platforms guess what image and text to show — often badly. With OG tags, you control exactly what appears.',
-      },
-      {
-        heading: 'The essential OG tags',
+        heading: 'The essential Open Graph tags',
         body: 'Every page should have at minimum: og:title (the title shown on the card), og:description (the summary text), og:image (the preview image), og:url (the canonical URL), and og:type (website, article, product, etc.). The og:image is the most impactful — a good image dramatically increases click-through rate on social shares. Recommended size is 1200×630px.',
       },
       {
@@ -148,6 +120,14 @@ export const companionContent: Record<string, CompanionContent> = {
     ],
     faq: [
       {
+        question: 'Does Google use the keywords meta tag?',
+        answer: 'No. Google has officially stated they do not use the keywords meta tag for ranking. Bing and some other tools may still read it. It is optional and low-priority.',
+      },
+      {
+        question: 'What is the difference between noindex and nofollow?',
+        answer: 'noindex tells search engines not to show this page in search results. nofollow tells crawlers not to follow links on this page. You can use them independently — for example, a thank-you page might be index,follow (people can find it but links pass value) or noindex,follow (not in search but links still pass value).',
+      },
+      {
         question: 'What size should my OG image be?',
         answer: '1200×630 pixels is the standard recommendation. This works well across Facebook, LinkedIn, X, Slack, and Discord. Use a 1.91:1 aspect ratio. Keep the file under 8MB. PNG or JPG both work.',
       },
@@ -156,34 +136,6 @@ export const companionContent: Record<string, CompanionContent> = {
         answer: 'No. Open Graph image URLs must be absolute (https://example.com/image.png). Relative URLs (/image.png) will not work on most platforms because the scraper does not know your domain.',
       },
       {
-        question: 'Why is my OG image not showing on Facebook?',
-        answer: 'Facebook caches OG tags aggressively. Use the Facebook Sharing Debugger (developers.facebook.com/tools/debug/) to force a re-scrape after you update your tags. Also verify the image URL is absolute, publicly accessible, and at least 200×200px.',
-      },
-    ],
-  },
-  '/twitter-card-generator': {
-    intro:
-      'A Twitter Card tag generator that builds your twitter:card, twitter:title, twitter:description, twitter:image, twitter:site, and twitter:creator tags — with a live preview of how your link will appear on X. Twitter\'s official Card Validator was deprecated, so this tool fills the gap.',
-    sections: [
-      {
-        heading: 'What are Twitter Cards?',
-        body: 'Twitter Cards are meta tags that control how your link appears when shared on X (formerly Twitter). Without them, X shows just a plain URL. With them, X shows a rich card with an image, title, and description. There are four card types: summary (small square image), summary_large_image (large image — recommended for most content), app (for mobile apps), and player (for video/audio).',
-      },
-      {
-        heading: 'summary vs summary_large_image',
-        body: 'summary shows a small square image on the left with title and description on the right. summary_large_image shows a large image on top with title and description below — much more visually impactful. For most articles, blog posts, and landing pages, use summary_large_image. Use summary for pages where the image is less important.',
-      },
-      {
-        heading: 'twitter:site and twitter:creator',
-        body: 'twitter:site is the X handle of the website or publication (e.g. @yoursite). twitter:creator is the X handle of the individual author (e.g. @authorname). Both are optional but recommended — they help X attribute the content and can enable analytics. Include the @ symbol in the tag value.',
-      },
-      {
-        heading: 'Twitter Card image requirements',
-        body: 'For summary_large_image: 1200×628px (2:1 ratio), max 5MB. For summary: 240×240px minimum (1:1 ratio). JPG, PNG, GIF, and WebP are supported. Use an absolute URL. The image must be publicly accessible. If your twitter:image is empty, X falls back to your og:image.',
-      },
-    ],
-    faq: [
-      {
         question: 'Why was the Twitter Card Validator deprecated?',
         answer: 'After the X acquisition, Twitter\'s official Card Validator was taken offline. Third-party tools like this one fill the gap by rendering a preview from your Twitter Card meta tags. After publishing, you can verify by posting a test tweet or using X\'s built-in preview when composing a post.',
       },
@@ -191,15 +143,11 @@ export const companionContent: Record<string, CompanionContent> = {
         question: 'Do I need both Open Graph and Twitter Card tags?',
         answer: 'Twitter falls back to Open Graph tags, so technically you can use only OG tags. However, setting explicit Twitter Card tags gives you more control — especially the twitter:card tag, which determines whether you get a summary or large image card, and the twitter:site/creator tags, which are Twitter-specific.',
       },
-      {
-        question: 'How do I test my Twitter Card after publishing?',
-        answer: 'Compose a new post on X and paste your URL — X will render a preview card. Alternatively, use a third-party Twitter Card preview tool like this one before publishing to iterate without posting.',
-      },
     ],
   },
-  '/json-ld-generator': {
+  '/json-ld': {
     intro:
-      'A JSON-LD generator that builds structured data for Article, BlogPosting, Product, FAQPage, Organization, BreadcrumbList, WebSite, and LocalBusiness schema types. Fill in the form, get valid JSON-LD with a single click. No more hand-writing schema.org JSON.',
+      'A JSON-LD toolkit that combines a visual generator and a validator in one place: build structured data for Article, BlogPosting, Product, FAQPage, Organization, BreadcrumbList, WebSite, and LocalBusiness schema types — then paste it in to check syntax, required schema.org fields, and rich-result eligibility in real time, using the same validation engine as the SerpCraft studio and URL Debugger.',
     sections: [
       {
         heading: 'What is JSON-LD?',
@@ -211,11 +159,15 @@ export const companionContent: Record<string, CompanionContent> = {
       },
       {
         heading: 'Which schema type should I use?',
-        body: 'Article or BlogPosting for articles and blog posts. Product for things you sell. FAQPage for FAQ sections. Organization for your company (usually on the homepage or about page). BreadcrumbList for navigation breadcrumbs. WebSite for your site as a whole (usually on the homepage). LocalBusiness for physical business locations. Use the dropdown above to switch between types.',
+        body: 'Article or BlogPosting for articles and blog posts. Product for things you sell. FAQPage for FAQ sections. Organization for your company (usually on the homepage or about page). BreadcrumbList for navigation breadcrumbs. WebSite for your site as a whole (usually on the homepage). LocalBusiness for physical business locations. Use the dropdown to switch between types.',
       },
       {
-        heading: 'How to test your structured data',
-        body: 'After adding JSON-LD to your page, test it with Google\'s Rich Results Test (search.google.com/test/rich-results). This tool tells you if your structured data is valid and which rich result types it qualifies for. Also check Google Search Console for structured data errors and warnings over time.',
+        heading: 'Syntax is the easy part — required fields are the hard part',
+        body: 'Most validators stop at JSON.parse: if the JSON parses, they say valid. But Google ignores a FAQPage without mainEntity, a Product without image, an Article without datePublished. The validator enforces the required fields for the most common schema types, so a passing result means deployable, not just parseable.',
+      },
+      {
+        heading: 'One engine, consistent verdicts',
+        body: 'The validator runs the same code as the studio\'s live schema feedback and the URL Debugger\'s structured-data checks. That matters: a schema that passes here will pass the audit, and a schema flagged here will never surprise you in the debugger. There is one source of truth, not three tools with three opinions.',
       },
     ],
     faq: [
@@ -228,8 +180,16 @@ export const companionContent: Record<string, CompanionContent> = {
         answer: 'Yes. You can have multiple <script type="application/ld+json"> blocks on a page — for example, one for Article and one for BreadcrumbList. Google reads them all. You can also use @graph to combine multiple entities in one block.',
       },
       {
-        question: 'Do I need a developer to add JSON-LD?',
-        answer: 'If you can edit your page\'s HTML or use a CMS that allows custom head tags, you can add JSON-LD yourself by pasting the generated script block into the <head>. Many CMS platforms (WordPress, Webflow, etc.) have plugins or settings for adding structured data. For complex dynamic sites, a developer may be needed.',
+        question: 'What does "valid" mean in the validator?',
+        answer: 'Three things: the JSON parses, the @context and @type are present, and all required fields for that schema type are filled. It does not guarantee a rich result — Google still applies its own policies — but invalid or incomplete markup never earns one.',
+      },
+      {
+        question: 'Is this the same as Google\'s Rich Results Test?',
+        answer: 'Similar purpose, different scope. Google\'s test also checks rendering and page-level eligibility. This validator runs instantly in your browser without sending your markup anywhere, and it shares its engine with the SerpCraft audit tools.',
+      },
+      {
+        question: 'Does the validator store my JSON-LD?',
+        answer: 'No. Everything runs in your browser. Nothing you paste is sent to any server.',
       },
     ],
   },
@@ -553,48 +513,40 @@ export const companionContent: Record<string, CompanionContent> = {
       },
     ],
   },
-  '/json-ld-validator': {
+  '/visual-seo-studio': {
     intro:
-      'A JSON-LD validator that checks syntax, required schema.org fields, and rich-result eligibility in real time — using the same validation engine as the SerpCraft studio and URL Debugger, so the verdict is always consistent. Paste your structured data and get an instant pass/fail with the exact missing fields.',
+      'The Visual SEO Remediation Studio is an all-in-one workspace for fixing SEO issues. Paste any HTML to instantly extract the title, meta tags, Open Graph tags, and structured data. Visually edit your schema graph and social cards in real-time, then export the corrected <head> code directly to your project.',
     sections: [
       {
-        heading: 'Syntax is the easy part — required fields are the hard part',
-        body: 'Most validators stop at JSON.parse: if the JSON parses, they say valid. But Google ignores a FAQPage without mainEntity, a Product without image, an Article without datePublished. The validator enforces the required fields for the ten most common schema types — Article, BlogPosting, Product, FAQPage, Organization, LocalBusiness, WebSite, BreadcrumbList, Person, HowTo, and Event — so a passing result means deployable, not just parseable.',
+        heading: 'Why visual SEO remediation matters',
+        body: 'Most SEO audits just give you a list of errors: "Title too long", "Missing JSON-LD property", "Open Graph image missing". Fixing them usually requires bouncing between a CMS, a schema generator, a code editor, and a SERP preview tool. The Visual SEO Remediation Studio combines extraction, visual editing, and live previewing in a single workspace. You see the problem, you fix it visually, and you copy the exact code needed.',
       },
       {
-        heading: 'FAQPage gets special treatment',
-        body: 'FAQ structured data is the most-misimplemented schema on the web. Google requires mainEntity to be an array of Question objects, each with an acceptedAnswer. Half of the FAQ markup on real sites fails this and earns no rich result. The validator checks the shape of your FAQ entity explicitly and tells you exactly what is wrong.',
+        heading: 'Real-time schema graph editing',
+        body: 'Writing JSON-LD by hand is error-prone. The studio extracts any existing structured data from your pasted HTML and visualizes it as an interactive, hierarchical entity graph. You can click on any value—like an article\'s datePublished or a product\'s price—and edit it directly. The studio automatically manages the JSON syntax, brackets, and types in the background.',
       },
       {
-        heading: 'One engine, consistent verdicts',
-        body: 'The validator runs the same code as the studio\'s live schema feedback and the URL Debugger\'s structured-data checks. That matters: a schema that passes here will pass the audit, and a schema flagged here will never surprise you in the debugger. There is one source of truth, not three tools with three opinions.',
+        heading: 'Pixel-accurate preview fidelity',
+        body: 'The live preview engine uses exact pixel-width measurements for Google Desktop snippets and exact aspect ratios for Facebook Open Graph cards. As you type, the preview reflects the exact truncation point and visual layout that searchers and social media users will see. There are no character-count guesses, only rendering reality.',
       },
       {
-        heading: 'From valid to deployed',
-        body: 'A valid JSON-LD block belongs in a script tag with type="application/ld+json" inside your page head. The validator pretty-prints your markup for embedding, and one click takes you to the JSON-LD Generator when you want to build richer schema visually instead of pasting by hand.',
-      },
+        heading: 'Private and browser-first',
+        body: 'Your code never leaves your computer. The extraction logic, the DOM parser, and the code generator all run entirely client-side in your browser. You can safely paste HTML from staging environments, intranet sites, or behind-the-login apps without exposing sensitive data.',
+      }
     ],
     faq: [
       {
-        question: 'What does "valid" mean in the validator?',
-        answer: 'Three things: the JSON parses, the @context and @type are present, and all required fields for that schema type are filled. It does not guarantee a rich result — Google still applies its own policies — but invalid or incomplete markup never earns one.',
+        question: 'Does this tool fix my live website automatically?',
+        answer: 'No. The studio extracts your code and lets you fix it visually. Once you are happy with the preview, you must copy the generated <head> code and paste it back into your CMS, Astro project, or website builder.',
       },
       {
-        question: 'Which schema types does it check?',
-        answer: 'Article, BlogPosting, Product, FAQPage, Organization, LocalBusiness, WebSite, BreadcrumbList, Person, HowTo, and Event. Other types are checked for syntax and context but do not have field requirements.',
+        question: 'Can it handle multiple schema objects on one page?',
+        answer: 'Yes. The extraction engine supports multiple <script type="application/ld+json"> blocks, as well as complex @graph arrays containing multiple entities. They will all appear in the Schema Graph tab.',
       },
       {
-        question: 'Does it detect a @graph block?',
-        answer: 'Yes. You can paste a @graph array with multiple entities; the validator iterates every node and checks each type. A single pass means every node is valid.',
-      },
-      {
-        question: 'Is this the same as Google\'s Rich Results Test?',
-        answer: 'Similar purpose, different scope. Google\'s test also checks rendering and page-level eligibility. This validator runs instantly in your browser without sending your markup anywhere, and it shares its engine with the SerpCraft audit tools.',
-      },
-      {
-        question: 'Does the validator store my JSON-LD?',
-        answer: 'No. Everything runs in your browser. Nothing you paste is sent to any server.',
-      },
-    ],
-  },
+        question: 'Why do I have to paste HTML instead of a URL?',
+        answer: 'Pasting HTML allows you to debug pages that are not publicly accessible (like staging environments or localhost). It also ensures the studio works on the exact rendered DOM you provide, avoiding issues with JavaScript rendering timeouts.',
+      }
+    ]
+  }
 };

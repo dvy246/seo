@@ -21,7 +21,7 @@ export function AboutPage() {
 
         <h2>The problem we are solving</h2>
         <p>
-          To properly SEO a single page today, you typically need five tools: a meta tag generator, a social preview checker, a JSON-LD generator, a SERP preview tool, and a robots.txt generator. Each is a separate site, a separate tab, and a separate copy-paste round. None of them remember your brand or save your work. Every visit is a blank slate.
+          I built SerpCraft out of pure frustration. Doing SEO manually for every new page meant juggling five different tools: a meta tag generator in one tab, a social preview checker in another, a JSON-LD builder somewhere else, and a SERP preview tool just to see if my title was too long. Each tool was a separate site, a separate tab, and a separate copy-paste round. None of them remembered my brand or saved my work. Every visit was a blank slate, and it was exhausting. I knew there had to be a better way to handle the technical heavy-lifting of SEO in one seamless workflow.
         </p>
 
         <h2>What SerpCraft does differently</h2>

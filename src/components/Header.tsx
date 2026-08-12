@@ -52,41 +52,100 @@ export function Header({ currentPath, locale }: HeaderProps) {
                 {t.navStudio}
               </a>
 
-              {/* Tools dropdown */}
+              {/* SEO Dropdown */}
               <div
-                className="relative"
-                onMouseEnter={() => setToolsOpen(true)}
-                onMouseLeave={() => setToolsOpen(false)}
+                className="relative group"
               >
                 <button
-                  onClick={() => setToolsOpen(!toolsOpen)}
                   className={`px-3.5 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-1 ${
-                    currentPath !== '/' && currentPath !== '/studio' && !currentPath.startsWith('/about') && !currentPath.startsWith('/privacy') && !currentPath.startsWith('/terms')
+                    ['/seo-check', '/url-debugger', '/hreflang-generator', '/robots-txt-generator', '/release-diff', '/serp-preview-tool', '/social-meta', '/og-image-checker', '/social-preview-tool'].includes(currentPath)
                       ? 'text-choco-600 dark:text-choco-400'
-                      : 'text-ink-soft dark:text-sand-300 hover:text-ink dark:hover:text-sand-50 hover:bg-sand-100 dark:hover:bg-sand-800'
+                      : 'text-ink-soft dark:text-sand-300 hover:text-ink dark:hover:text-sand-50 group-hover:bg-sand-100 dark:group-hover:bg-sand-800'
                   }`}
                 >
-                  {t.navTools}
-                  <svg className={`w-3.5 h-3.5 transition-transform ${toolsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  SEO
+                  <svg className={`w-3.5 h-3.5 transition-transform group-hover:rotate-180`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                {toolsOpen && (
-                  <div className="absolute top-full left-0 pt-1 w-[520px]">
-                    <div className="rounded-xl border border-sand-200 dark:border-sand-700 bg-white dark:bg-sand-900 shadow-lift p-2 grid grid-cols-2 gap-1">
-                      {navTools.map((tool) => (
-                        <a
-                          key={tool.path}
-                          href={href(tool.path)}
-                          className="flex flex-col items-start gap-0.5 px-3 py-2.5 rounded-lg text-left hover:bg-sand-50 dark:hover:bg-sand-800 transition-colors"
-                        >
-                          <span className="text-sm font-medium text-ink dark:text-sand-100">{tool.shortLabel}</span>
-                          <span className="text-xs text-ink-muted dark:text-sand-400">{tool.description}</span>
-                        </a>
-                      ))}
-                    </div>
+                <div className="absolute top-full left-0 pt-1 w-[480px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="rounded-xl border border-sand-200 dark:border-sand-700 bg-white dark:bg-sand-900 shadow-lift p-2 grid grid-cols-2 gap-1">
+                    {navTools.filter(t => ['/seo-check', '/url-debugger', '/hreflang-generator', '/robots-txt-generator', '/release-diff', '/serp-preview-tool', '/social-meta', '/og-image-checker', '/social-preview-tool'].includes(t.path)).map((tool) => (
+                      <a
+                        key={tool.path}
+                        href={href(tool.path)}
+                        className="flex flex-col items-start gap-0.5 px-3 py-2.5 rounded-lg text-left hover:bg-sand-50 dark:hover:bg-sand-800 transition-colors"
+                      >
+                        <span className="text-sm font-medium text-ink dark:text-sand-100">{tool.shortLabel}</span>
+                        <span className="text-xs text-ink-muted dark:text-sand-400">{tool.description}</span>
+                      </a>
+                    ))}
                   </div>
-                )}
+                </div>
+              </div>
+
+              {/* AEO Dropdown */}
+              <div
+                className="relative group"
+              >
+                <button
+                  className={`px-3.5 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-1 ${
+                    ['/schema-markup-generator', '/json-ld', '/visual-seo-studio'].includes(currentPath)
+                      ? 'text-choco-600 dark:text-choco-400'
+                      : 'text-ink-soft dark:text-sand-300 hover:text-ink dark:hover:text-sand-50 group-hover:bg-sand-100 dark:group-hover:bg-sand-800'
+                  }`}
+                >
+                  AEO
+                  <svg className={`w-3.5 h-3.5 transition-transform group-hover:rotate-180`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div className="absolute top-full left-0 pt-1 w-[260px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="rounded-xl border border-sand-200 dark:border-sand-700 bg-white dark:bg-sand-900 shadow-lift p-2 flex flex-col gap-1">
+                    {navTools.filter(t => ['/schema-markup-generator', '/json-ld', '/visual-seo-studio'].includes(t.path)).map((tool) => (
+                      <a
+                        key={tool.path}
+                        href={href(tool.path)}
+                        className="flex flex-col items-start gap-0.5 px-3 py-2.5 rounded-lg text-left hover:bg-sand-50 dark:hover:bg-sand-800 transition-colors"
+                      >
+                        <span className="text-sm font-medium text-ink dark:text-sand-100">{tool.shortLabel}</span>
+                        <span className="text-xs text-ink-muted dark:text-sand-400">{tool.description}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* GEO Dropdown */}
+              <div
+                className="relative group"
+              >
+                <button
+                  className={`px-3.5 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-1 ${
+                    ['/llms-txt-generator'].includes(currentPath)
+                      ? 'text-choco-600 dark:text-choco-400'
+                      : 'text-ink-soft dark:text-sand-300 hover:text-ink dark:hover:text-sand-50 group-hover:bg-sand-100 dark:group-hover:bg-sand-800'
+                  }`}
+                >
+                  GEO
+                  <svg className={`w-3.5 h-3.5 transition-transform group-hover:rotate-180`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div className="absolute top-full left-0 pt-1 w-[260px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="rounded-xl border border-sand-200 dark:border-sand-700 bg-white dark:bg-sand-900 shadow-lift p-2 flex flex-col gap-1">
+                    {navTools.filter(t => ['/llms-txt-generator', '/url-debugger'].includes(t.path)).map((tool) => (
+                      <a
+                        key={tool.path}
+                        href={href(tool.path)}
+                        className="flex flex-col items-start gap-0.5 px-3 py-2.5 rounded-lg text-left hover:bg-sand-50 dark:hover:bg-sand-800 transition-colors"
+                      >
+                        <span className="text-sm font-medium text-ink dark:text-sand-100">{tool.shortLabel}</span>
+                        <span className="text-xs text-ink-muted dark:text-sand-400">{tool.description}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               <a
@@ -131,8 +190,30 @@ export function Header({ currentPath, locale }: HeaderProps) {
           </div>
           <div className="p-4 space-y-1">
             <MobileLink label={t.navStudio} href={href('/studio')} active={currentPath === '/studio'} />
-            <div className="py-2 px-3 text-xs font-semibold text-ink-muted dark:text-sand-500 uppercase tracking-wide">{t.navTools}</div>
-            {navTools.map((tool) => (
+            <div className="py-2 px-3 text-xs font-semibold text-ink-muted dark:text-sand-500 uppercase tracking-wide mt-2">SEO Tools</div>
+            {navTools.filter(t => ['/seo-check', '/url-debugger', '/hreflang-generator', '/robots-txt-generator', '/release-diff', '/serp-preview-tool', '/social-meta', '/og-image-checker', '/social-preview-tool'].includes(t.path)).map((tool) => (
+              <MobileLink
+                key={tool.path}
+                label={tool.label}
+                sublabel={tool.description}
+                href={href(tool.path)}
+                active={currentPath === tool.path}
+              />
+            ))}
+
+            <div className="py-2 px-3 text-xs font-semibold text-ink-muted dark:text-sand-500 uppercase tracking-wide mt-4">AEO Tools</div>
+            {navTools.filter(t => ['/schema-markup-generator', '/json-ld', '/visual-seo-studio'].includes(t.path)).map((tool) => (
+              <MobileLink
+                key={tool.path}
+                label={tool.label}
+                sublabel={tool.description}
+                href={href(tool.path)}
+                active={currentPath === tool.path}
+              />
+            ))}
+
+            <div className="py-2 px-3 text-xs font-semibold text-ink-muted dark:text-sand-500 uppercase tracking-wide mt-4">GEO Tools</div>
+            {navTools.filter(t => ['/llms-txt-generator', '/url-debugger'].includes(t.path)).map((tool) => (
               <MobileLink
                 key={tool.path}
                 label={tool.label}

@@ -65,7 +65,7 @@ function Hero({ t }: { t: ReturnType<typeof getTranslations> }) {
                 <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
               </SmartLink>
               <SmartLink
-                to="/meta-tag-generator"
+                to="/social-meta"
                 className="btn-secondary text-base px-6 py-3.5"
               >
                 {t.browseTools}

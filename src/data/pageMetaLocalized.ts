@@ -22,25 +22,10 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'Crea todos los elementos SEO en un editor: meta tags, Open Graph, Twitter Cards, JSON-LD y robots.txt con vistas previas en vivo. Gratis, sin registro.',
     },
-    '/meta-tag-generator': {
-      title: 'Generador de meta tags gratis: título y descripción | SerpCraft',
+    '/release-diff': {
+      title: 'Release Diff: compara staging vs producción | SerpCraft',
       description:
-        'Genera meta tags SEO, etiquetas de título, meta descripciones, canónicos y directivas de robots. Vista previa en vivo y copia en un clic. Gratis.',
-    },
-    '/open-graph-generator': {
-      title: 'Generador Open Graph: OG tags gratis y vista previa | SerpCraft',
-      description:
-        'Genera etiquetas Open Graph (og:title, og:description, og:image, og:url) y previsualiza tu enlace en Facebook, LinkedIn, Slack y Discord. Gratis.',
-    },
-    '/twitter-card-generator': {
-      title: 'Generador de Twitter Cards: etiquetas X gratis | SerpCraft',
-      description:
-        'Genera etiquetas de Twitter Card (twitter:card, twitter:title, twitter:image) y previsualiza cómo se ve tu enlace en X. Gratis, con vista previa en vivo.',
-    },
-    '/json-ld-generator': {
-      title: 'Generador JSON-LD: esquema visual gratis | SerpCraft',
-      description:
-        'Crea datos estructurados JSON-LD con un editor visual para Article, Product, Organization, LocalBusiness y más. Generador JSON-LD gratis.',
+        'Compara dos URLs y detecta regresiones SEO antes del deploy: HTTP, redirecciones, canónico, meta tags, OG, JSON-LD, hreflang. Gratis.',
     },
     '/schema-markup-generator': {
       title: 'Generador de marcado Schema.org: snippets gratis | SerpCraft',
@@ -67,7 +52,7 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'Pega una URL y ve qué leen Google, Facebook y otros rastreadores: estado, redirecciones, cabeceras, meta tags y conflictos. Informe gratis.',
     },
-    '/seo-check': {
+    '/seo-checker': {
       title: 'Revisión SEO gratis: puntuación instantánea | SerpCraft',
       description:
         'Audita el SEO de cualquier web gratis: puntuación instantánea y lista priorizada de problemas on-page, técnicos, sociales y de IA en 21 comprobaciones.',
@@ -87,10 +72,20 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'Verifica tu imagen Open Graph en el servidor: formato, dimensiones 1200x630, proporción 1.91:1 y tamaño. Comprobador de imagen OG gratis.',
     },
-    '/json-ld-validator': {
-      title: 'Validador JSON-LD: datos estructurados gratis | SerpCraft',
+    '/social-meta': {
+      title: 'Generador meta social: OG, Twitter, SEO | SerpCraft',
       description:
-        'Valida tus datos estructurados JSON-LD: sintaxis, campos obligatorios de schema.org y elegibilidad para resultados enriquecidos. Gratis, sin registro.',
+        'Genera meta tags: Open Graph, Twitter/X Cards, meta SEO. Vista previa, copia. Gratis.',
+    },
+    '/json-ld': {
+      title: 'Kit JSON-LD: generador y validador | SerpCraft',
+      description:
+        'Construye y valida JSON-LD. Visual + validador sintaxis. Gratis.',
+    },
+    '/visual-seo-studio': {
+      title: 'Estudio de remediación visual SEO | SerpCraft',
+      description:
+        'Extrae, visualiza y edita tus metadatos y gráficos de esquema de forma visual. Un espacio de trabajo SEO todo en uno.',
     },
   },
   fr: {
@@ -104,25 +99,10 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'Créez tous vos éléments SEO dans un éditeur : meta tags, Open Graph, Twitter Cards, JSON-LD, robots.txt avec aperçus en direct. Gratuit, sans inscription.',
     },
-    '/meta-tag-generator': {
-      title: 'Générateur de meta tags gratuit : titre et description | SerpCraft',
+    '/release-diff': {
+      title: 'Release Diff : comparer staging vs production | SerpCraft',
       description:
-        'Générez des meta tags SEO, balises title, meta descriptions, URL canoniques et directives robots. Aperçu en direct, copie en un clic. Gratuit.',
-    },
-    '/open-graph-generator': {
-      title: 'Générateur Open Graph : balises OG et aperçu gratuits | SerpCraft',
-      description:
-        'Générez des balises Open Graph (og:title, og:description, og:image, og:url) et prévisualisez votre lien sur Facebook, LinkedIn, Slack et Discord. Gratuit.',
-    },
-    '/twitter-card-generator': {
-      title: 'Générateur de Twitter Cards : balises X gratuites | SerpCraft',
-      description:
-        'Générez des balises Twitter Card (twitter:card, twitter:title, twitter:image) et prévisualisez votre lien sur X. Gratuit, avec aperçu en direct.',
-    },
-    '/json-ld-generator': {
-      title: 'Générateur JSON-LD : éditeur visuel de schéma gratuit | SerpCraft',
-      description:
-        'Créez des données structurées JSON-LD avec un éditeur visuel pour Article, Product, Organization, LocalBusiness et plus. Générateur JSON-LD gratuit.',
+        'Comparez deux URLs et détectez les régressions SEO avant déploiement : HTTP, redirections, canonique, meta tags, OG, JSON-LD, hreflang. Gratuit.',
     },
     '/schema-markup-generator': {
       title: 'Générateur de balisage Schema.org : extraits gratuits | SerpCraft',
@@ -145,11 +125,11 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
         'Générez un fichier robots.txt avec directives allow, disallow, sitemap et crawl-delay. Générateur robots.txt gratuit avec copie en un clic.',
     },
     '/url-debugger': {
-      title: 'Débogueur d’URL : ce que lisent Google et les bots | SerpCraft',
+      title: 'Débogueur d\u2019URL : que lisent Google et les bots | SerpCraft',
       description:
         'Collez une URL et voyez ce que lisent Google, Facebook et les autres robots : statut, redirections, en-têtes, meta tags et conflits. Rapport gratuit.',
     },
-    '/seo-check': {
+    '/seo-checker': {
       title: 'Vérification SEO gratuite : audit et score instantanés | SerpCraft',
       description:
         'Audit SEO gratuit de n\u2019importe quel site : score instantané et liste priorisée des problèmes on-page, techniques, sociaux et d\u2019IA en 21 vérifications.',
@@ -169,10 +149,20 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'Vérifiez votre image Open Graph côté serveur : format, dimensions 1200x630, ratio 1.91:1 et taille. Vérificateur d\u2019image OG gratuit.',
     },
-    '/json-ld-validator': {
-      title: 'Validateur JSON-LD : données structurées | SerpCraft',
+    '/social-meta': {
+      title: 'Générateur de méta social : OG, Twitter et méta tags | SerpCraft',
       description:
-        'Validez vos données structurées JSON-LD : syntaxe, champs schema.org requis et éligibilité aux résultats enrichis. Gratuit, sans inscription.',
+        'Générez méta tags sociaux : Open Graph, Twitter/X Cards, méta SEO. Aperçu en direct, copie en un clic. Gratuit.',
+    },
+    '/json-ld': {
+      title: 'Kit JSON-LD : générateur et validateur | SerpCraft',
+      description:
+        'Construisez et validez JSON-LD. Créateur visuel + validateur syntaxe avec rich results. Gratuit.',
+    },
+    '/visual-seo-studio': {
+      title: 'Studio de remédiation visuelle SEO | SerpCraft',
+      description:
+        'Extrayez, visualisez et modifiez vos métadonnées et votre graphique de schéma de manière visuelle.',
     },
   },
   de: {
@@ -186,25 +176,10 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'Erstellen Sie alle SEO-Elemente in einem Editor: Meta-Tags, Open Graph, Twitter Cards, JSON-LD und robots.txt mit Live-Vorschauen. Kostenlos, ohne Anmeldung.',
     },
-    '/meta-tag-generator': {
-      title: 'Meta-Tag-Generator: kostenlose Titel & Beschreibung | SerpCraft',
+    '/release-diff': {
+      title: 'Release Diff: Staging vs Produktion vergleichen | SerpCraft',
       description:
-        'Erzeugen Sie SEO-Meta-Tags, Titel-Tags, Meta-Descriptions, Canonicals und Robots-Anweisungen. Live-Vorschau, Ein-Klick-Kopieren. Kostenlos.',
-    },
-    '/open-graph-generator': {
-      title: 'Open-Graph-Generator: OG-Tags & Vorschau | SerpCraft',
-      description:
-        'Erzeugen Sie Open-Graph-Tags (og:title, og:description, og:image, og:url) und sehen Sie, wie Ihr Link auf Facebook, LinkedIn, Slack und Discord aussieht. Kostenlos.',
-    },
-    '/twitter-card-generator': {
-      title: 'Twitter-Card-Generator: kostenlose X-Card-Tags | SerpCraft',
-      description:
-        'Erzeugen Sie Twitter-Card-Tags (twitter:card, twitter:title, twitter:image) und sehen Sie die Vorschau auf X. Kostenlos, mit Live-Vorschau.',
-    },
-    '/json-ld-generator': {
-      title: 'JSON-LD-Generator: visueller Schema-Builder | SerpCraft',
-      description:
-        'Erstellen Sie JSON-LD-Structured-Data mit visuellem Editor für Article, Product, Organization, LocalBusiness und mehr. Kostenlos.',
+        'Vergleichen Sie zwei URLs und finden Sie SEO-Fehler vor Deploy: HTTP, Weiterleitungen, Canonical, Meta-Tags, OG, JSON-LD, hreflang. Kostenlos.',
     },
     '/schema-markup-generator': {
       title: 'Schema.org-Markup-Generator: kostenlose Snippets | SerpCraft',
@@ -231,7 +206,7 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'Fügen Sie eine URL ein und sehen Sie, was Google, Facebook und andere Crawler lesen: Status, Weiterleitungen, Header, Meta-Tags und Konflikte. Kostenlos.',
     },
-    '/seo-check': {
+    '/seo-checker': {
       title: 'Kostenloser SEO-Check: sofortige Analyse und Score | SerpCraft',
       description:
         'Kostenloser SEO-Check für jede Website: Sofort-Score und priorisierte Liste von On-Page-, technischen, sozialen und KI-Readiness-Problemen in 21 Checks.',
@@ -251,10 +226,20 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'Prüfen Sie Ihr Open-Graph-Bild serverseitig: Format, 1200x630-Maße, 1.91:1-Seitenverhältnis und Dateigröße. Kostenloser OG-Bild-Checker.',
     },
-    '/json-ld-validator': {
-      title: 'JSON-LD-Validator: kostenloser Structured-Data-Check | SerpCraft',
+    '/social-meta': {
+      title: 'Social-Meta-Generator: OG, Twitter & Meta-Tags | SerpCraft',
       description:
-        'Validieren Sie Ihre JSON-LD-Daten: Syntax, Pflichtfelder von schema.org und Rich-Results-Eignung. Kostenlos, ohne Anmeldung.',
+        'Generieren Sie soziale Meta-Tags: Open Graph, Twitter/X Cards, Meta-SEO. Live-Vorschau, Ein-Klick-Kopieren. Kostenlos.',
+    },
+    '/json-ld': {
+      title: 'JSON-LD-Toolkit: Generator & Validator | SerpCraft',
+      description:
+        'Erstellen und validieren Sie JSON-LD. Visueller Builder + Syntax-Validator. Kostenlos.',
+    },
+    '/visual-seo-studio': {
+      title: 'Visual SEO Remediation Studio | SerpCraft',
+      description:
+        'Extrahieren, visualisieren und bearbeiten Sie Ihre Metadaten und Ihr Schema-Diagramm visuell.',
     },
   },
   pt: {
@@ -268,25 +253,10 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'Crie todos os elementos de SEO em um editor: meta tags, Open Graph, Twitter Cards, JSON-LD e robots.txt com previews ao vivo. Grátis, sem cadastro.',
     },
-    '/meta-tag-generator': {
-      title: 'Gerador de meta tags grátis: título e descrição | SerpCraft',
+    '/release-diff': {
+      title: 'Release Diff: compare staging vs produção | SerpCraft',
       description:
-        'Gere meta tags SEO, title tags, meta descriptions, canônicos e diretivas de robots. Preview ao vivo, cópia em um clique. Grátis.',
-    },
-    '/open-graph-generator': {
-      title: 'Gerador Open Graph: tags OG grátis e preview | SerpCraft',
-      description:
-        'Gere tags Open Graph (og:title, og:description, og:image, og:url) e veja o preview do seu link no Facebook, LinkedIn, Slack e Discord. Grátis.',
-    },
-    '/twitter-card-generator': {
-      title: 'Gerador de Twitter Cards: tags X grátis | SerpCraft',
-      description:
-        'Gere tags de Twitter Card (twitter:card, twitter:title, twitter:image) e veja como seu link aparece no X. Grátis, com preview ao vivo.',
-    },
-    '/json-ld-generator': {
-      title: 'Gerador JSON-LD: construtor visual de schema grátis | SerpCraft',
-      description:
-        'Crie dados estruturados JSON-LD com um editor visual para Article, Product, Organization, LocalBusiness e mais. Gerador JSON-LD grátis.',
+        'Compare duas URLs (staging vs produção) e detecte regressões de SEO antes do deploy: status HTTP, redirecionamentos, canônico, meta tags, OG, JSON-LD, hreflang. Grátis.',
     },
     '/schema-markup-generator': {
       title: 'Gerador de marcação Schema.org: snippets grátis | SerpCraft',
@@ -313,7 +283,7 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'Cole uma URL e veja o que o Google, Facebook e outros crawlers leem: status, redirecionamentos, headers, meta tags e conflitos. Relatório grátis.',
     },
-    '/seo-check': {
+    '/seo-checker': {
       title: 'Check de SEO grátis: auditoria e score instantâneos | SerpCraft',
       description:
         'Audite o SEO de qualquer site grátis: score instantâneo e lista priorizada de problemas on-page, técnicos, sociais e de IA em 21 verificações.',
@@ -333,10 +303,20 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'Verifique sua imagem Open Graph no servidor: formato, dimensões 1200x630, proporção 1.91:1 e tamanho. Verificador de imagem OG grátis.',
     },
-    '/json-ld-validator': {
-      title: 'Validador JSON-LD: dados estruturados grátis | SerpCraft',
+    '/social-meta': {
+      title: 'Gerador de meta social: OG, Twitter e meta tags | SerpCraft',
       description:
-        'Valide seus dados estruturados JSON-LD: sintaxe, campos obrigatórios do schema.org e elegibilidade para rich results. Grátis, sem cadastro.',
+        'Gere meta tags sociais: Open Graph, Twitter/X Cards, meta SEO. Preview ao vivo, cópia em um clique. Grátis.',
+    },
+    '/json-ld': {
+      title: 'Kit JSON-LD: gerador e validador | SerpCraft',
+      description:
+        'Construa e valide JSON-LD. Criador visual + validador sintaxe com rich results. Grátis.',
+    },
+    '/visual-seo-studio': {
+      title: 'Estúdio de remediação visual SEO | SerpCraft',
+      description:
+        'Extraia, visualize e edite seus metadados e gráfico de esquema visualmente. Um espaço de trabalho SEO completo.',
     },
   },
   ja: {
@@ -350,25 +330,10 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'メタタグ、Open Graph、Twitter Cards、JSON-LD、robots.txtを1つのエディタで作成し、リアルタイムプレビューを確認。無料・登録不要。',
     },
-    '/meta-tag-generator': {
-      title: '無料メタタグ生成ツール：タイトルと説明文｜SerpCraft',
+    '/release-diff': {
+      title: 'Release Diff：ステージングと本番のURL比較｜SerpCraft',
       description:
-        'SEOメタタグ、タイトルタグ、メタディスクリプション、正規URL、robots指定を生成。ライブプレビュー、ワンクリックコピー。無料。',
-    },
-    '/open-graph-generator': {
-      title: 'Open Graph生成：無料のOGタグ作成とプレビュー｜SerpCraft',
-      description:
-        'Open Graphタグ（og:title、og:description、og:image、og:url）を生成し、Facebook・LinkedIn・Slack・Discordでの見え方をプレビュー。無料。',
-    },
-    '/twitter-card-generator': {
-      title: 'Twitterカード生成：無料のXカードタグ作成｜SerpCraft',
-      description:
-        'Twitter Cardタグ（twitter:card、twitter:title、twitter:image）を生成し、Xでの見え方をライブプレビュー。無料。',
-    },
-    '/json-ld-generator': {
-      title: 'JSON-LD生成：無料のビジュアルスキーマ作成｜SerpCraft',
-      description:
-        'Article、Product、Organization、LocalBusinessなどのJSON-LD構造化データをビジュアルエディタで作成。無料のJSON-LD生成ツール。',
+        '2つのURL（ステージングと本番）を比較し、デプロイ前のSEOリグレッションを検出：HTTPステータス、リダイレクト、正規URL、メタタグ、OG、JSON-LD、hreflang。無料。',
     },
     '/schema-markup-generator': {
       title: 'Schema.org生成：無料のマークアップ作成｜SerpCraft',
@@ -395,7 +360,7 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'URLを貼り付けて、GoogleやFacebookなどが読む内容（ステータス、リダイレクト、ヘッダー、メタタグ、競合）を確認。無料レポート。',
     },
-    '/seo-check': {
+    '/seo-checker': {
       title: '無料SEOチェック：即時サイト監査とスコア｜SerpCraft',
       description:
         '任意のサイトのSEOを無料でチェック。21項目のチェックでオンページ・技術・SNS・AI対応の問題を優先度順にスコア表示。登録不要。',
@@ -415,10 +380,20 @@ export const pageMetaLocalized: Partial<Record<Locale, Record<string, LocalizedM
       description:
         'Open Graph画像をサーバー側で検証：形式、1200x630サイズ、1.91:1比率、ファイル容量。無料のOG画像チェッカー。',
     },
-    '/json-ld-validator': {
-      title: 'JSON-LDバリデーター：無料の構造化データ検証｜SerpCraft',
+    '/social-meta': {
+      title: 'ソーシャルメタ生成：OG、Twitter、メタタグ｜SerpCraft',
       description:
-        'JSON-LD構造化データの構文、schema.org必須フィールド、リッチリザルト適合性を検証。無料・登録不要。',
+        'ソーシャルメタタグ生成：Open Graph、Twitter/Xカード、標準メタ。ライブプレビュー、ワンクリックコピー。無料。',
+    },
+    '/json-ld': {
+      title: 'JSON-LDツールキット：生成と検証｜SerpCraft',
+      description:
+        'JSON-LD構築と検証を一緒に。ビジュアルビルダー＋バリデーター。無料。',
+    },
+    '/visual-seo-studio': {
+      title: 'ビジュアルSEO修復スタジオ｜SerpCraft',
+      description:
+        'メタデータとスキーマグラフを抽出、視覚化、編集します。ピクセル精度のSERPプレビューを備えたオールインワンのSEOワークスペース。',
     },
   },
 };

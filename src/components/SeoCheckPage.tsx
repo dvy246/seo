@@ -18,6 +18,9 @@ import {
   Sparkles,
   Target,
   XCircle,
+  Printer,
+  Bot,
+  FileText
 } from 'lucide-react';
 import { SmartLink } from '@/components/SmartLink';
 import { problemGuides } from '@/data/problems';
@@ -94,6 +97,9 @@ export function SeoCheckPage() {
   const [error, setError] = useState('');
   const [showPasses, setShowPasses] = useState(false);
   const [history, setHistory] = useState<AuditHistoryEntry[]>(() => loadAuditHistory());
+  const [aiIssues, setAiIssues] = useState<{ issue: string; advice: string; impact: string }[]>([]);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState('');
 
   const run = async (urlOverride?: string) => {
     const target = (urlOverride ?? url).trim();
@@ -125,6 +131,30 @@ export function SeoCheckPage() {
       setResult({ snapshot: data as AuditSnapshot, checks: (data as { checks: AuditCheck[] }).checks, scores: (data as { scores: AuditScores }).scores, cached: (data as { cached?: boolean }).cached });
       setHistory(upsertAuditHistory({ url: target, date: Date.now(), overall: (data as { scores: AuditScores }).scores?.overall ?? 0, httpStatus: (data as { httpStatus: number }).httpStatus ?? null }));
       if (urlOverride) setUrl(urlOverride);
+
+      // Trigger AI Semantic Consultant in the background
+      setAiLoading(true);
+      setAiError('');
+      setAiIssues([]);
+      fetch('/api/ai-consultant', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: target }),
+      })
+        .then((aiRes) => {
+          if (!aiRes.ok) throw new Error('AI Consultant rate limited or failed.');
+          return aiRes.json();
+        })
+        .then((aiData: any) => {
+          if (Array.isArray(aiData.issues)) setAiIssues(aiData.issues);
+        })
+        .catch((err) => {
+          setAiError(err.message);
+        })
+        .finally(() => {
+          setAiLoading(false);
+        });
+
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Audit failed. Please try again.');
     } finally {
@@ -132,20 +162,128 @@ export function SeoCheckPage() {
     }
   };
 
-  const exportReport = () => {
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const exportHtmlReport = () => {
     if (!result) return;
-    const payload = {
-      exportedAt: new Date().toISOString(),
-      tool: 'SerpCraft SEO Check',
-      url: result.snapshot.url,
-      snapshot: result.snapshot,
-      checks: result.checks,
-      scores: result.scores,
-    };
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const reportHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEO Report - ${result.snapshot.url}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAFAF9; --ink: #1C1917; --muted: #78716C; --soft: #44403C;
+      --card: #FFFFFF; --border: #E7E5E4;
+      --error: #DC2626; --error-bg: #FEF2F2; --error-border: #FCA5A5;
+      --warn: #D97706; --warn-bg: #FFFBEB; --warn-border: #FCD34D;
+      --pass: #16A34A; --pass-bg: #F0FDF4; --pass-border: #86EFAC;
+      --brand: #5D4037; --brand-light: #D7CCC8;
+    }
+    body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; color: var(--ink); background: var(--bg); margin: 0; padding: 2rem 1rem; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 800px; margin: 0 auto; }
+    h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; color: var(--ink); margin-top: 0; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .header { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .header-text p { margin: 0.25rem 0; color: var(--muted); font-size: 0.9rem; }
+    .header-text h1 { margin: 0 0 0.5rem 0; font-size: 1.75rem; word-break: break-all; }
+    .score-box { text-align: center; background: var(--bg); padding: 1.5rem; border-radius: 12px; min-width: 120px; border: 1px solid var(--border); }
+    .score-val { font-size: 3.5rem; font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+    .score-lbl { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-top: 0.5rem; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .section-title { font-size: 1.25rem; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--brand-light); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+    .card-error { background: var(--error-bg); border-color: var(--error-border); }
+    .card-warning { background: var(--warn-bg); border-color: var(--warn-border); }
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+    .card-title { margin: 0; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; }
+    .pill { font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.02em; white-space: nowrap; }
+    .pill-error { background: rgba(220,38,38,0.1); color: var(--error); }
+    .pill-warning { background: rgba(217,119,6,0.1); color: var(--warn); }
+    .pill-pass { background: rgba(22,163,74,0.1); color: var(--pass); }
+    .card p { margin: 0; font-size: 0.95rem; color: var(--soft); }
+    pre { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: var(--muted); margin-top: 1rem; white-space: pre-wrap; word-break: break-all; }
+    .pass-list { list-style: none; padding: 0; margin: 0; }
+    .pass-list li { background: var(--pass-bg); border: 1px solid var(--pass-border); padding: 1rem; border-radius: 8px; margin-bottom: 0.5rem; display: flex; gap: 0.75rem; align-items: flex-start; }
+    .pass-list li svg { width: 20px; height: 20px; color: var(--pass); flex-shrink: 0; margin-top: 0.1rem; }
+    .ai-note { font-size: 0.9rem; color: var(--muted); font-style: italic; margin-bottom: 1.5rem; background: #F3E8FF; padding: 1rem; border-radius: 8px; border: 1px solid #E9D5FF; color: #6B21A8; }
+    .footer { text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+    @media print {
+      body { background: white !important; }
+      .header, .card { box-shadow: none !important; break-inside: avoid; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header-text">
+        <p>SEO Analysis Report</p>
+        <h1><a href="${result.snapshot.url}" target="_blank">${result.snapshot.url}</a></h1>
+        <p>Generated: ${new Date().toLocaleString()}</p>
+      </div>
+      <div class="score-box">
+        <div class="score-val" style="color: ${result.scores.overall >= 80 ? 'var(--pass)' : result.scores.overall >= 50 ? 'var(--warn)' : 'var(--error)'}">${result.scores.overall}</div>
+        <div class="score-lbl">Overall Score</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Prioritized Fixes</h2>
+    ${result.checks.filter(c => c.status !== 'pass').sort((a, b) => impactRank(a.impact) - impactRank(b.impact)).map(c => `
+      <div class="card card-${c.status}">
+        <div class="card-header">
+          <h3 class="card-title">${c.label}</h3>
+          <span class="pill pill-${c.status}">${c.impact} impact</span>
+        </div>
+        <p>${c.message}</p>
+        ${c.evidence ? `<pre>${c.evidence.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>` : ''}
+      </div>
+    `).join('') || '<p>No errors or warnings found!</p>'}
+
+    ${aiIssues.length > 0 ? `
+    <h2 class="section-title">AI Semantic Consultant</h2>
+    <p class="ai-note">This semantic analysis is provided by AI and focuses on intent, copywriting, and E-E-A-T trust signals.</p>
+    ${aiIssues.map(ai => `
+      <div class="card" style="background: #FAFAFA">
+        <div class="card-header">
+          <h3 class="card-title">${ai.issue}</h3>
+          <span class="pill" style="background:#F3E8FF; color:#7E22CE">AI Insight</span>
+        </div>
+        <p style="margin-top: 0.75rem"><strong>Recommendation:</strong> ${ai.advice}</p>
+      </div>
+    `).join('')}
+    ` : ''}
+
+    <h2 class="section-title">Passed Checks (${result.checks.filter(c => c.status === 'pass').length})</h2>
+    <ul class="pass-list">
+      ${result.checks.filter(c => c.status === 'pass').map(c => `
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 6L9 17l-5-5"/></svg>
+          <div>
+            <strong>${c.label}</strong>
+            <div style="font-size: 0.85rem; color: var(--soft); margin-top: 0.25rem;">${c.message}</div>
+          </div>
+        </li>
+      `).join('')}
+    </ul>
+
+    <div class="footer">
+      Generated by <strong>SerpCraft SEO Studio</strong>
+    </div>
+  </div>
+</body>
+</html>`;
+    const blob = new Blob([reportHtml], { type: 'text/html' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = `seo-check-${(result.snapshot.url || 'page').replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'page'}.json`;
+    a.download = `seo-report-${(result.snapshot.url || 'page').replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'page'}.html`;
     a.click();
     URL.revokeObjectURL(a.href);
   };
@@ -312,7 +450,7 @@ export function SeoCheckPage() {
               </div>
 
               {/* Actions */}
-              <div className="mt-5 flex items-center gap-2 flex-wrap pt-4 border-t border-sand-200 dark:border-sand-800">
+              <div className="mt-5 flex items-center gap-2 flex-wrap pt-4 border-t border-sand-200 dark:border-sand-800 print:hidden">
                 <button
                   onClick={() => void run()}
                   className="btn btn-secondary"
@@ -320,8 +458,11 @@ export function SeoCheckPage() {
                 >
                   <RefreshCw className="w-3.5 h-3.5" /> Re-run check
                 </button>
-                <button onClick={exportReport} className="btn btn-ghost">
-                  <Download className="w-3.5 h-3.5" /> Download report
+                <button onClick={handlePrint} className="btn btn-ghost">
+                  <Printer className="w-3.5 h-3.5" /> Print Report
+                </button>
+                <button onClick={exportHtmlReport} className="btn btn-ghost">
+                  <FileText className="w-3.5 h-3.5" /> Export HTML
                 </button>
                 <a
                   href={`https://search.google.com/test/rich-results?url=${encodeURIComponent(result.snapshot.url)}`}
@@ -379,6 +520,61 @@ export function SeoCheckPage() {
               )}
             </section>
           )}
+
+          {/* AI Semantic Consultant */}
+          {(aiLoading || aiIssues.length > 0 || aiError) && (
+            <section className="max-w-3xl mx-auto">
+              <div className="flex items-center gap-2 mb-4">
+                <Bot className="w-4 h-4 text-choco-600 dark:text-choco-400" />
+                <h3 className="text-sm font-semibold text-ink dark:text-sand-50">AI Semantic Consultant</h3>
+                <span className="text-xs text-ink-muted dark:text-sand-400">— semantic & intent analysis</span>
+              </div>
+              
+              {aiLoading ? (
+                <div className="p-5 rounded-xl border border-sand-200 dark:border-sand-800 bg-white dark:bg-sand-900 flex items-center gap-3">
+                  <Loader2 className="w-4 h-4 animate-spin text-choco-600 dark:text-choco-400" />
+                  <p className="text-sm text-ink-soft dark:text-sand-300">AI is analyzing semantic intent and E-E-A-T signals...</p>
+                </div>
+              ) : aiError ? (
+                // Graceful degradation: show a quiet warning if AI fails, but don't break the page
+                <div className="p-4 rounded-xl border border-warning/30 bg-warning/[0.04] text-sm text-warning flex items-start gap-2.5 print:hidden">
+                  <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                  <p>AI analysis is temporarily unavailable due to high demand. Your technical SEO results above are still 100% accurate.</p>
+                </div>
+              ) : aiIssues.length === 0 ? (
+                <div className="p-4 rounded-xl border border-success/25 bg-success/[0.03] flex items-start gap-3">
+                  <CheckCircle2 className="w-4 h-4 text-success flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-ink-soft dark:text-sand-200">The AI found no semantic or intent issues. Your content appears highly relevant and well-structured.</p>
+                </div>
+              ) : (
+                <div className="space-y-2.5">
+                  {aiIssues.map((ai, i) => (
+                    <div key={i} className="p-4 rounded-xl border border-sand-200 dark:border-sand-800 bg-white dark:bg-sand-900">
+                      <div className="flex items-start gap-3 mb-2">
+                        <Sparkles className="w-4 h-4 text-choco-600 dark:text-choco-400 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-sm font-medium text-ink dark:text-sand-50">{ai.issue}</p>
+                        </div>
+                      </div>
+                      <div className="pl-7">
+                        <p className="text-sm text-ink-soft dark:text-sand-300 bg-sand-50 dark:bg-sand-900/50 p-3 rounded-lg border border-sand-100 dark:border-sand-800/60">
+                          <span className="font-semibold block mb-1">Recommendation:</span>
+                          {ai.advice}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                  <SmartLink
+                    to="/visual-seo-studio"
+                    className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-choco-600 dark:text-choco-400 hover:underline underline-offset-2 print:hidden"
+                  >
+                    Fix these semantic issues in the Visual SEO Studio <ArrowRight className="w-3.5 h-3.5" />
+                  </SmartLink>
+                </div>
+              )}
+            </section>
+          )}
+
 
           {/* Full checks list — fail/warn by default, passes behind a disclosure. */}
           <section className="max-w-3xl mx-auto">
@@ -478,7 +674,7 @@ export function SeoCheckPage() {
           </div>
           <h3 className="text-xl font-medium text-ink dark:text-sand-50 mb-2">Check any page’s SEO in seconds</h3>
           <p className="text-sm text-ink-muted dark:text-sand-400 max-w-md mx-auto leading-relaxed">
-            Paste a URL above. SerpCraft fetches it server-side and runs 21 in-page SEO checks — meta tags, content, Open Graph, structured data, accessibility, and AI-readiness signals — then gives you a grade and a ranked fix list. No account, no email, no install.
+            Paste a URL above. SerpCraft fetches it server-side and runs 21 in-page SEO checks — meta tags, content, Open Graph, structured data, accessibility, and machine-readiness signals. We extract raw HTML evidence (like canonical mismatches and redirect chains) so you know exactly what search engines see. No account, no email, no install.
           </p>
 
           {sampleHistory.length > 0 && (

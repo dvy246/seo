@@ -67,7 +67,7 @@ export const problemGuides: ProblemGuide[] = [
     ],
     relatedTools: [
       { path: '/url-debugger', label: 'URL Debugger' },
-      { path: '/meta-tag-generator', label: 'Meta Tag Generator' },
+      { path: '/social-meta', label: 'Social Meta Generator' },
       { path: '/serp-preview-tool', label: 'SERP Preview Tool' },
     ],
   },
@@ -126,7 +126,7 @@ export const problemGuides: ProblemGuide[] = [
     relatedTools: [
       { path: '/url-debugger', label: 'URL Debugger' },
       { path: '/og-image-checker', label: 'OG Image Checker' },
-      { path: '/open-graph-generator', label: 'Open Graph Generator' },
+      { path: '/social-meta', label: 'Social Meta Generator' },
     ],
   },
   {

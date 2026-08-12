@@ -1,0 +1,77 @@
+{
+  "routes": [
+    {
+      "routePath": "/api/ai-consultant",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/ai-consultant.ts:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/audit",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/audit.ts:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/beta-signup",
+      "mountPath": "/api",
+      "method": "OPTIONS",
+      "module": [
+        "api/beta-signup.ts:onRequestOptions"
+      ]
+    },
+    {
+      "routePath": "/api/beta-signup",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/beta-signup.ts:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/og-image",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/og-image.ts:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/release-diff",
+      "mountPath": "/api",
+      "method": "OPTIONS",
+      "module": [
+        "api/release-diff.ts:onRequestOptions"
+      ]
+    },
+    {
+      "routePath": "/api/release-diff",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/release-diff.ts:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/audit",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/audit.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/og-image",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/og-image.ts:onRequest"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}

@@ -1,25 +1,28 @@
 # SerpCraft
 
-> Free SEO meta tag studio: generate meta tags, Open Graph, Twitter Cards, JSON-LD structured data, robots.txt, and pixel-accurate SERP previews. Includes a URL debugger that shows exactly what search engines and social platforms read from any page — status, redirects, headers, meta tags, and conflicting signals.
+> Free SEO meta tag studio: generate meta tags, Open Graph, Twitter Cards, JSON-LD structured data, robots.txt, and pixel-accurate SERP previews. Includes a Release Diff tool that compares staging vs production URLs to catch SEO regressions before deploy (HTTP status, redirects, canonicals, meta tags, Open Graph, JSON-LD, hreflang), and a URL debugger that shows exactly what search engines and social platforms read from any page.
 
 ## Tools
 
+- Release Diff (staging vs production SEO regression check): https://metaforge.app/release-diff
 - SEO Check (free 21-point website audit + AI-readiness score): https://metaforge.app/seo-check
 - SEO Studio (all-in-one editor + previews): https://metaforge.app/studio
 - URL Debugger (see what crawlers actually read): https://metaforge.app/url-debugger
 - llms.txt Generator (AI crawler file builder): https://metaforge.app/llms-txt-generator
 - Hreflang Generator (multilingual tags with validation): https://metaforge.app/hreflang-generator
 - OG Image Checker (server-side image verification): https://metaforge.app/og-image-checker
-- JSON-LD Validator (structured data verification): https://metaforge.app/json-ld-validator
-- Meta Tag Generator: https://metaforge.app/meta-tag-generator
-- Open Graph Generator: https://metaforge.app/open-graph-generator
-- Twitter Card Generator: https://metaforge.app/twitter-card-generator
-- JSON-LD Generator: https://metaforge.app/json-ld-generator
+- Social Meta Generator (Open Graph, Twitter/X Cards, meta tags): https://metaforge.app/social-meta
+- JSON-LD Toolkit (generator + validator for structured data): https://metaforge.app/json-ld
 - Schema Markup Generator: https://metaforge.app/schema-markup-generator
 - Social Preview Tool: https://metaforge.app/social-preview-tool
 - SERP Preview Tool: https://metaforge.app/serp-preview-tool
 - Robots.txt Generator: https://metaforge.app/robots-txt-generator
 
+## Pricing
+
+- Free: all tools, no signup. https://metaforge.app/pricing.md
+- Pro (planned): higher rate limits, batch diff, history. https://metaforge.app/pricing.md
+
 ## About
 
-SerpCraft is a free, browser-based SEO meta tag studio. All user data stays in the browser via localStorage. No signup required.
+SerpCraft is a free, browser-based SEO meta tag studio. All user data stays in the browser via localStorage. No signup required. The Release Diff tool is the first AI-search-readiness guard for pre-launch deployment workflows.

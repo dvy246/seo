@@ -1,6 +1,7 @@
 ---
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { NavigationBot } from '@/components/NavigationBot';
 import { pageMeta } from '@/data/pages';
 import { pageMetaLocalized } from '@/data/pageMetaLocalized';
 import { locales, extractLocale, withLocale, type Locale } from '@/lib/i18n';
@@ -153,5 +154,6 @@ const webAppSchema = {
       <slot />
     </main>
     <Footer client:idle />
+    <NavigationBot client:load />
   </body>
 </html>

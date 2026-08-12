@@ -28,8 +28,8 @@ export function NotFoundPage() {
           <p className="text-sm text-ink-muted mb-3">Or try one of these tools:</p>
           <div className="flex flex-wrap gap-2 justify-center">
             {[
-              { label: 'Meta Tag Generator', path: '/meta-tag-generator' },
-              { label: 'JSON-LD Generator', path: '/json-ld-generator' },
+              { label: 'Social Meta', path: '/social-meta' },
+              { label: 'JSON-LD', path: '/json-ld' },
               { label: 'SERP Preview', path: '/serp-preview-tool' },
               { label: 'Robots.txt', path: '/robots-txt-generator' },
             ].map((t) => (

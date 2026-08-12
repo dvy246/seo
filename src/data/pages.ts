@@ -29,41 +29,23 @@ export const pageMeta: Record<string, PageMeta> = {
     ogType: 'website',
     keywords: 'meta tag generator, SEO tags, open graph, twitter cards, json-ld, structured data, serp preview',
   },
-  '/meta-tag-generator': {
-    path: '/meta-tag-generator',
-    title: 'Free Meta Tag Generator: Title & Description Tags | SerpCraft',
+  '/social-meta': {
+    path: '/social-meta',
+    title: 'Social Meta Generator: OG, Twitter & Meta Tags | SerpCraft',
     description:
-      'Generate SEO meta tags, title tags, meta descriptions, canonical URLs, and robots directives. Live preview, one-click copy. Free meta tag generator.',
-    h1: 'Meta Tag Generator',
+      'Generate social meta tags: Open Graph, Twitter/X Cards, plus SEO meta tags. Live preview, one-click copy. Free.',
+    h1: 'Social Meta Generator',
     ogType: 'website',
-    keywords: 'meta tag generator, title tag generator, meta description generator, SEO meta tags, html meta tags',
+    keywords: 'open graph generator, twitter card generator, meta tag generator, og tags, twitter cards, social meta tags',
   },
-  '/open-graph-generator': {
-    path: '/open-graph-generator',
-    title: 'Open Graph Generator: Free OG Tags & Preview | SerpCraft',
+  '/json-ld': {
+    path: '/json-ld',
+    title: 'JSON-LD Toolkit: Generator & Validator | SerpCraft',
     description:
-      'Generate Open Graph tags (og:title, og:description, og:image, og:url) and preview your link on Facebook, LinkedIn, Slack, and Discord. Free.',
-    h1: 'Open Graph Generator',
+      'Build and validate JSON-LD structured data. Visual schema builder + syntax validator with rich-result check. Free.',
+    h1: 'JSON-LD Toolkit',
     ogType: 'website',
-    keywords: 'open graph generator, og tags, og:title, og:image, facebook preview, open graph preview',
-  },
-  '/twitter-card-generator': {
-    path: '/twitter-card-generator',
-    title: 'Twitter Card Generator: Free X Card Tags | SerpCraft',
-    description:
-      'Generate Twitter Card tags (twitter:card, twitter:title, twitter:image) and preview how your link appears on X. Free, with live preview.',
-    h1: 'Twitter Card Generator',
-    ogType: 'website',
-    keywords: 'twitter card generator, twitter card tags, x card, twitter:image, twitter:card, summary large image',
-  },
-  '/json-ld-generator': {
-    path: '/json-ld-generator',
-    title: 'JSON-LD Generator: Free Visual Schema Builder | SerpCraft',
-    description:
-      'Build JSON-LD structured data with a visual editor for Article, BlogPosting, Product, Organization, LocalBusiness, and more. Free JSON-LD schema generator.',
-    h1: 'JSON-LD Generator',
-    ogType: 'website',
-    keywords: 'json-ld generator, structured data, schema markup, schema.org, rich results, json-ld schema generator',
+    keywords: 'json-ld generator, json-ld validator, structured data, schema markup, schema.org, rich results, json-ld schema',
   },
   '/schema-markup-generator': {
     path: '/schema-markup-generator',
@@ -110,11 +92,10 @@ export const pageMeta: Record<string, PageMeta> = {
     ogType: 'website',
     keywords: 'url debugger, meta tag checker, open graph checker, why is google showing wrong description, page interpretation report, seo debugger, og image not showing',
   },
-  '/seo-check': {
-    path: '/seo-check',
-    title: 'Free SEO Check: Instant Website Audit & Score | SerpCraft',
-    description:
-      'Free SEO check on any website: instant score plus a prioritized list of on-page, technical, social, and AI-readiness issues across 21 checks. No signup.',
+  '/seo-checker': {
+    path: '/seo-checker',
+    title: 'Live SEO Evidence Report — Technical Audit & Analysis',
+    description: 'Free instant website SEO evidence extraction. Check technical SEO, redirects, canonicals, robots, JSON-LD, and AI readiness signals.',
     h1: 'Free SEO Check',
     ogType: 'website',
     keywords: 'seo check, seo check tool, free seo check, seo check online, website seo check, seo check website, on page seo check, seo audit, seo checker',
@@ -146,14 +127,29 @@ export const pageMeta: Record<string, PageMeta> = {
     ogType: 'website',
     keywords: 'og image checker, open graph image validator, og image size, og image dimensions, 1200x630, facebook image checker',
   },
-  '/json-ld-validator': {
-    path: '/json-ld-validator',
-    title: 'JSON-LD Validator: Free Structured Data Check | SerpCraft',
-    description:
-      'Validate your JSON-LD structured data: syntax, required schema.org fields, and rich-result eligibility. Free JSON-LD validator, no signup.',
-    h1: 'JSON-LD Validator',
+  '/release-diff': {
+    path: '/release-diff',
+    title: 'SEO Release Diff — Compare URLs & Catch Regressions',
+    description: 'Compare staging vs production, old vs new, or baseline vs current. 12 critical SEO checks. Evidence-first reports.',
+    h1: 'SEO Release Diff',
     ogType: 'website',
-    keywords: 'json-ld validator, structured data validator, schema validator, rich results checker, json-ld checker',
+    keywords: 'release diff, seo regression, staging vs production, url comparison, pre-launch seo check, deploy seo audit',
+  },
+  '/seo-regression-checker': {
+    path: '/seo-regression-checker',
+    title: 'SEO Regression Checker — Compare URLs & Catch Drops',
+    description: 'Compare staging vs production, old vs new, or baseline vs current. 12 critical SEO checks. Evidence-first reports.',
+    h1: 'SEO Regression Checker',
+    ogType: 'website',
+    keywords: 'seo regression checker, seo regression, catch seo drops, compare seo',
+  },
+  '/staging-seo-checker': {
+    path: '/staging-seo-checker',
+    title: 'Staging SEO Checker — Compare Staging vs Production',
+    description: 'Compare staging vs production, old vs new, or baseline vs current. 12 critical SEO checks. Evidence-first reports.',
+    h1: 'Staging SEO Checker',
+    ogType: 'website',
+    keywords: 'staging seo checker, staging seo, compare staging vs production',
   },
   '/about': {
     path: '/about',
@@ -180,6 +176,15 @@ export const pageMeta: Record<string, PageMeta> = {
     ogType: 'website',
     keywords: 'terms of service, serpcraft terms',
   },
+  '/visual-seo-studio': {
+    path: '/visual-seo-studio',
+    title: 'Visual SEO Remediation Studio: Interactive Editor | SerpCraft',
+    description:
+      'Extract, visualize, and edit your metadata and schema graph. An all-in-one SEO workspace with pixel-accurate SERP previews and live code generation. Free.',
+    h1: 'Visual SEO Remediation Studio',
+    ogType: 'website',
+    keywords: 'visual seo editor, visual schema builder, interactive serp simulator, seo remediation, schema graph editor, seo diagnostic tool',
+  },
 };
 
 export interface NavTool {
@@ -191,16 +196,17 @@ export interface NavTool {
 }
 
 export const navTools: NavTool[] = [
-  { path: '/seo-check', label: 'SEO Check', shortLabel: 'SEO Check', icon: 'Gauge', description: 'Free instant website SEO audit' },
+  { path: '/visual-seo-studio', label: 'Visual SEO Studio', shortLabel: 'Visual Studio', icon: 'LayoutDashboard', description: 'Interactive visual SEO workspace' },
+  { path: '/release-diff', label: 'Release Diff', shortLabel: 'Release Diff', icon: 'GitCompare', description: 'Compare staging vs production URLs' },
+  { path: '/seo-regression-checker', label: 'SEO Regression Checker', shortLabel: 'Regression Check', icon: 'GitCompare', description: 'Catch SEO drops between releases' },
+  { path: '/staging-seo-checker', label: 'Staging SEO Checker', shortLabel: 'Staging Check', icon: 'GitCompare', description: 'Compare staging vs production' },
+  { path: '/seo-checker', label: 'SEO Checker', shortLabel: 'SEO Checker', icon: 'Gauge', description: 'Live website SEO evidence extraction' },
   { path: '/url-debugger', label: 'URL Debugger', shortLabel: 'URL Debugger', icon: 'Radar', description: 'See what crawlers actually read' },
   { path: '/llms-txt-generator', label: 'llms.txt Generator', shortLabel: 'llms.txt', icon: 'FileText', description: 'Optional AI crawler file builder' },
   { path: '/hreflang-generator', label: 'Hreflang Generator', shortLabel: 'Hreflang', icon: 'Languages', description: 'Multilingual tag builder with validation' },
   { path: '/og-image-checker', label: 'OG Image Checker', shortLabel: 'OG Image', icon: 'Image', description: 'Server-side OG image validation' },
-  { path: '/json-ld-validator', label: 'JSON-LD Validator', shortLabel: 'JSON-LD Check', icon: 'Braces', description: 'Structured data verification' },
-  { path: '/meta-tag-generator', label: 'Meta Tag Generator', shortLabel: 'Meta Tags', icon: 'Tags', description: 'Title, description, canonical, robots' },
-  { path: '/open-graph-generator', label: 'Open Graph Generator', shortLabel: 'Open Graph', icon: 'Share2', description: 'OG tags for Facebook, Slack, Discord' },
-  { path: '/twitter-card-generator', label: 'Twitter Card Generator', shortLabel: 'Twitter Cards', icon: 'Twitter', description: 'X/Twitter Card tags and preview' },
-  { path: '/json-ld-generator', label: 'JSON-LD Generator', shortLabel: 'JSON-LD', icon: 'Braces', description: 'Structured data schema builder' },
+  { path: '/social-meta', label: 'Social Meta Generator', shortLabel: 'Social Meta', icon: 'Share2', description: 'Open Graph, Twitter/X Cards, meta tags' },
+  { path: '/json-ld', label: 'JSON-LD Toolkit', shortLabel: 'JSON-LD', icon: 'Braces', description: 'Build and validate structured data' },
   { path: '/schema-markup-generator', label: 'Schema Markup Generator', shortLabel: 'Schema Markup', icon: 'Code', description: 'Schema.org structured data' },
   { path: '/social-preview-tool', label: 'Social Preview Tool', shortLabel: 'Social Preview', icon: 'Eye', description: 'Multi-platform link previews' },
   { path: '/serp-preview-tool', label: 'SERP Preview Tool', shortLabel: 'SERP Preview', icon: 'Search', description: 'Pixel-accurate Google preview' },
